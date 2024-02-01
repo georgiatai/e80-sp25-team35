@@ -14,7 +14,7 @@ You must prepare a figure showing the acceleration plots recorded from your robo
 The figure should plot the measured acceleration in x, y, and z overlaid on a single axis.
 The figure must be accompanied by a descriptive caption.
 In addition to the figure, you must write a short 150-200 word paragraph explaining and interpreting the acceleration data.
-In your text, you should describe the planned trajectory of your robot and describe how this corresponds to the plotted acceleration data.
+In your text, you should describe the planned trajectory of your robot, the actual trajectory that it took, and describe how this actual trajectory corresponds to the plotted acceleration data.
 
 ## Learning Objectives
 
