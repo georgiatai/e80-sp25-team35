@@ -41,7 +41,7 @@ Do the following:
 1. Use an [MCP601](http://ww1.microchip.com/downloads/en/DeviceDoc/21314g.pdf) to build a single-rail, non-inverting amplifier with a gain of two. Pay attention to the maximum allowed supply Voltage.  Use a 5 V supply Voltage.
 2. Apply a 100 mV amplitude sine wave with a 1 V offset to the amplifier input and observe the output.  This output should match simple theoretical calculations well.
 3. Apply a 100 mV amplitude sine wave with a 0 V offset to the amplifier input and observe the output.  This output should have severe non-idealities related to the amplifier behavior.  Identify the non-idealities, and explain why they are present in the output.
-4. Design, build and test an offset amplifier that can take a 100mV amplitude sine wave with 0 V offset and produce an output with none of the non-idealities in step 3.  Use a 5 V supply Voltage.
+4. Design, build and test an offset amplifier that can take a 100mV amplitude sine wave with 0 V offset and produce an output with none of the non-idealities in step 3.  Use a 5 V supply Voltage and aim for a gain of negative two (an inverting gain) and an appropriate offset.
 
 :::{.callout-note collapse="true"}
 ## Why the MCP601?

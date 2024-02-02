@@ -42,9 +42,7 @@ All pictures of circuits in this report should adhere to the following specifica
 - [ ] The circuit is neatly laid out so that readers can trace connections in the circuit.
 
 {{< pagebreak >}}
-## Report on the Design and Characterization of an Inverting Amplifier
-
-(Don't forget that oscilloscope traces need to show *_both_* input and output voltages.)
+## Report on the Design and Characterization of a Non-Inverting Amplifier
 
 Effort: 
 
