@@ -5,3 +5,110 @@ format:
   html: default
   docx: default
 ---
+
+Keep answers as short as possible while still meeting specifications. Submit as a PDF.
+
+Team Number:
+
+Team Member Names: 
+
+Several of the deliverables in this submission sheet will call for schematics, oscilloscope traces or circuit pictures.  These are specific genres of technical documents, so they have conventions you need to adhere to.  The specifications for all schematics, oscilloscope traces and circuit pictures are listed on this page instead of being repeated for each deliverable in the document.
+
+All schematics in this report should adhere the following specification:
+
+- [ ] Include the stimulus for the circuit on the left
+- [ ] Include power supply connections and bypass capacitors.
+- [ ] Annotate each node with a name, using the name Vin for the input voltage and Vout for the measured output voltage
+- [ ] Annotate each resistor and capacitor with a component value.
+- [ ] Use implicit connections to connect the power supplies.
+- [ ] Use the op-amp symbol to indicate operational amplifiers (instead of, e.g., a pinout diagram), but annotates that symbol with the chip used to make the op-amp.
+- [ ] Represent op-amp circuits in their typical configurations, so that they look similar to videos.  Don't use non-typical drawings that make one type of op-amp circuit look like another.  (e.g.: don't draw a non-inverting amplifier with feedback on the top of the op-amp; that's usually how inverting amplifiers are drawn.)
+- [ ] Generally keep signal flow left-to-right
+- [ ] Generally keep high voltages at the top of the diagram and low voltages at the bottom.
+- [ ] Space out components well enough and zoom in close enough that it is easy to read.
+- [ ] Minimize unnecessary crossings, corners and jogs in the wires.  Use implicit connections to simplify tricky combinations of wires.
+
+All oscilloscope traces in this report should adhere to the following specification:
+
+- [ ] Show the output voltage on channel 1 and the input voltage on channel 2.  Some circuits (e.g.: 555 timer, transimpedance amplifier) will only have an output voltage.
+- [ ] Scale the horizontal axis so 3-10 cycles of the input/output voltage waves are visible
+- [ ] Scale the vertical axis to maximize size of the input/output waves without clipping
+- [ ] Make sure the input/output waves use the same 0 V reference voltage.
+- [ ] Be exported using the screen capture function of the oscilloscope.  Phone pictures of oscilloscope data are unacceptable.  (Note that in a normal lab setting it would be essential to also capture CSV output from the oscilloscope for later mathematical processing.  No need to do that in this lab, screen captures are fine.)
+
+All pictures of circuits in this report should adhere to the following specification:
+
+- [ ] Are taken at a level of lighting and zoom that allows a reader to trace connections in the circuit.
+- [ ] The circuit is neatly laid out so that readers can easily interpret what is going on.
+
+{{< pagebreak >}}
+## Report on the Design and Characterization of an Inverting Amplifier
+
+(Don't forget that oscilloscope traces need to show *_both_* input and output voltages.)
+
+Effort: 
+
+- [ ] Provides a picture of the inverting amplifier
+- [ ] Provides a schematic of the inverting amplifier and stimulus
+- [ ] Provides an oscilloscope trace for the following input: 100 mV amplitude sine wave with a 1 V offset.
+- [ ] Provides an oscilloscope trace for the following input: 100 mV amplitude sine wave with a 0 V offset.
+
+Complete:
+
+- [ ] Schematics and oscilloscope traces adhere to completeness specifications on the first page.
+- [ ] Correctly, in 1-2 sentences, describes why the output signal in the 0 V offset trace does not fully obey the equation that describes non-inverting amplifier outputs.
+
+{{< pagebreak >}}
+## Report on the Design and Characterization of an Offset Amplifier
+
+Effort:
+
+- [ ] Provides a picture of the offset amplifier
+- [ ] Provides a schematic of the offset amplifier
+- [ ] Describes the design process for the offset amplifier, including specifying the intended gain and offset, and showing the appropriate equation and hand calculations to find the  for offset amplifier output Voltage.
+- [ ] Provides an oscilloscope trace for the following input: 100 mV amplitude sine wave with a 0 V offset.
+
+Complete: 
+
+- [ ] The output trace shows a complete sine wave with no op-amp introduced non-idealities.
+- [ ] The op-amp trace behaves as predicted in the hand design.
+- [ ] 1-2 sentences of discussion of why this design performs differently than a non-inverting amplifier for the same input.
+
+{{< pagebreak >}}
+## Report on the Design and Characterization of a 555 Timer LED Driver
+
+Effort:
+
+- [ ] Provides a picture of the 555 timer LED driver.
+- [ ] Provides a schematic of the 555 timer LED driver.
+
+Complete: 
+
+- [ ]
+
+{{< pagebreak >}}
+## Report on the Design and Characterization of a Transimpedance Amplifier
+
+Effort:
+
+- [ ] Provides a schematic of 
+
+Complete: 
+
+- [ ]
+
+{{< pagebreak >}}
+## Report on the Design and Characterization of a Turbidity Meter
+
+Effort:
+
+- [ ] Provides a schematic of 
+
+Complete: 
+
+- [ ]
+
+{{< pagebreak >}}
+## Extra Credit Writeups:
+
+We don't provide complete specifications for extra credit writeups, but they will be graded for effort and completeness like normal sections.  You need to provide a "mini-report" of <1 page for each extra credit section that you attempt.
