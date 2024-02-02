@@ -87,6 +87,8 @@ Complete:
 - [ ] Provides an oscilloscope trace of the output, 555 capacitor node, and Voltage in the middle of the diode-resistor string.
 - [ ] Trace indicates 500 Hz - 1 kHz operating frequency and ~60% duty cycle.
 - [ ] Resistor value in schematic and resistor voltage measurement indicate diode is receiving 20-40 mA of current.
+- [ ] Includes design process for 555 timer: lists target frequency and duty cycle, and shows how resistors and capacitors were selected to hit that target.
+- [ ] Includes calculations showing how resistor was selected to limit current in IR1503.
 
 {{< pagebreak >}}
 ## Report on the Design and Characterization of a Transimpedance Amplifier
@@ -98,6 +100,7 @@ Effort:
 
 Complete: 
 
+- [ ] Includes analysis of transimpedance amplifier circuit, showing relation between VOUT, ID and RF.
 - [ ] Provides an oscilloscope trace of 555 timer output and transimpedance amplifier output when transimpedance photodiode is illuminated by the IR LED.
 
 {{< pagebreak >}}
