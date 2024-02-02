@@ -18,11 +18,11 @@ After successful completion of this lab, you will be able to
 - [ ] Design and build an offset amplifier using an operational amplifier
 - [ ] Design and build a transimpedance amplifier using an operational amplifier
 - [ ] Design and build an oscillator using a 555 timer
-- [ ] Understand the basic use of LEDs and phototransistors
+- [ ] Understand the basic use of LEDs and photodiodes
 - [ ] Explain clipping behavior in op-amps
 - [ ] Explain how modulating a signal can help separate it from background signals
-- [ ] Explain the basic theory of turbidity and turbitidy measurements
-- [ ] Build and test a complex design by thoughfully testing and assembling individual parts
+- [ ] Explain the basic theory of turbidity and turbidity measurements
+- [ ] Build and test a complex design by thoughtfully testing and assembling individual parts
 - [ ] Use linear regression to extract slope, offset, and appropriate error measures from data
 
 This lab will be carried out as sub-teams of two.  Policies for sub-teams are discussed in [lab 2](/labs/lab2/index.qmd)
@@ -55,7 +55,7 @@ Turbidity is a measurement that depends on illuminating a water sample, then mea
 
 1. Build an astable 555 timer oscillator that has a frequency between 500 Hz and 1 kHz and a [duty cycle](https://en.wikipedia.org/wiki/Duty_cycle) of approximately 60%. If you use reference designs from the datasheet, **omit RL** from any circuit you build.
 2. Verify that your oscillator is working by measuring the oscillator output Voltage and the capacitor Voltage.
-3. Attach a series combination of a resistor and an IR1503 the output of the 555 timer.  Select the resistor value and diode orientation such that you will drive between 10% and 50% of the diode's maximum current when the output is high. Selecting this resistor will require approximating the diode's forward voltage (VF) at your desired current level, and information in the datasheet can help you figure out an appropriate VF.
+3. Attach a series combination of a resistor and an IR1503 the output of the 555 timer.  Select the resistor value and diode orientation such that you will drive 20-40 mA through the diode when the output is high. Selecting this resistor will require approximating the diode's forward voltage (VF) at your desired current level, and information in the datasheet can help you figure out an appropriate VF.
 4. Measure the Voltage across the resistor in the resistor-IR1503 combination while the 555 timer is operating.  Check that this Voltage waveform implies that the correct current waveform is passing through the IR1503.
 5. Build the switching time test circuit in the OP950 datasheet and use it to check that IR light is coming out of your IR1503.  It's easy to get the OP950 backwards or to pick an unsuitable resistor value, so play around a bit with flipping your OP950 polarity or trying a few different VR and RL values.
 
@@ -79,8 +79,8 @@ We will need to measure the amount of light that passes through a solution (eith
 Schematic for a transimpedance amplifier
 :::
 
-1. Analyze the transimpedance amplifier circuit to determine a formla that relates the diode current, ID, the feedback resistance, RF, and the output voltage, VOUT.  Note that the diode acts like a current source pointing away from the op-amp when the photodiode is illuminated.
-2. Build a transmipedance amplifier using the [MCP6004](https://www.digikey.com/en/products/detail/microchip-technology/MCP6004-I-P/523060) and an OP950.  Configure unusued op-amps as unity gain buffers with their inputs and outputs grounded.
+1. Analyze the transimpedance amplifier circuit to determine a formula that relates the diode current, ID, the feedback resistance, RF, and the output voltage, VOUT.  Note that the diode acts like a current source pointing away from the op-amp when the photodiode is illuminated.
+2. Build a transimpedance amplifier using the [MCP6004](https://www.digikey.com/en/products/detail/microchip-technology/MCP6004-I-P/523060) and an OP950.  Configure unused op-amps as unity gain buffers with their inputs and outputs grounded.
 3. Use your LED light source from @sec-led to test the transimpedance amplifier.  If you are seeing no signal, try flipping your OP950 around.  Adjust the feedback resistor so you are seeing a large output signal.
 4. Build and test a second copy of this op-amp circuit for use in your turbidity meter.
 
