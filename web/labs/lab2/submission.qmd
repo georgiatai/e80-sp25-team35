@@ -8,6 +8,10 @@ format:
 
 Keep answers as short as possible while still meeting specifications. Submit as a PDF.
 
+Team Number:
+
+Team Member Names: 
+
 ## What is one 'Teensy Unit'? 
 
 i.e.: How much has the Voltage input to the Teensy changed when the number reported by `matlablogging.m` increases by 1?  Include a graph of Teensy output vs. sample number, any other relevant information about your test setup or measurements, and calculations showing how you did your conversion from Voltage to Teensy units.
@@ -36,6 +40,7 @@ Effort Specification:
 Complete Specification:
 
 - [ ] Calculations are correct and yield the proper Teensy unit value.
+- [ ] Results are used to explain measurement errors that are present in the 175 kHz measurement that are not present in the 200 Hz measurement.
 
 {{< pagebreak >}}
 ## Fill in this table of properties for voltage dividers

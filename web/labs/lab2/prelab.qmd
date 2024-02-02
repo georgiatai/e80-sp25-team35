@@ -34,7 +34,7 @@ Think carefully about which group members you want to complete each section.  Ma
 - [ ] Look up all necessary impedance values and uncertainties.
 - [ ] Have you caluclated your expected output voltage for each entry in the table?
 - [ ] Do you know whether you'll get a RMS or peak-peak measurement for each experiment?
-- [ ] Lay out your breadboard ahead of time using a breadboard simulator like [fritzing](https://fritzing.org/)
+- [ ] Lay out your breadboard ahead of time using a breadboard simulator like [fritzing](https://fritzing.org/) or [Tinkercad](https://www.tinkercad.com/learn/overview/OPRHCXXL20FZS3N?type=circuits)
 - [ ] Are you sure you understand and accounted for instrument loading? Consult the videos or a Prof. if you're not confident you got this right.
 - [ ] Are you clear on how to change a channel seting between 1x and 10x modes?
 - [ ] How are you going to quickly calculate your VOPC, ERRI and ERRC values in the lab?  Would making a spreadsheet or a Matlab script help?
