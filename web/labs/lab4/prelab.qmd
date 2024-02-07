@@ -1,0 +1,17 @@
+---
+title: Lab 4 Prelab Help Sheet
+---
+
+This is the last prelab help sheet you're going to get!  Instead of detailed prelab items, this just lists general categories you might consider when planning prelab work.
+
+## Reading and Reference
+
+## Circuit Design
+
+## Thermistors and Steinhart-Hart
+
+## Multimeter Modes and Use
+
+## Thermocouples, NIST Tables and Cold Junction Compensation
+
+## Results
