@@ -25,7 +25,7 @@ After successful completion of this lab, you will be able to
 - [ ] Build and test a complex design by thoughtfully testing and assembling individual parts
 - [ ] Use linear regression to extract slope, offset, and appropriate error measures from data
 
-This lab will be carried out as sub-teams of two.  Policies for sub-teams are discussed in [lab 2](/labs/lab2/index.qmd)
+This lab will be carried out as sub-teams of two.  Policies for sub-teams are discussed in [lab 2](/labs/lab2/index.qmd).
 
 This lab asks you to prepare solutions and handle chemicals. Though we aren't working with anything hazardous (or which can't be flushed down the drain), be sure to observe good chemical hygiene practices and use gloves and goggles when handling chemicals or sensitive equipment. Always use gloves when handling any glassware that will go into the turbidity meter.
 
