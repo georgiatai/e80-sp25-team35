@@ -6,23 +6,92 @@ title: "Lab 4: Temperature Sensors"
 
 Team size: 2
 
-## Learning Objectives
+Submission Sheet: [html](/labs/lab3/submission.qmd) [docx](/labs/lab3/submission.docx)
 
-After successful completion of this lab, you will be able to…
+Prelab Help Sheet: [html](/labs/lab3/prelab.qmd)
 
-1. Build a system to measure temperature with several different types of temperature sensors
-2. Explain the tradeoffs (e.g., response time, dynamic range, ease of analysis) between different temperature sensor architectures.
+## Introduction
 
+In this lab you will build some common sensors for the final project -- a pressure sensor and a thermistor-based temperature sensor -- perform a non-linear fit to Thermistor data, and experiment with a thermocouple. Temperature and pressure have been called the "monarchs of measurements" by some Mudd professors because of their wide applicability in chemical and industrial processes, aerospace applications, and natural sciences.  For us, temperature and pressure have many applications to oceanography, so it's worth spending a laboratory practicing temperature and pressure measurements.  You might find some time in this lab to prepare a resubmission, possibly by revisiting data from labs 1-3.
 
-## 0. Introduction
+After successful completion of this lab, you wil be able to: 
+
+- [ ] Relate the resistance of a thermistor to its temperature using the Steinhart-Hart Equation.
+- [ ] Perform a fit to a non-linear function of data
+- [ ] Use NIST tables to interpret thermocouple Voltages
+- [ ] Use a multimeter to measure temperature with a thermocouple
+- [ ] Describe the basics of cold junction compensation
+- [ ] Comment on the relative speed of solid-state linear temperature sensors, thermistors and thermocouples.
+
+This lab will be carried out as sub-teams of two.  Policies for sub-teams are discussed in [lab 2](/labs/lab2/index.qmd).
 
 **IT IS YOUR TEAM'S RESPONSIBILITY TO BRING ICE TO LAB .  THIS IS PART OF YOUR PRELAB! **
 
-This lab will be completed in sub-teams of two students. Before the lab you must decide how you will split your team.  Each sub-team will be responsible for its own version of the lab's deliverables.  Pre-lab work and a vision of the experiments that you will be conducting will be essential to the successful completion of this lab.  As usual, this subteam may not be the same as any other subteam you've participated in during the course.
+## Build a Pressure Sensor Interface Circuit
 
-There are two extra credit sections. They would make the lab too long for most teams of two to complete. However, in the unlikely event that you complete the required sections, you may attempt either or both and include the results as addenda in your report and submission sheet (see details in the extra credit sections). They are the same experiments as extra credit for Lab 3. You may submit a given extra credit only once, so if you've already submitted one or the other, you may not resubmit it for Lab 4.
+E79 and E80 both rely on the same pressure sensor, the [MPX5700](http://www.mouser.com/ds/2/302/MPX5700-783436.pdf), which has a reasonable range of output Voltages over the depths that E79/E80 robots can easily traverse. However, that range of output voltages is small compared to the input range of the Teensy, so if you want to use this sensor in your final project, you will get large errors from Teensy quantization unless you build an amplifier. In this section, you'll design an op-amp circuit that shifts and scales MPX5700 output Voltage range into the Teensy input range, which is approximately 0 V to 3.3 V. Use the  [MCP601](http://ww1.microchip.com/downloads/en/DeviceDoc/21314g.pdf) op-amp and Vdd=5V.
 
-The instructions for this lab are not as detailed as for some of the earlier labs. You are expected to plan out your experiments and fill in the blanks.
+1. Find the Voltages the MPX5700 will produce when at depths between 0 m and 1 m. Note that you will experience atmospheric pressure at 0m. We will call this Voltage range the target Voltage range.
+2. Design an op-amp circuit that will shift and scale MPX5700 output Voltages from the target Voltage range to a new Voltage range that is suitable for reading by the Teensy.  The new Voltage range should have a maximum of 3.2V and a minimum of 0.1 V.
+3. Build the op-amp circuit and test it with a function generator to convince yourself it is working.
+4. Build an MPX5700 on your breadboard, and test that it works using a multimeter and a water column in a graduated cylinder.  Section 6 in these [instructions from E79](https://sites.google.com/g.hmc.edu/e79-practicum/module-2/practicum-2d) might help.
+5. Connect your MPX5700 to your op-amp circuit and test the assembled pressure sensor using a water column in a graduated cylinder.  Record a depth vs. Voltage calibration curve, and include regression lines and appropriate measures of uncertainty.
+
+## Build a Thermistor Interface Circuit
+
+Build a divider in the stles of @sec-dividers where Z1 is 100kΩ and Z2 is a 100kΩ thermistor, then derive a formula to calculate the temperature from Vin and Vout. Determine the error specifications for all of the components in your system. Measure Vin and Vout with the 10x Scope probe and use your results to calculate the room temperature. Propagate errors to calculate the uncertainty in your temperature measurement. 
+
+Try to reduce your uncertainty by measuring the actual resistance of Z1 instead of using its printed value. Note that we're only measuring Z1 because we are using the output voltage of the thermistor voltage divider to guess Z2. Repeat the measurement and calculation. How much did the uncertainty change? 
+
+Compare your calculated temperatures with the room temperature measured by one of the digital thermometers. Do the measurements agree within the uncertainty of the measurements? Explore how the measured temperature changes with Vin as you vary from 1 Vpp to the maximum the signal generator can generate. Why does it change? 
+
+**DO ALL**
+
+## Measure and Fit Thermistor Resistance vs. Temperature
+
+**WRITE**
+
+1. Prepare a thermistor temperature probe using the [instructions from E79](https://sites.google.com/g.hmc.edu/e79-practicum/robot-umbilical) in section 3. Note that you DO NOT need to make a whole umbilical. You only need to make the temperature sensor.
+2. Use the multimeter to measure the resistance of a thermistor at room temperature.  While still measuring the resistance, hold the thermistor tightly with your fingers and verify that the multimeter reading changes.
+3. Obtain a digital thermometer to use for "ground truth" temperature measurements.
+4. Prepare a set of **EIGHT** different temperature baths between 0 °C and 80 °C. Always check the temperature of the bath with the digital thermometer when you take a reading with another instrument, like the thermocouple, because the baths will change temperature over time.
+5. Use the multimeter and the digital thermometer to measure the temperatures of your baths and the resistance of the thermistor when it is submerged in each bath.
+6. Use non-linear fitting techniques to extract the Steinhart-Hart coefficients for your thermistor with appropriate measures of uncertainty. Compare them to Steinhart-Hart coefficients listed in the thermistor datasheet. **CLARIFY**
+
+## Measure and Decode Thermocouple Voltage vs. Temperature
+
+**WRITE**
+
+1. Obtain a type-K thermocouple from the instructors.  Be sure to return it at the end of lab!
+2. Obtain a digital thermometer to use for "ground truth" temperature measurements.
+3. Prepare a set of five different temperature baths between 0 °C and 80 °C.
+4. Plug the type-K thermistor into the multimeter and set the multimeter to temperature mode.
+5. Measure the temperature of the baths with the digital thermometer and with the thermocouple.  Compare the measured values.
+6. Switch the multimeter to Voltage mode.  Use the digital thermometer and the multimeter to measure the temperature of the bath and the thermocouple Voltage when it is submerged in each bath.
+7. Use the principles of cold-junction compensation (what temperature is the thermocouple cold junction at anyway?) and NIST tables to decode the thermocouple Voltages into temperatures, then compare the decoded temperatures to your digital thermometer measurements.
+
+## Have a Temperature Sensor Race
+
+**DO ALL**
+
+## Extra Credit and Resubmission
+
+If you have time, you may work on the extra credit from any previous week or prepare for a resubmission.  If it is necessary to retake data for a resubmission, now is a good time to do it.
+
+
+
+**DELETE BELOW HERE**
+
+## Extra Credit 3. Pressure Measurement
+
+In this section you will replicate the pressure circuit on your E79 board to understand its operation.  After that you will modify the sensing circuit to optimize the range of the output voltage for the graduated cylinder test that we have used to test pressure sensor operation.
+
+Design an offset amplifier using an MCP601 with a 5V power supply to convert voltage from the [MPX5700](http://www.mouser.com/ds/2/302/MPX5700-783436.pdf) pressure sensor to the 0 V-3.3 V output range over a depth of 0-4 m.
+
+Create an experimental setup to vary the pressure on the sensor using a large graduated cylinder, water and plastic tubing.  Create a calibration curve relating your measured voltage to the applied pressure, and include appropriate measures of uncertainty.
+
+Return the pressure sensor to stock when you are done with it and be careful not to damage the pins while using it in your breadboard.
+
 
 You will be provided with: 
 
@@ -46,9 +115,6 @@ IMPORTANT SAFETY TIP: When using the calibration baths remember that water is an
 IMPORTANT SAFETY TIP: Water above 50 °C can cause scalds. Determine safety protocols for working with hot water to avoid spilling it or inadvertently touching it.  
 
 IMPORTANT NOTE: The only constant-temperature bath in the lab is the 25 °C bath in the E80 lab (B171). Use your digital thermometer to monitor the temperatures of any other baths in the lab!  
-
-For pre-lab purposes, a sample submission sheet that contains all of the questions and requirements on the submission sheet is [here](https://docs.google.com/document/d/1ghNbwWHYMGdRQ9Xtn_HUUuJy1QP-dyQK/edit?usp=sharing&ouid=100121681850908143159&rtpof=true&sd=true).
-
 
 ## 1. Side-by-Side Comparison of the Thermistor and Solid-State Sensor 
 
@@ -120,38 +186,3 @@ Recall that no late work is accepted, we will grade whatever is submitted at the
 
 After the writing and reflection section at the end of each week every person (not just one person per team) must submit a team dynamics check-in survey. These are part of your participation grade. The survey link can be found on the home page.
 
-
-## Extra Credit 1. Salinity Measurement
-
-This extra credit is the same as for Lab 3. If you already submitted this extra credit for Lab 3, do not resubmit it as part of Lab 4.
-
-Salinity is a measure of the total dissolved salt content of water. It is an extremely important and common measurement in oceanographic studies. Salinity measurements are used to track the flow of water and map the hydrological cycle, calibrate acoustic communication links, and understand biological phenomena like algal blooms. In this section you will build a sensor to measure salinity using an inverting operational amplifier. You will prove that it works by calibrating it against saline solutions with different salinity.
-
-To design your sensor, you need to know reasonable values for what you're trying to measure. Your sensor will measure conductivity and the measured value will be used to extract salinity. Find the salinity and conductivity of the ocean using any resource you choose. Note that the equivalent circuit model of a saline solution whose value depends on the separation of the probe electrodes and the salt concentration (why?) is a resistor in parallel with a capacitor. We will ignore the capacitor for this extra credit section, but it is critically important in a design for the final project. You may want to read [this](https://drive.google.com/file/d/1wtEeyfcI0ObH-54Jn9V4pzgGdI38T4-9/view) reference for further information.
-
-Design an inverting operational amplifier circuit using one or more TL081 op-amps which has an output voltage that is linear with the conductivity of your solution. Be sure to consider source and load impedances when designing your circuit. Ensure that the output voltage of this circuit will vary over a wide voltage range for the range of saline solutions that you plan to use for calibrating your circuit. This design depends on some of your experimental parameters including the separation of electrodes and the conductivities of the solutions you intend to measure. 
-
-One thing to be careful of when measuring salinity is that salt, water and electrons will undergo chemical reactions which can deposit metal salts on your electrodes. These salts can form non-conductive films which stop your conductivity measurements. What kind of waveform should you apply to your circuit in order to make a measurement stable over time? This chemistry can also cause your circuit to fail if the electrode area is too small or the voltage applied to the solution is too low.
-
-Prepare an experimental setup that will allow you to measure the conductivity of salt water. You have access to beakers, wire, electrical tape and digital thermometers. Prepare a set of saline solutions to be used with this setup which are sufficient to prove the sensor is linear. Graduated cylinders would usually be used to measure the volume of water in these solutions. Those are not available to you, so instead you will need to use the digital scales and the well-known relationship between the mass and volume of water. What is that relationship? 
-
-Record a calibration curve for your sensor which plots the voltage output of your sensor against the concentration of your salt solution in units of grams per liter on logarithmic X and Y axes. Find a line of best fit including appropriate uncertainty measurements. Then use your sensor and your calibration curve to measure the salinity of the mystery salinity solution on the central table.
-
-Note: You may use [this](http://www.fivecreeks.org/monitor/sal.shtml) resource to convert from a measured conductivity to salinity and [this](https://www.hamzasreef.com/Contents/Calculators/SalinityConversion.php) resource to convert from salinity to conductivity.
-
-Writeups for this extra credit section are not counted against the page limit of your report.  You may submit this as an additional document labeled "Lab 4 salinity extra credit addendum."
-
-
-## Extra Credit 2. Pressure Measurement
-
-This extra credit is the same as for Lab 3. If you already submitted this extra credit for Lab 3, do not resubmit it as part of Lab 4.
-
-In this section you will replicate the pressure circuit on your E79 board to understand its operation.  After that you will modify the sensing circuit to optimize the range of the output voltage for the graduated cylinder test that we have used to test pressure sensor operation.
-
-Analyze [this](https://docs.google.com/drawings/d/1pTpKT0Fry4J3rTBcaDEpxpQXTKx3VQGQRzOxNTUFSZ4/edit?usp=sharing) circuit and select values of R1, R2 and R3 such that output voltage will swing from 1V to 4V when you apply a pressure varying from atmospheric to 50cm below water.  Implement the circuit using the [MPX5700](http://www.mouser.com/ds/2/302/MPX5700-783436.pdf) pressure sensor and the [MCP601](http://ww1.microchip.com/downloads/en/DeviceDoc/21314g.pdf) op-amp, which are the devices used on the E79 board.    Use Vdd=5V.  Why is the pressure sensor attached to the positive input of the amplifier?  
-
-Create an experimental setup to vary the pressure on the sensor using a large graduated cylinder, water and plastic tubing.  Create a calibration curve relating your measured voltage to the applied pressure, and include appropriate measures of uncertainty.
-
-Return the pressure sensor to stock when you are done with it under pain of a grade penalty, and be careful not to damage the pins while using it in your breadboard.
-
-Writeups for this extra credit section are not counted against the page limit of your report.  You may submit this as an additional document labeled "Lab 4 pressure extra credit addendum."

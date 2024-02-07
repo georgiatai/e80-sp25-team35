@@ -8,9 +8,9 @@ This is the last prelab help sheet you're going to get!  Instead of detailed pre
 
 ## Circuit Design
 
-## Thermistors and Steinhart-Hart
-
 ## Multimeter Modes and Use
+
+## Thermistors and Steinhart-Hart
 
 ## Thermocouples, NIST Tables and Cold Junction Compensation
 
