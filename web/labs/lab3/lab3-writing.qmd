@@ -10,7 +10,8 @@ You'll then write text to describe the operation of the electrical system and th
 
 ## Statement of Work
 
-Prepare high-quality electrical schematics and mechanical drawings to include in a methods section of a technical memo describing the operation of the transimpedance amplifier and turbidity meter you built in Lab 3.
+Prepare a high-quality electrical schematic and mechanical drawing to include in a methods section of a technical memo describing the operation of the transimpedance amplifier and turbidity meter you built in Lab 3.
+The accompanying text should describe how the circuit and cuvette holder are used to build the turbidity meter.
 
 The electrical schematic describes the functional connection of the components in an electrical circuit.
 It **does not** directly represent the physical layout of the circuit in 3d-space on a breadboard or printed circuit board.
@@ -25,18 +26,20 @@ The mechanical drawing for this lab is a three-dimensional view of the 3d-printe
 Your drawing should convey to the reader the key features of the design along with the most important dimensions needed to understand the scale of the design.
 It **does not** need to include all the relevant dimensions in order to manufacture the part.
 The function of the diagram for the written assignment is to communicate how it is used in the experiment.
+Include a 100-150 word section of text to describe how the cuvette holder is used in the turbidity meter.
 
 ## Learning Objectives
 
 By the end of this writing assignment you will...
 
-- Draw a neat and complete electrical schematic
-- Create a clear mechanical drawing with relevant details included
+- Draw a neat and complete electrical schematic.
+- Create a clear mechanical drawing with relevant details included.
+- Write text to reference the schematic and drawing to explain the operation of the turbidity meter.
 
 ## Required Resources
 
-- [ ] Reference schematic from the Lab 3 submission sheet of the op amp circuit used in lab.
-- [ ] Source code for Solidworks drawing of turbidity meter cuvette holder.
+- [ ] Source code for a schematic of the transimpedance amplifier used in lab.
+- [ ] Source code for Solidworks drawing of the cuvette holder used in the turbidity meter.
 
 ## Specifications
 
