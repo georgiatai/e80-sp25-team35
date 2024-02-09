@@ -54,8 +54,8 @@ Complete:
   - $\lambda$M is uncertainty in measured output Voltage
   - ERR is error between prediction and measurement
 - [ ] Predicted Voltages and measured voltages match to within uncertainty and are consistent with equations.
-- [ ] Predicted and measured Voltage at zero depth is close to 0.1 V.
-- [ ] Predicted Voltage at 1m depth is close to 3.1V
+- [ ] Predicted and measured Voltage at zero depth is close to 0.3 V.
+- [ ] Predicted Voltage at 1m depth is close to 3.0V
 
 | Depth (cm) | VOP (V) | $\lambda$V (V) | VOM (V) | $\lambda$M (V) | ERR (%) | 
 | -----------|---------|----------------|---------|----------------|---------|
@@ -77,8 +77,8 @@ Complete:
 - [ ] Predicted and measured resistance values are reported with uncertainty for 0 °C and 20 °C temperatures.
 - [ ] Predicted and measured output voltages are reported with uncertainty for 0 °C and 20 °C temperatures.
 - [ ] Predicted Voltages and measured voltages match to within uncertainty and are consistent with equations.
-- [ ] Predicted and measured Voltage at 0 °C is close to 0.1 V.
-- [ ] Predicted and measured Voltage at 20 °C is close to 3.1 V.
+- [ ] Predicted and measured Voltage at 0 °C is close to 0.3 V.
+- [ ] Predicted and measured Voltage at 20 °C is close to 3.0 V.
 
 {{< pagebreak >}}
 ## Report on Steinhart-Hart Fitting of Thermistor
