@@ -1,5 +1,6 @@
 ---
 title: "Lab 4: Temperature Sensors"
+number-sections: true
 ---
 
 **UNDER CONSTRUCTION, DO NOT USE FOR PRELAB**
@@ -41,13 +42,17 @@ The only constant-temperature bath in the lab is the 25 °C bath in the E80 lab 
 
 ## Build a Pressure Sensor Interface Circuit
 
-E79 and E80 both rely on the same pressure sensor, the [MPX5700](http://www.mouser.com/ds/2/302/MPX5700-783436.pdf), which has a reasonable range of output Voltages over the depths that E79/E80 robots can easily traverse. However, that range of output voltages is small compared to the input range of the Teensy, so if you want to use this sensor in your final project, you will get large errors from Teensy quantization unless you build an amplifier. In this section, you will design an op-amp circuit that shifts and scales MPX5700 output Voltage range into the Teensy input range, which is approximately 0 V to 3.3 V. Use the [MCP601](http://ww1.microchip.com/downloads/en/DeviceDoc/21314g.pdf) op-amp and Vdd=5V.
+E79 and E80 both rely on the same pressure sensor, the [MPX5700](http://www.mouser.com/ds/2/302/MPX5700-783436.pdf), which has a reasonable range of output Voltages over the depths that E79/E80 robots can easily traverse. However, that range of output voltages is small compared to the input range of the Teensy, so if you want to use this sensor in your final project, you will get large errors from Teensy quantization unless you build an amplifier. In this section, you will design an op-amp circuit that shifts and scales MPX5700 output Voltage range into the Teensy input range, which is approximately 0 V to 3.3 V. Use the [MCP601](http://ww1.microchip.com/downloads/en/DeviceDoc/21314g.pdf) op-amp and Vdd=5V for both the MPX5700 and the MCP601.
 
-1. Find the Voltages the MPX5700 will produce when at depths between 0 m and 1 m. Recall that the sensor will experience atmospheric pressure at 0m. We will call this Voltage range the target Voltage range.
-2. Design an op-amp circuit that will shift and scale MPX5700 output Voltages from the target Voltage range to a new Voltage range that is suitable for reading by the Teensy.  The new Voltage range should have a maximum of 3.2V and a minimum of 0.1 V.
+1. Find the Voltages the MPX5700 will produce when at depths between 0 m and 40 cm. Recall that the sensor will experience atmospheric pressure at 0m. We will call this Voltage range the target Voltage range.
+2. Design an op-amp circuit that will shift and scale MPX5700 output Voltages from the target Voltage range to a new Voltage range that is suitable for reading by the Teensy.  The new Voltage range should have a maximum of 3.2 V and a minimum of 0.1 V.
 3. Build the op-amp circuit and test it with a function generator to convince yourself it is working.
 4. Build an MPX5700 on your breadboard, and test that it works using a multimeter and a water column in a graduated cylinder.  Section 6 in these [instructions from E79](https://sites.google.com/g.hmc.edu/e79-practicum/module-2/practicum-2d) might help.
 5. Connect your MPX5700 to your op-amp circuit and test the assembled pressure sensor using a water column in a graduated cylinder.  Record a depth vs. Voltage calibration curve, and include regression lines and appropriate measures of uncertainty.
+
+:::{.callout-tip}
+The MPX5700 is sensitive to supply Voltage and it can mess up your measurements.  Set your power supply to exactly 5 V and verify its value with a multimeter.
+:::
 
 ## Build a Thermistor Interface Circuit
 
@@ -56,8 +61,8 @@ In another echo of E79, this section is about building a thermistor-based temper
 $$ R=R_0 \exp{B(1/T-1/T_0)} $$ {#eq-RB-thermistor}
 
 1. Predict the resistance you will see from the thermistor when it is in a 0 °C bath to a 20 °C bath.
-2. Design a Voltage divider that converts the thermistor resistance to Voltage.  The divider should use a supply Voltage of 5V, a resistor of your choice in the top position, and a thermistor in the bottom position.  Predict the output Voltages of this circuit when the thermistor is in a 0 °C bath to a 20 °C bath. Use appropriate measures of uncertainty.
-3. Design an op-amp circuit that will shift and scale the output of the thermistor divider into the Teensy Voltage range (0.1V to 3.2V).  Use an MCP601 op-amp with a supply Voltage of 5V.
+2. Design a Voltage divider that converts the thermistor resistance to Voltage.  The divider should use a supply Voltage of 5V, a thermistor in the top position, and a resistor of your choice in the bottom position.  Predict the output Voltages of this circuit when the thermistor is in a 0 °C bath to a 20 °C bath. Use appropriate measures of uncertainty.
+3. Design an op-amp circuit that will shift and scale the output of the thermistor divider into the Teensy Voltage range (0.3V to 3.0V).  Use an MCP601 op-amp with a supply Voltage of 5V.
 4. Build the divider and op-amp circuits, test them individually, hook them together, then test the combination using a 0 °C bath and a 20 °C bath and compare results to predictions.
 
 :::{.callout-note collapse="true"}
@@ -76,13 +81,13 @@ It is possible to do this lab by just connecting to thermistor leads using BNC-h
 
 In this section we will explore the thermistor's resistance-temperature relation in greater detail.  You will measure the resistance of a thermistor directly with a multimeter in this section so that you can focus on the resistance-temperature behavior, modeling and non-linear fitting.  
 
-Another equation that relates thermistor resistance and temperature, the Steinhart-Hart Equation, is relevant here and is shown in @eq-steinhart-hart. In this equation, $T$ is the absolute temperature in Kelvin, $R$ is the resistance of the thermistor, and $A$, $B$, $C$ and $D$ are fitting coefficients called Steinhart-Hart coefficients.  Note that the $B$ variable in @eq-steinhart-hart is different than the $B$ variable in @eq-RB-thermistor.
+Another equation that relates thermistor resistance and temperature, the Steinhart-Hart Equation, is relevant in this section.  The equation is shown in @eq-steinhart-hart, and in this equation, $T$ is the absolute temperature in Kelvin, $R$ is the resistance of the thermistor, and $A_1$, $B_1$, $C_1$ and $D_1$ are fitting coefficients called Steinhart-Hart coefficients.  Note that the $B_1$ variable in @eq-steinhart-hart is different than the $B$ variable in @eq-RB-thermistor.
 
-$$ 1/T = A + B \ln R + C \ln^2 R + D \ln^3 R $$ {#eq-steinhart-hart}
+$$ 1/T = A_1 + B_1 \ln R + C_1 \ln^2 R + D_1 \ln^3 R $$ {#eq-steinhart-hart}
 
 1. Use the multimeter to measure the resistance of a thermistor at room temperature.  While still measuring the resistance, hold the thermistor tightly with your fingers and verify that the multimeter reading changes.
 2. Obtain a digital thermometer to use for "ground truth" temperature measurements.
-3. Prepare a set of eight different temperature baths between 0 °C and 80 °C. 
+3. Prepare a set of eight different temperature baths between 0 °C and 80 °C.  You will only have access to a few insulated beakers to prepare these baths, so you may need to prepare them in batches or wait for the first baths you made to cool a bit in order to get extra data points.
 4. Use the multimeter and the digital thermometer to measure the temperatures of your baths and the resistance of the thermistor when it is submerged in each bath.
 5. Use fitting techniques to extract the Steinhart-Hart coefficients for your thermistor with appropriate measures of uncertainty. Don't forget about the Steinhart-Hart fitting example on the lectures page. 
 6. Plot the data points, the Steinhart-Hart fit and the fit provided by datasheet parameters and @eq-RB-thermistor on the same axes.
@@ -94,7 +99,7 @@ In this section we will give Thermocouples the same attention we've just given t
 
 1. Obtain a type-K thermocouple from the instructors.  Be sure to return it at the end of lab!
 2. Obtain a digital thermometer to use for "ground truth" temperature measurements.
-3. Prepare a set of five different temperature baths between 0 °C and 80 °C.
+3. Prepare a set of five different temperature baths between 0 °C and 80 °C.  As in section @sec-therm, you may be limited by the number of insulated beakers available, so you can prepare the baths in batches or wait for them to cool down between measurements.
 4. Plug the type-K thermocouple into the multimeter and test out the multimeter's temperature mode.
 5. Submerge the digital thermometer and the type-K thermocouple in a bath simultaneously.  Then measure the following and repeat the process for each bath. 
    1. Measure the bath temperature using the digital thermometer 

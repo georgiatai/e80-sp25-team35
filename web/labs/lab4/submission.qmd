@@ -53,7 +53,6 @@ Complete:
   - VOM is measured output Voltage 
   - $\lambda$M is uncertainty in measured output Voltage
   - ERR is error between prediction and measurement
-  - One table row should be for 1m of depth, but it will only contain predicted values because the graduated cylinders are shorter than 1 m.
 - [ ] Predicted Voltages and measured voltages match to within uncertainty and are consistent with equations.
 - [ ] Predicted and measured Voltage at zero depth is close to 0.1 V.
 - [ ] Predicted Voltage at 1m depth is close to 3.1V
@@ -62,7 +61,6 @@ Complete:
 | -----------|---------|----------------|---------|----------------|---------|
 |   0        |         |                |         |                |         |
 |   ...      |         |                |         |                |         |
-|   100      |         |                |  NA     |    NA          |  NA     |
 
 {{< pagebreak >}}
 ## Report on the Design and Characterization of a Thermistor Interface Circuit
