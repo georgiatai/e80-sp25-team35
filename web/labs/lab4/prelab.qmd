@@ -12,6 +12,10 @@ This is the last prelab help sheet you're going to get!  Instead of detailed pre
 
 ## Thermistors and Steinhart-Hart
 
+## Non-linear Fitting
+
 ## Thermocouples, NIST Tables and Cold Junction Compensation
+
+## Who is Bringing the Ice?
 
 ## Results

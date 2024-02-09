@@ -12,7 +12,7 @@ Prelab Help Sheet: [html](/labs/lab3/prelab.qmd)
 
 ## Introduction
 
-In this lab you will build some common sensors for the final project -- a pressure sensor and a thermistor-based temperature sensor -- perform a non-linear fit to Thermistor data, and experiment with a thermocouple. Temperature and pressure have been called the "monarchs of measurements" by some Mudd professors because of their wide applicability in chemical and industrial processes, aerospace applications, and natural sciences.  For us, temperature and pressure have many applications to oceanography, so it's worth spending a laboratory practicing temperature and pressure measurements.  You might find some time in this lab to prepare a resubmission, possibly by revisiting data from labs 1-3.
+In this lab you will build some common sensors for the final project -- a pressure sensor and a thermistor-based temperature sensor -- perform a non-linear fit to Thermistor data, and experiment with a thermocouple. Temperature and pressure have been called the "monarchs of measurements" by some Mudd professors because of their wide applicability in chemical and industrial processes, aerospace applications, and natural sciences (including oceanography), which is why we are working with these measurements this week. You might find some time in this lab to prepare a resubmission, possibly by revisiting data from labs 1-3.
 
 After successful completion of this lab, you wil be able to: 
 
@@ -25,13 +25,25 @@ After successful completion of this lab, you wil be able to:
 
 This lab will be carried out as sub-teams of two.  Policies for sub-teams are discussed in [lab 2](/labs/lab2/index.qmd).
 
-**IT IS YOUR TEAM'S RESPONSIBILITY TO BRING ICE TO LAB .  THIS IS PART OF YOUR PRELAB! **
+**IT IS YOUR TEAM'S RESPONSIBILITY TO BRING ICE TO LAB .  THIS IS PART OF YOUR PRELAB! **  Hot water will be available from the water heater in the lab.
+
+:::{.callout-warning}
+Remember that water is an electrical conductor and putting an electronic component that is not waterproofed into water carries some risk. Waterproofing your sensors using electrical tape,heat-shrink tubing, hot glue or parafilm is essential!  
+::::
+
+:::{.callout-warning}
+Water above 50 °C can cause scalds. Determine safety protocols for working with hot water to avoid spilling it or inadvertently touching it.  
+:::
+
+:::{.callout-note}
+The only constant-temperature bath in the lab is the 25 °C bath in the E80 lab (B171). Use your digital thermometer to monitor the temperatures of any other baths.
+:::
 
 ## Build a Pressure Sensor Interface Circuit
 
-E79 and E80 both rely on the same pressure sensor, the [MPX5700](http://www.mouser.com/ds/2/302/MPX5700-783436.pdf), which has a reasonable range of output Voltages over the depths that E79/E80 robots can easily traverse. However, that range of output voltages is small compared to the input range of the Teensy, so if you want to use this sensor in your final project, you will get large errors from Teensy quantization unless you build an amplifier. In this section, you'll design an op-amp circuit that shifts and scales MPX5700 output Voltage range into the Teensy input range, which is approximately 0 V to 3.3 V. Use the  [MCP601](http://ww1.microchip.com/downloads/en/DeviceDoc/21314g.pdf) op-amp and Vdd=5V.
+E79 and E80 both rely on the same pressure sensor, the [MPX5700](http://www.mouser.com/ds/2/302/MPX5700-783436.pdf), which has a reasonable range of output Voltages over the depths that E79/E80 robots can easily traverse. However, that range of output voltages is small compared to the input range of the Teensy, so if you want to use this sensor in your final project, you will get large errors from Teensy quantization unless you build an amplifier. In this section, you will design an op-amp circuit that shifts and scales MPX5700 output Voltage range into the Teensy input range, which is approximately 0 V to 3.3 V. Use the [MCP601](http://ww1.microchip.com/downloads/en/DeviceDoc/21314g.pdf) op-amp and Vdd=5V.
 
-1. Find the Voltages the MPX5700 will produce when at depths between 0 m and 1 m. Note that you will experience atmospheric pressure at 0m. We will call this Voltage range the target Voltage range.
+1. Find the Voltages the MPX5700 will produce when at depths between 0 m and 1 m. Recall that the sensor will experience atmospheric pressure at 0m. We will call this Voltage range the target Voltage range.
 2. Design an op-amp circuit that will shift and scale MPX5700 output Voltages from the target Voltage range to a new Voltage range that is suitable for reading by the Teensy.  The new Voltage range should have a maximum of 3.2V and a minimum of 0.1 V.
 3. Build the op-amp circuit and test it with a function generator to convince yourself it is working.
 4. Build an MPX5700 on your breadboard, and test that it works using a multimeter and a water column in a graduated cylinder.  Section 6 in these [instructions from E79](https://sites.google.com/g.hmc.edu/e79-practicum/module-2/practicum-2d) might help.
@@ -39,150 +51,90 @@ E79 and E80 both rely on the same pressure sensor, the [MPX5700](http://www.mous
 
 ## Build a Thermistor Interface Circuit
 
-Build a divider in the stles of @sec-dividers where Z1 is 100kΩ and Z2 is a 100kΩ thermistor, then derive a formula to calculate the temperature from Vin and Vout. Determine the error specifications for all of the components in your system. Measure Vin and Vout with the 10x Scope probe and use your results to calculate the room temperature. Propagate errors to calculate the uncertainty in your temperature measurement. 
+In another echo of E79, this section is about building a thermistor-based temperature sensor.  The sensor will consist of a resistor/thermistor divider circuit and an op-amp circuit.  The op-amp circuit will shift and scale the divider circuit's output Voltage range to better match the Teensy's input Voltage range.  The thermistor you will use is a [Murata NXFT15WB473FA2B150](https://www.murata.com/en-us/api/pdfdownloadapi?cate=luNTCforTempeSenso&partno=NXFT15WB473FA2B150). You will need to predict the resistance as a function of temperature, and the formula you will use here shown in @eq-RB-thermistor where $R$ is the current resistance of the thermistor at temperature $T$ in Kelvins, $R_0$ is the known resistance at reference temperature $T_0$ in Kelvins, and $B$ is a constant in the datasheet.
 
-Try to reduce your uncertainty by measuring the actual resistance of Z1 instead of using its printed value. Note that we're only measuring Z1 because we are using the output voltage of the thermistor voltage divider to guess Z2. Repeat the measurement and calculation. How much did the uncertainty change? 
+$$ R=R_0 \exp{B(1/T-1/T_0)} $$ {#eq-RB-thermistor}
 
-Compare your calculated temperatures with the room temperature measured by one of the digital thermometers. Do the measurements agree within the uncertainty of the measurements? Explore how the measured temperature changes with Vin as you vary from 1 Vpp to the maximum the signal generator can generate. Why does it change? 
+1. Predict the resistance you will see from the thermistor when it is in a 0 °C bath to a 20 °C bath.
+2. Design a Voltage divider that converts the thermistor resistance to Voltage.  The divider should use a supply Voltage of 5V, a resistor of your choice in the top position, and a thermistor in the bottom position.  Predict the output Voltages of this circuit when the thermistor is in a 0 °C bath to a 20 °C bath. Use appropriate measures of uncertainty.
+3. Design an op-amp circuit that will shift and scale the output of the thermistor divider into the Teensy Voltage range (0.1V to 3.2V).  Use an MCP601 op-amp with a supply Voltage of 5V.
+4. Build the divider and op-amp circuits, test them individually, hook them together, then test the combination using a 0 °C bath and a 20 °C bath and compare results to predictions.
 
-**DO ALL**
+:::{.callout-note collapse="true"}
+## More Thermistor Equation Background
 
-## Measure and Fit Thermistor Resistance vs. Temperature
+See the [Thermistor wikipedia page](https://en.wikipedia.org/wiki/Thermistor#B_or_%CE%B2_parameter_equation) or the [Steinhart-Hart Equation Wikipedia page](https://en.wikipedia.org/wiki/Steinhart%E2%80%93Hart_equation).
+:::
 
-**WRITE**
+:::{.callout-note collapse="true"}
+## Connecting to the Thermistor
 
-1. Prepare a thermistor temperature probe using the [instructions from E79](https://sites.google.com/g.hmc.edu/e79-practicum/robot-umbilical) in section 3. Note that you DO NOT need to make a whole umbilical. You only need to make the temperature sensor.
-2. Use the multimeter to measure the resistance of a thermistor at room temperature.  While still measuring the resistance, hold the thermistor tightly with your fingers and verify that the multimeter reading changes.
-3. Obtain a digital thermometer to use for "ground truth" temperature measurements.
-4. Prepare a set of **EIGHT** different temperature baths between 0 °C and 80 °C. Always check the temperature of the bath with the digital thermometer when you take a reading with another instrument, like the thermocouple, because the baths will change temperature over time.
-5. Use the multimeter and the digital thermometer to measure the temperatures of your baths and the resistance of the thermistor when it is submerged in each bath.
-6. Use non-linear fitting techniques to extract the Steinhart-Hart coefficients for your thermistor with appropriate measures of uncertainty. Compare them to Steinhart-Hart coefficients listed in the thermistor datasheet. **CLARIFY**
+It is possible to do this lab by just connecting to thermistor leads using BNC-hook connections.  However, this might be mechanically touchy in some situations, and you might find the thermistor wires to be short.  You have the option of adding leads to your thermistor temperature probe using the [instructions from E79](https://sites.google.com/g.hmc.edu/e79-practicum/robot-umbilical) in section 3. You DO NOT need to make a whole umbilical. You only need to make the temperature sensor.  You will certainly need to extend thermistor leads if you choose to use a thermistor in your final project.
+:::
+
+## Measure and Fit Thermistor Resistance vs. Temperature {#sec-therm}
+
+In this section we will explore the thermistor's resistance-temperature relation in greater detail.  You will measure the resistance of a thermistor directly with a multimeter in this section so that you can focus on the resistance-temperature behavior, modeling and non-linear fitting.  
+
+Another equation that relates thermistor resistance and temperature, the Steinhart-Hart Equation, is relevant here and is shown in @eq-steinhart-hart. In this equation, $T$ is the absolute temperature in Kelvin, $R$ is the resistance of the thermistor, and $A$, $B$, $C$ and $D$ are fitting coefficients called Steinhart-Hart coefficients.  Note that the $B$ variable in @eq-steinhart-hart is different than the $B$ variable in @eq-RB-thermistor.
+
+$$ 1/T = A + B \ln R + C \ln^2 R + D \ln^3 R $$ {#eq-steinhart-hart}
+
+1. Use the multimeter to measure the resistance of a thermistor at room temperature.  While still measuring the resistance, hold the thermistor tightly with your fingers and verify that the multimeter reading changes.
+2. Obtain a digital thermometer to use for "ground truth" temperature measurements.
+3. Prepare a set of eight different temperature baths between 0 °C and 80 °C. 
+4. Use the multimeter and the digital thermometer to measure the temperatures of your baths and the resistance of the thermistor when it is submerged in each bath.
+5. Use fitting techniques to extract the Steinhart-Hart coefficients for your thermistor with appropriate measures of uncertainty. Don't forget about the Steinhart-Hart fitting example on the lectures page. 
+6. Plot the data points, the Steinhart-Hart fit and the fit provided by datasheet parameters and @eq-RB-thermistor on the same axes.
+7. Plot the residuals of your fit.
 
 ## Measure and Decode Thermocouple Voltage vs. Temperature
 
-**WRITE**
+In this section we will give Thermocouples the same attention we've just given thermistors.  Thermocouples are extremely common temperature probes that have huge ranges and fast response times.  We don't seem many thermocouples on E80 final projects (you could change that!) because they have complicated interface requirements, but they're such important sensors that we want to spend some time working with them in lab. As in @sec-therm, we'll use the multimeter to measure properties here so that we can focus on the sensor itself.  As a reminder, we use the [Greenlee DM-210A Digital Multimeter](https://cdn.greenlee.com/resources/media?key=7fe82ac7-208f-4c14-910c-a522a2949b3c&languageCode=en&type=document), and you may need to review the datasheet to understand how to take temperature measurements with the thermocouple. You'll need the [NIST tables](https://srdata.nist.gov/its90/main/its90_main_page.html) to decode your thermocouple Voltages.
 
 1. Obtain a type-K thermocouple from the instructors.  Be sure to return it at the end of lab!
 2. Obtain a digital thermometer to use for "ground truth" temperature measurements.
 3. Prepare a set of five different temperature baths between 0 °C and 80 °C.
-4. Plug the type-K thermistor into the multimeter and set the multimeter to temperature mode.
-5. Measure the temperature of the baths with the digital thermometer and with the thermocouple.  Compare the measured values.
-6. Switch the multimeter to Voltage mode.  Use the digital thermometer and the multimeter to measure the temperature of the bath and the thermocouple Voltage when it is submerged in each bath.
-7. Use the principles of cold-junction compensation (what temperature is the thermocouple cold junction at anyway?) and NIST tables to decode the thermocouple Voltages into temperatures, then compare the decoded temperatures to your digital thermometer measurements.
+4. Plug the type-K thermocouple into the multimeter and test out the multimeter's temperature mode.
+5. Submerge the digital thermometer and the type-K thermocouple in a bath simultaneously.  Then measure the following and repeat the process for each bath. 
+   1. Measure the bath temperature using the digital thermometer 
+   2. Measure the bath temperature using the type-K thermocouple by putting the multimeter in temperature mode
+   3. Measure the thermocouple Voltage by switching the multimeter to Voltage mode. 
+6. Use the principles of cold-junction compensation and NIST tables to decode the thermocouple Voltages into temperatures.  To do this, you will need to identify where the thermocouple cold junction is and guess at its temperature.
+7. Compare the decoded temperatures, the multimeter-reported temperatures, and the digital thermometer measurements.  As always, report all three measurements with appropriate measures of uncertainty.
 
-## Have a Temperature Sensor Race
+## Compare Temperature Sensor Settling Times
 
-**DO ALL**
+The response time of temperature sensors is critical to their performance.  We're going to race our temperature sensors to get a sense of their settling time.  To avoid building some amplifiers (see @sec-ad623 if you're curious), we're going to do this with the multimeter and a stopwatch instead of hooking everything up to the oscilloscope. 
 
-## Extra Credit and Resubmission
+We are going to round out our spread of temperature sensors by revisiting the  [MCP9701A](https://drive.google.com/open?id=1ZZ7An-GFcWQ5SsR5wrQlyf-qWexbjHdo) temperature sensor from E79.  This part is an example of an integrated linear circuit.  
 
-If you have time, you may work on the extra credit from any previous week or prepare for a resubmission.  If it is necessary to retake data for a resubmission, now is a good time to do it.
+1. Find a MCP9701A, solder leads to it and heat shrink the exposed metal.
+2. Prepare two baths at 0 °C and 50 °C.
+3. For each temperature sensor in this lab -- the MCP9701A, the thermistor, and the type-K thermocouple -- do the following
+   1. Measure the sensor with the multimeter. You'll use different settings: resistance, temperature and voltage for different sensors.
+   2. Immerse the sensor in the cold bath and wait for the reading to stabilize.  You'll need to use your judgement about what it means for a reading to be stable, but ignoring the last digit (which often toggles around) may help.
+   3. Move the sensor to the hot bath and start the stopwatch at the same time.
+   4. Stop the stopwatch when the reading stabilizes in the hot bath.
+5. Comment on the relative speed of the sensors.
 
+## Resubmissions
 
+We think you may have some spare time in this lab to gather data for resubmissions.  Feel free to work towards that in place of extra credit.
 
-**DELETE BELOW HERE**
+## Extra Credit 1 {#sec-ad623}
 
-## Extra Credit 3. Pressure Measurement
+Thermocouples generate very small voltages, which must normally be amplified to be read by an oscilloscope, although the DMM does have sufficient range. The easiest way to do the amplification is with an instrumentation amplifier. The one we have available is the Analog Devices AD623ANZ (data sheet [here](http://www.analog.com/media/en/technical-documentation/data-sheets/AD623.pdf)). In this section we'll measure a thermocouple with an AD623.
 
-In this section you will replicate the pressure circuit on your E79 board to understand its operation.  After that you will modify the sensing circuit to optimize the range of the output voltage for the graduated cylinder test that we have used to test pressure sensor operation.
+Pay special attention to the AD623 voltage supply range. It can operate with a dual rail supply Voltage of ±2.5 V to ±6 V, or it can operate with a single rail supply voltage from 0V to 5-12V. If you exceed the voltage supply range, you will destroy the chip. The op-amp standard of ±15 V will destroy it immediately. Don't be tempted. 
 
-Design an offset amplifier using an MCP601 with a 5V power supply to convert voltage from the [MPX5700](http://www.mouser.com/ds/2/302/MPX5700-783436.pdf) pressure sensor to the 0 V-3.3 V output range over a depth of 0-4 m.
+Figure 79 in the AD623 data sheet shows the basic circuit for connecting a thermocouple. Note that in Figure 79, the amplifier is powered with a dual rail supply. You should use a single rail supply because your AUV will be powered by a battery. However, when you use a single rail you must also offset your thermocouple Volage to mid-rail (e.g., if you supply with 0-to-5 V, your thermocouple should be offset to 2.5 V). [This circuit](https://drive.google.com/file/d/1Juwm88NoYuYj1bjl3-nhzH4sVbncvE51/view?usp=share_link) will accomplish that offset. Note that the offset utilizes a unity-gain, non-inverting op-amp to provide a low output impedance for the offset voltage.
 
-Create an experimental setup to vary the pressure on the sensor using a large graduated cylinder, water and plastic tubing.  Create a calibration curve relating your measured voltage to the applied pressure, and include appropriate measures of uncertainty.
+You'll need a thermocouple to test this amplifier, and we have spare type-E thermocouple wire available (specifically, [Omega FF-E-24-SLE-200](https://www.omega.com/en-us/search/?text=FF-E-24-SLE-200)). The simplest way to construct a thermocouple for this task is to use one of the recycled ones. Otherwise, take a 1-foot length of thermocouple wire, strip the wires at one end and twist them firmly together so they make electrical contact. DO NOT USE SOLDER. It will not stick to the wires. 
 
-Return the pressure sensor to stock when you are done with it and be careful not to damage the pins while using it in your breadboard.
+Design and build a circuit to read a thermocouple using the ice bath method discussed in lecture. (See Figure 6 of [this link,](https://it.omega.com/prodinfo/pdf/The-Thermocouple-Z-87-to-Z-92.pdf) or Figure 2 of [this link](http://circuitcellar.com/cc-blog/the-basics-of-thermocouples/), or click [here](https://drive.google.com/drive/folders/1xC09jM35sX2pIvMsqE0E8lO8F7CKePlt?usp=sharing) for lecture slides). DO NOT USE SOLDER. USE A GLASS BEAKER FOR YOUR ICE BATH. To get practice for your future data logger, design the circuit to have a gain of 200 and output voltages in the 0-to-5V range. Provide a detailed diagram of your circuit.
 
-
-You will be provided with: 
-
-
-
-* Temperature sensors
-* Digital thermometer
-* Hot water
-* A constant-temperature (25°C) water bath
-* Insulated containers
-* Glass beakers
-* Breadboard
-* Keysight Infinivision oscilloscope (click [here](http://literature.cdn.keysight.com/litweb/pdf/75015-97045.pdf) for manual)
-* Keysight E3630A power supply (click [here](http://literature.cdn.keysight.com/litweb/pdf/5968-9727EN.pdf?id=1000070544:epsg:dow) for manual)
-* Elenco multimeter (click [here](http://www.eng.hmc.edu/NewE80/PDFs/Elenco_LCM-1950Manual.pdf) for manual)
-* An AD623ANZ-ND Instrumentation Amplifier (click [here](http://www.analog.com/media/en/technical-documentation/data-sheets/AD623.pdf) for data sheet)
-* Access to resistors and capacitors in the stockroom and E80 lab.
-
-IMPORTANT SAFETY TIP: When using the calibration baths remember that water is an electrical conductor and putting an electronic component that is not waterproofed into water carries some risk. Use appropriate precautions. Waterproofing your sensors using electrical tape,heat-shrink tubing, hot glue or parafilm is essential!  
-
-IMPORTANT SAFETY TIP: Water above 50 °C can cause scalds. Determine safety protocols for working with hot water to avoid spilling it or inadvertently touching it.  
-
-IMPORTANT NOTE: The only constant-temperature bath in the lab is the 25 °C bath in the E80 lab (B171). Use your digital thermometer to monitor the temperatures of any other baths in the lab!  
-
-## 1. Side-by-Side Comparison of the Thermistor and Solid-State Sensor 
-
-You have used thermistors and integrated solid-state temperature sensors before in E79. In this section you will revisit those sensors and compare them.
-
-You will be given a 3-Pin TO-92 [MCP9701A](https://drive.google.com/open?id=1ZZ7An-GFcWQ5SsR5wrQlyf-qWexbjHdo) Low-Power Linear Active Thermistor Integrated Circuit. What is the voltage-temperature conversion given in the datasheet and what uncertainty does it have? (A tip for using the MCP701A: Solder wires onto each of the leads, but don't bend the sensor leads when soldering: bent leads are difficult to heat shrink.)
-
-You will be given a [Murata NXFT15WB473FA2B150](https://www.murata.com/en-us/api/pdfdownloadapi?cate=luNTCforTempeSenso&partno=NXFT15WB473FA2B150) thermistor. The equation for converting for temperature using the B parameter provided on the thermistor datasheet can be found on the Thermistor wikipedia page [here](https://en.wikipedia.org/wiki/Thermistor#B_or_%CE%B2_parameter_equation).
-
-How does the temperature conversion expression in the thermistor datasheet compare to [the Steinhart-Hart equation](https://drive.google.com/open?id=1M26d9SpbqibujobkYLoerNgt91uofynr), a power series which is used to describe thermistor Resistance vs. Temperature behavior? Why do you think the thermistor designers chose their conversion equation?
-
-A critical property of a temperature-measurement device is how quickly it responds to a change in external temperature. For most temperature-measurement devices, characterizing them as first-order systems is adequate for evaluating their suitability for a given application.
-
-
-
-1. Using the oscilloscope and resources that you have been provided, obtain the first-order temperature responses of the thermistor and the solid-state sensor SIMULTANEOUSLY. Determine the time constants of both temperature sensors. Note that the first-order response corresponds to the behavior of the sensors when the surrounding temperature changes suddenly.
-2. In a single plot, show Time-Temperature curves for both the thermistor and the temperature sensor. Specify the temperatures that were tested. Report appropriate measures of error in this plot. 
-3. Describe the circuitry you used to measure the thermistor resistance with your oscilloscope.
-
-
-## 2. Thermocouples
-
-Our available thermocouples are Type-E ([Omega FF-E-24-SLE-200](https://www.omega.com/en-us/search/?text=FF-E-24-SLE-200)). The NIST website with information on thermocouples is [here](https://srdata.nist.gov/its90/main/its90_main_page.html). The direct link to the NIST Type-E table is [here](https://srdata.nist.gov/its90/main/its90_main_page.html). The direct link to the NIST Type-E table is [here](https://srdata.nist.gov/its90/download/type_e.tab). The NIST page for polynomial coefficients that were used to generate the table (voltage from temperature) is [here](https://srdata.nist.gov/its90/type_e/ecoefficients.html). The NIST page for the inverse coefficients (temperature from voltage) is [here](https://srdata.nist.gov/its90/type_e/ecoefficients_inverse.html). The Omega website is [here](https://www.omega.com/en-us/). (Warning, Omega website is often very slow). The Omega version of the NIST table is [here](https://assets.omega.com/resources/z206.pdf). The Omega info on thermocouples is [here](https://it.omega.com/prodinfo/pdf/The-Thermocouple-Z-87-to-Z-92.pdf).
-
-Thermocouples generate very small voltages, which must normally be amplified to be read by an oscilloscope, although the DMM does have sufficient range. The easiest way to do the amplification is with an instrumentation amplifier. The one we have available is the Analog Devices AD623ANZ (data sheet [here](http://www.analog.com/media/en/technical-documentation/data-sheets/AD623.pdf)). Pay special attention to the voltage supply range. It can operate with a supply voltage range of ±2.5 V (or 0-to-5 V single sided) to ±6 V (or 0-to-12 V single sided). If you exceed the voltage supply range, you will destroy the chip. The op-amp standard of ±15 V will destroy it immediately. Don't be tempted. Figure 79 in the data sheet shows the basic circuit for connecting a thermocouple. Note that in Figure 79, the amplifier is powered with a bipolar, not a single-sided supply. It looks like an op-amp, but it is not. You should use a single sided power supply because your AUV will be powered by a battery. In this configuration you must offset your thermocouple to the average of your power supply (e.g., if you supply with 0-to-5 V, your thermocouple should be offset to 2.5 V). [This circuit](https://drive.google.com/file/d/1Juwm88NoYuYj1bjl3-nhzH4sVbncvE51/view?usp=share_link) is given to you for reference. Note that the offset utilizes a unity-gain, non-inverting Op-amp configuration to provide a low output impedance for the offset voltage.
-
-The simplest way to construct a thermocouple is to use one of the recycled ones. Otherwise, take a 1-foot length of thermocouple wire, strip the wires at one end and twist them firmly together so they make electrical contact. DO NOT USE SOLDER. It will not stick to the wires. 
-
-
-
-1. Use the multimeter to measure the output voltage of the thermocouple by itself. Determine the output voltage of the thermocouple at several temperatures and create a Temperature-Voltage curve. Make sure to record the ambient temperature (specifically the temperature at the thermocouple-multimeter junction) and place this information in the figure caption.
-
-Design and build a circuit to read a thermocouple using the ice bath method discussed in lecture (see Figure 6 of [this link,](https://it.omega.com/prodinfo/pdf/The-Thermocouple-Z-87-to-Z-92.pdf) or Figure 2 of [this link](http://circuitcellar.com/cc-blog/the-basics-of-thermocouples/), or click [here](https://drive.google.com/drive/folders/1xC09jM35sX2pIvMsqE0E8lO8F7CKePlt?usp=sharing)for lecture slides). DO NOT USE SOLDER. USE A GLASS BEAKER FOR YOUR ICE BATH. To get practice for your future data logger, design the circuit to have a gain of 200 and output voltages in the 0-to-5V range. Provide a detailed diagram of your circuit.
-
-
-
-1. Test your circuit at several different temperatures and create a Temperature-Voltage curve.
-2. How do your results compare to the Temperature-Voltage curve of the solid-state sensor and the thermistor? (As a reminder, you looked up the data necessary to find these two curves in Section 1. You don't need to measure temperature-voltage curves for the thermistor or solid-state sensor.)
+Test your circuit at several different temperatures and create a Temperature-Voltage curve.  How do your results compare to the Temperature-Voltage curve of the solid-state sensor and the thermistor? (As a reminder, you can look up the data necessary to find these two curves in datasheets. You don't need to measure temperature-voltage curves for the thermistor or solid-state sensor.)
 
 The AD623 is expensive ($7/chip), so return undamaged chips to stock.
-
-
-## 3. Side-by-Side Comparison of the Thermistor and Thermocouple with CJC
-
-You will not be using the ice bath method in this section! A complete thermocouple-based temperature measurement system requires cold junction compensation (CJC). You basically need a temperature sensor to measure the temperature of the junction where the thermocouple meets the instrumentation amplifier (the Cold Junction). In this lab, you will use the solid-state temperature sensor for CJC. To use CJC, measure the temperature of the cold junction with the MCP7901A (the Cold Junction sensor). Use the thermocouple table or polynomial to calculate the equivalent thermocouple voltage at that temperature. Then add your measured thermocouple voltage and your calculated voltage (the CJC voltage) together, and then convert the voltage sum to a temperature using the thermocouple table or polynomial. 
-
-
-
-1.  Use the solid-state sensor for CJC. Test your circuit by immersing the thermocouple in several different-temperature baths and create a Temperature-Voltage curve. How do your results compare with the curve from section 2?
-2. Using the oscilloscope and resources that you have been provided, obtain the first-order responses of the thermistor (the Murata part) and the thermocouple-with-CJC SIMULTANEOUSLY. How will you power and record data for three temperature sensors? Determine and compare the time constants of both temperature sensor systems. 
-3. In a single plot, show time-temperature step-response curves for the thermistor, the thermocouple with CJC, and the solid-state sensor (the MCP7901A). You may reuse data you took earlier, and you need not try to capture all three signals simultaneously, but you should time shift them so that the step responses all start at _t_ = 0. Be sure that the temperature and time axes are properly labeled with units. Thought Question: If you had to choose among these three systems to put on a submersible and record the data with a Teensy, which one(s) would you use?
-
-
-## 4. Deliverables
-
-All labs require two submissions per group. The first submission is a submission sheet in which specific data must be shown.  The submission sheet is due at the end of the 4-hour lab period and must be uploaded before the end of your lab session at 5:15 pm. Note that only ONE member of each team should access and submit the submission sheet. It is the responsibility of that team member to add the rest of the team’s names to the submission sheet. 
-
-**For pre-lab purposes**, a sample submission sheet that contains all of the questions and requirements on the submission sheet is [here](https://docs.google.com/document/d/1ghNbwWHYMGdRQ9Xtn_HUUuJy1QP-dyQK/edit?usp=sharing&ouid=100121681850908143159&rtpof=true&sd=true). 
-
-The second submission is a writing assignment, usually around 1 page in length. Each writing assignment will be based on a prompt, and must be completed by each student individually; no collaboration is allowed on the text or figures in these assignments, though you may speak among yourselves about concepts in keeping with the collaboration rules of the course. A first draft of the writing assignment must be uploaded by noon on Friday, and you need to bring a printed copy of your draft to the writing and reflection section on Friday at 1:15 p.m. During the first hour of the writing and reflection, you will engage in a peer editing exercise. The second hour of the Writing and Reflection section is reserved for you to edit your draft to produce a final draft of the writing assignment. This final draft must be uploaded before the end of the Writing and Reflection section on Friday at 3:15 p.m. Since multiple submissions are permitted, and only the last one is graded, you may want to submit a draft at 3 p.m. as insurance. The writing assignment is based on this [prompt](https://drive.google.com/file/d/18y0ytIowJyC8VtC2TysVzKX1j2Qhbnj7/view?usp=sharing).  
-
-This is the [peer feedback worksheet](https://drive.google.com/open?id=1Grr3FlIgdVPqD25AMcZX5I4gS5apYJ3i).  
-
-Note that you should include relevant calculations to explain the ideal analytical curves on your calibration plots on your submission sheet.
-
-Note that the rubric is included in the prompt.
-
-Recall that no late work is accepted, we will grade whatever is submitted at the deadlines.
-
-After the writing and reflection section at the end of each week every person (not just one person per team) must submit a team dynamics check-in survey. These are part of your participation grade. The survey link can be found on the home page.
 
