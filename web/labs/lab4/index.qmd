@@ -11,9 +11,9 @@ Prelab Help Sheet: [html](./prelab.qmd)
 
 ## Introduction
 
-In this lab you will build some common sensors for the final project -- a pressure sensor and a thermistor-based temperature sensor -- perform a non-linear fit to Thermistor data, and experiment with a thermocouple. Temperature and pressure have been called the "monarchs of measurements" by some Mudd professors because of their wide applicability in chemical and industrial processes, aerospace applications, and natural sciences (including oceanography), which is why we are working with these measurements this week. You might find some time in this lab to prepare a resubmission, possibly by revisiting data from labs 1-3.
+In this lab you will build some common sensors for the final project -- a pressure sensor and a thermistor-based temperature sensor -- perform a non-linear fit to thermistor data, and experiment with a thermocouple. Temperature and pressure have been called the "monarchs of measurements" by some Mudd professors because of their wide applicability in chemical and industrial processes, aerospace applications, and natural sciences (including oceanography), which is why we are working with these measurements this week. You might find some time in this lab to prepare a resubmission, possibly by revisiting data from labs 1-3.
 
-After successful completion of this lab, you wil be able to: 
+After successful completion of this lab, you will be able to: 
 
 - [ ] Relate the resistance of a thermistor to its temperature using the Steinhart-Hart Equation.
 - [ ] Perform a fit to a non-linear function of data
@@ -22,7 +22,7 @@ After successful completion of this lab, you wil be able to:
 - [ ] Describe the basics of cold junction compensation
 - [ ] Comment on the relative speed of solid-state linear temperature sensors, thermistors and thermocouples.
 
-This lab will be carried out as sub-teams of two.  Policies for sub-teams are discussed in [lab 2](/labs/lab2/index.qmd).
+This lab will be carried out as sub-teams of two.  Policies for sub-teams are discussed in [Lab 2](/labs/lab2/index.qmd).
 
 - [ ] Relate the resistance of a thermistor to its temperature using the Steinhart-Hart Equation.
 - [ ] Perform a fit to a non-linear function of data
