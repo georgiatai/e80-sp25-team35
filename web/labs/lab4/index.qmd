@@ -3,8 +3,6 @@ title: "Lab 4: Temperature Sensors"
 number-sections: true
 ---
 
-**UNDER CONSTRUCTION, DO NOT USE FOR PRELAB**
-
 Team size: 2
 
 Submission Sheet: [html](./submission.qmd) [docx](./submission.docx)
@@ -42,7 +40,7 @@ The only constant-temperature bath in the lab is the 25 °C bath in the E80 lab 
 
 ## Build a Pressure Sensor Interface Circuit
 
-E79 and E80 both rely on the same pressure sensor, the [MPX5700](http://www.mouser.com/ds/2/302/MPX5700-783436.pdf), which has a reasonable range of output Voltages over the depths that E79/E80 robots can easily traverse. However, that range of output voltages is small compared to the input range of the Teensy, so if you want to use this sensor in your final project, you will get large errors from Teensy quantization unless you build an amplifier. In this section, you will design an op-amp circuit that shifts and scales MPX5700 output Voltage range into the Teensy input range, which is approximately 0 V to 3.3 V. Use the [MCP601](http://ww1.microchip.com/downloads/en/DeviceDoc/21314g.pdf) op-amp and Vdd = 5 V.
+E79 and E80 both rely on the same pressure sensor, the [MPX5700](./assets/MPX5700-783436.pdf), which has a reasonable range of output Voltages over the depths that E79/E80 robots can easily traverse. However, that range of output voltages is small compared to the input range of the Teensy, so if you want to use this sensor in your final project, you will get large errors from Teensy quantization unless you build an amplifier. In this section, you will design an op-amp circuit that shifts and scales MPX5700 output Voltage range into the Teensy input range, which is approximately 0 V to 3.3 V. Use the [MCP601](./assets/21314g.pdf) op-amp and Vdd = 5 V.
 
 1. Find the voltages the MPX5700 will produce when at depths between 0 m and 1 m. Recall that the sensor will experience atmospheric pressure at 0 m. We will call this voltage range the target voltage range.
 2. Design an op-amp circuit that will shift and scale MPX5700 output Voltages from the target voltage range to a new voltage range that is suitable for reading by the Teensy.  The new voltage range should have a maximum of 3.2 V and a minimum of 0.1 V.
@@ -52,7 +50,7 @@ E79 and E80 both rely on the same pressure sensor, the [MPX5700](http://www.mous
 
 ## Build a Thermistor Interface Circuit
 
-In another echo of E79, this section is about building a thermistor-based temperature sensor.  The sensor will consist of a resistor/thermistor divider circuit and an op-amp circuit.  The op-amp circuit will shift and scale the divider circuit's output Voltage range to better match the Teensy's input Voltage range.  The thermistor you will use is a [Murata NXFT15WB473FA2B150](https://www.murata.com/en-us/api/pdfdownloadapi?cate=luNTCforTempeSenso&partno=NXFT15WB473FA2B150). You will need to predict the resistance as a function of temperature, and the formula you will use here shown in @eq-RB-thermistor where $R$ is the current resistance of the thermistor at temperature $T$ in Kelvins, $R_0$ is the known resistance at reference temperature $T_0$ in Kelvins, and $B$ is a constant in the datasheet.
+In another echo of E79, this section is about building a thermistor-based temperature sensor.  The sensor will consist of a resistor/thermistor divider circuit and an op-amp circuit.  The op-amp circuit will shift and scale the divider circuit's output Voltage range to better match the Teensy's input Voltage range.  The thermistor you will use is a [Murata NXFT15WB473FA2B150](./assets/NXFT15WB473FA2B150.pdf). You will need to predict the resistance as a function of temperature, and the formula you will use here shown in @eq-RB-thermistor where $R$ is the current resistance of the thermistor at temperature $T$ in Kelvins, $R_0$ is the known resistance at reference temperature $T_0$ in Kelvins, and $B$ is a constant in the datasheet.
 
 $$ R=R_0 \exp{B(1/T-1/T_0)} $$ {#eq-RB-thermistor}
 
@@ -91,7 +89,7 @@ $$ 1/T = A + B \ln R + C \ln^2 R + D \ln^3 R $$ {#eq-steinhart-hart}
 
 ## Measure and Decode Thermocouple Voltage vs. Temperature
 
-In this section we will give thermocouples the same attention we've just given thermistors.  Thermocouples are extremely common temperature probes that have huge ranges and fast response times.  We don't see many thermocouples on E80 final projects (you could change that!) because they have complicated interface requirements, but they're such important sensors that we want to spend some time working with them in lab. As in @sec-therm, we'll use the multimeter to measure properties here so that we can focus on the sensor itself.  As a reminder, we use the [Greenlee DM-210A Digital Multimeter](https://cdn.greenlee.com/resources/media?key=7fe82ac7-208f-4c14-910c-a522a2949b3c&languageCode=en&type=document), and you may need to review the datasheet to understand how to take temperature measurements with the thermocouple. You'll need the [NIST tables](https://srdata.nist.gov/its90/main/its90_main_page.html) to decode your thermocouple Voltages.
+In this section we will give thermocouples the same attention we've just given thermistors.  Thermocouples are extremely common temperature probes that have huge ranges and fast response times.  We don't see many thermocouples on E80 final projects (you could change that!) because they have complicated interface requirements, but they're such important sensors that we want to spend some time working with them in lab. As in @sec-therm, we'll use the multimeter to measure properties here so that we can focus on the sensor itself.  As a reminder, we use the [Greenlee DM-210A Digital Multimeter](./assets/52058078-5.pdf), and you may need to review the datasheet to understand how to take temperature measurements with the thermocouple. You'll need the [NIST tables](https://srdata.nist.gov/its90/main/its90_main_page.html) to decode your thermocouple Voltages.
 
 1. Obtain a type-K thermocouple from the instructors.  Be sure to return it at the end of lab!
 2. Obtain a digital thermometer to use for "ground truth" temperature measurements.
