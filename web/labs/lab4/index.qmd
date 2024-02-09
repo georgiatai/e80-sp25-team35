@@ -5,9 +5,9 @@ number-sections: true
 
 Team size: 2
 
-Submission Sheet: [html](/labs/lab3/submission.qmd) [docx](/labs/lab3/submission.docx)
+Submission Sheet: [html](./submission.qmd) [docx](./submission.docx)
 
-Prelab Help Sheet: [html](/labs/lab3/prelab.qmd)
+Prelab Help Sheet: [html](./prelab.qmd)
 
 ## Introduction
 
