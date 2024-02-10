@@ -6,6 +6,10 @@ title: "Lab 5: Underwater Acoustics and Fourier Analysis"
 
 Team size: 4
 
+Submission Sheet: [html](/labs/lab5/submission.qmd) [Word](/labs/lab5/submission.docx)
+
+Prelab Help Sheet: None for this lab, but you've got this!  Review previous ones for ideas.
+
 ## Learning Objectives
 
 After successful completion of this lab, you will be able to…
