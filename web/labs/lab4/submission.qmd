@@ -152,6 +152,7 @@ Effort:
 Complete: 
 
 - [ ] Settling times are consistent with results from lecture.
+- [ ] Brief (3-5 sentence) discussion about which sensors are appropriate for E80 robots and for cold-junction compensation sensors.
 
 {{< pagebreak >}}
 ## Extra Credit Writeups:
