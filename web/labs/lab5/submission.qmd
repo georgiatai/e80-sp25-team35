@@ -5,3 +5,29 @@ format:
   html: default
   docx: default
 ---
+
+Keep answers as short as possible while still meeting specifications. Submit as a PDF.
+
+Team Number:
+
+Team Member Names: 
+
+{{< pagebreak >}}
+## Report on the FFT of Signals Directly Applied to the Scope
+
+
+{{< pagebreak >}}
+## Design and Testing of Microphone Interface
+
+{{< pagebreak >}}
+## Graphs of Voltage vs. Position for Beacon-Based Localization
+
+{{< pagebreak >}}
+## Graphs of Results Sampled at Different Frequencies w/ Teensy Rig
+
+
+{{< pagebreak >}}
+## Extra Credit Writeups:
+
+We don't provide complete specifications for extra credit writeups, but they will be graded for effort and completeness like normal sections.  You need to provide a "mini-report" of <1 page for each extra credit section that you attempt. Put a page break between each extra credit mini-report.
+

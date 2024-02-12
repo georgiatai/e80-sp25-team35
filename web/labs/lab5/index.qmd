@@ -2,36 +2,24 @@
 title: "Lab 5: Underwater Acoustics and Fourier Analysis"
 ---
 
-**UNDER CONSTRUCTION, DO NOT USE FOR PRELAB**
-
 Team size: 4
 
 Submission Sheet: [html](/labs/lab5/submission.qmd) [Word](/labs/lab5/submission.docx)
 
 Prelab Help Sheet: None for this lab, but you've got this!  Review previous ones for ideas.
 
-## Learning Objectives
-
-After successful completion of this lab, you will be able to…
-
-1. Use the oscilloscope to perform Fourier analysis of a measured signal.
-2. Explain the impact of parameters such as sampling frequency and sample number on the resolution and frequency range of a Fast Fourier Transform.
-
-
 ## 0. Introduction
 
-In this lab you will work as a team of four with underwater speakers to perform position measurements relative to your robot and relative to fixed beacons. The beacon measurements are most easily interpreted in the frequency domain, so you will be using Fourier analysis to understand the behavior of the signals. The purpose of this lab is to demonstrate the power of underwater acoustic measurements and to force you to wrangle early and often with Fourier analysis.
+In this lab you will work as a team of four to use acoustic measurements to find the position of your robot in the test tank.  The acoustic measurements will depend on listening to beacons at fixed locations in the tank, and guessing your position relative to them.  Because there will be many beacon signals in the tank at once, you will need to use Fourier analysis to understand the behavior of the signals. The purpose of this lab is to demonstrate the power of underwater acoustic measurements and to force you to wrangle early and often with Fourier analysis.
 
-For the required portion of the Lab, beacons will be broadcasting sine waves at 9 kHz, 11 kHz, 13 kHz. 
+After successful completion of this lab, you will be able to: 
 
-For the extra credit sections, each team is assigned an acoustic channel, and the team will need to filter out other teams’ measurements in addition to the ambient beacon signals in order to extract useful information. If you attempt these extra credit sections, you will be free to transmit up to 5 W at 14 kHz +1 kHz *(team number)+/- 300 Hz. If you emit at other frequencies while your peers are taking data then you may damage their experiments, so be diligent in controlling the frequency at which you broadcast. 
-
-These channels are in the audio range, so try to keep your experiments underwater and short lest your peers shout at you scornfully about the high-pitched whine you're producing. Be aware that your receiver could be overloaded by broadcasters in other channels, so keep an eye on your time domain signal to be sure that it is not clipping.
-
-We are using both benchtop electronics and water in this lab, and the two don't mix, so BE EXTREMELY CAREFUL when putting anything in the water, removing anything from the water or mounting anything near the water. Instructors will stop your experiments if they think they pose a water hazard to equipment.
-
-For pre-lab purposes, a sample submission sheet that contains all of the questions and requirements on the submission sheet is [here](https://docs.google.com/document/d/11uKvoSTr7nxAG990ZbKKM8kMYkUs4idxev3BearHA8g/edit?usp=sharing).
-
+- [ ] Use the FFT mode on the scope to interpret frequency domain signals.
+- [ ] Comment on how the FFT of a signal changes when signal frequency, sampling rate and total sampling time are changed.
+- [ ] Build a circuit interface to an electret microphone.
+- [ ] Use the gain-bandwidth product of an op-amp to predict the achievable maximum gain.
+- [ ] Describe the effect of multipath on the amplitudes of acoustic measurements.
+- [ ] Comment on the relative speed of solid-state linear temperature sensors, thermistors and thermocouples.
 
 ## 1. Introduction to the FFT
 
@@ -77,6 +65,11 @@ Make an analytical calculation of how much voltage you expect to observe. Note t
 Compare your measurements against your ideal analytical model by overlaying them on the same plot. Comment on the suitability of amplitude measurements for range finding. Your comment should not conclude that your hardware is not working: your equipment needs to be working well enough to tease out interesting environmental effects.  
 
 Always connect to your Teensy pins through the E80 motherboard, which has protection circuits designed to prevent damage to the Teensy.  
+
+These channels are in the audio range, so try to keep your experiments underwater and short lest your peers shout at you scornfully about the high-pitched whine you're producing. Be aware that your receiver could be overloaded by broadcasters in other channels, so keep an eye on your time domain signal to be sure that it is not clipping.
+
+We are using both benchtop electronics and water in this lab, and the two don't mix, so BE EXTREMELY CAREFUL when putting anything in the water, removing anything from the water or mounting anything near the water. Instructors will stop your experiments if they think they pose a water hazard to equipment.
+
 
 
 ## 4. Sampling Audio with a Teensy
