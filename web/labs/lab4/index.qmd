@@ -9,6 +9,11 @@ Submission Sheet: [html](./submission.qmd) [docx](./submission.docx)
 
 Prelab Help Sheet: [html](./prelab.qmd)
 
+Writing Assignment: [html](./lab4-writing.qmd)
+
+Writing Template: [html](./lab4-writing-template.qmd) [Word](./lab4-writing-template.docx)
+
+
 ## Introduction
 
 In this lab you will build some common sensors for the final project -- a pressure sensor and a thermistor-based temperature sensor -- perform a non-linear fit to thermistor data, and experiment with a thermocouple. Temperature and pressure have been called the "monarchs of measurements" by some Mudd professors because of their wide applicability in chemical and industrial processes, aerospace applications, and natural sciences (including oceanography), which is why we are working with these measurements this week. You might find some time in this lab to prepare a resubmission, possibly by revisiting data from labs 1-3.
