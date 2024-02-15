@@ -68,7 +68,7 @@ Complete:
 
 Effort: 
 
-- [ ] Provides a picture of the thermistor interface circuit, including the pressure sensor
+- [ ] Provides a picture of the thermistor interface circuit, including the thermistor divider.
 - [ ] Provides a schematic of the thermistor interface circuit, including the thermistor divider.
 - [ ] Equation relating op-amp input Voltage to op-amp output Voltage is included.  May be incorrect if it looks like a good faith effort.
 
