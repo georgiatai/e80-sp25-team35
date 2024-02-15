@@ -5,3 +5,31 @@ format:
   html: default
   docx: default
 ---
+
+Keep answers as short as possible while still meeting specifications. Submit as a PDF.
+
+Team Number:
+
+Team Member Names: 
+
+{{< pagebreak >}}
+## Measured Calibration Curve for Wind Tunnel Fan Speed vs. Air Velocity
+
+Effort:
+
+- [ ] Present
+- [ ] Includes zero speed measurements
+
+Complete:
+
+- [ ] Discusses what to do with zero speed measurements. That transform is reflected in final calibration curve.
+
+{{< pagebreak >}}
+## Plots of Drag Forces on Cylindrical Objects
+
+{{< pagebreak >}}
+## Plots of Drag Forces on Scale Robot Model
+
+{{< pagebreak >}}
+## Plots of Lift and Drag for Flat Plate, Airfoil and Angle of Attack
+
