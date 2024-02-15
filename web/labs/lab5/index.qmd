@@ -9,7 +9,7 @@ Submission Sheet: [html](/labs/lab5/submission.qmd) [Word](/labs/lab5/submission
 
 Prelab Help Sheet: None for this lab, but you've got this!  Review previous ones for ideas of how to prepare.
 
-## 0. Introduction
+## Introduction
 
 In this lab you will work as a team of four to use acoustic measurements to find the position of your robot in the test tank.  The acoustic measurements will depend on listening to beacons at fixed locations in the tank, and guessing your position relative to them.  Because there will be many beacon signals in the tank at once, you will need to use Fourier analysis to understand the behavior of the signals. The purpose of this lab is to demonstrate the power of underwater acoustic measurements and to force you to wrangle early and often with Fourier analysis.
 
@@ -38,7 +38,7 @@ Do the following:
 2. Double check that your oscilloscope channel is DC coupled and using an appropriate 1x/10x setting.
 3. Drive signal 1 into the oscilloscope
 4. Set the time scale of the oscilloscope so that 50 cycles of the signal fit on the screen. 
-5. Use the math function of the oscilloscope to display the FFT of the signal. Set the span of the FFT to 100 kHz, the center to 50 kHz and the window to rectangular. 
+5. Use the math function of the oscilloscope to display the FFT of the signal. Set the span of the FFT to 100 kHz, the center to 50 kHz, and the window to rectangular. 
 6. Capture an oscilloscope trace for the current signal, and for each of the signals below. 
     1. Signal 2 
     2. Signal 3 
@@ -46,12 +46,11 @@ Do the following:
     4. Signal 3 with the time scale changed to shrink the horizontal time axis.
 7. Capture some oscilloscope data and take an FFT of it using Matlab, then compare that FFT to the scope FFTs.  Do so by following these steps.
     1. Turn off the FFT function on the scope 
-    2. Drive signal 3 into the oscilloscope 
-    3. Ensure the "max length" setting is selected on the "save" menu
-    4. Save the waveform 
+    2. Drive signal 3 into the oscilloscope and make sure that you are using the original x-axis scaling, not the shrink described in instruction 6.4.
+    3. Ensure the "max length" setting is selected on the "save" menu and save the waveform 
     5. Take the FFT of that data in Matlab with a rectangular window 
     6. Take the FFT of that data in Matlab with a Hanning window   
-    7. Contrast the Matlab FFT against the scope provided FFT from items 6.2 and 6.3.
+    7. Contrast the Matlab FFT against the scope FFT from instructions 6.2 and 6.3.
 
 
 ## Circuit Interfaces to Microphones {#sec-interface}
@@ -99,16 +98,16 @@ One way to locate your robot in the water is to listen to three acoustic beacons
 Prepare for your experiment by making models of what you expect to see
 
 1. Find an analytical expression that describes power at a distance from an acoustic emitter.
-2. You won't have all the parameters for your analytical function (TX power, P-to-V conversion), but you can fit it to the data.
-3. You need to be sure that your measurements capture evidence of multipath in the tank, so how closely will you need to space your measurements? **CLARIFY**
-
+2. Your measurements in the tank will be FFT magnitudes of Voltages received at your microphone.  Convert your analytical expression from describing received power to describing your expected FFT magnitude.
+3. You won't have all the parameters for your analytical function (TX power, P-to-V conversion), but you can fit your model to your measured data anyway.  Figure out how can you fit a function with unknown parameters to your measurements.  Making some fake data in Matlab to test out your procedure may help.
+4. You need to be sure that your measurements capture evidence of multipath in the tank, and achieving that will require careful spacing of your measurements. Figure out how closely you need to space your measurements in order to observe multipath.
 
 Then carry out measurements in the tank
 
 1. Attach a tank microphone to your amplifier from @sec-interface, and attach the amplifier output to an oscilloscope channel.
 2. Use your microphone, assisted by the oscilloscope FFT, to figure out which beacon corresponds to which frequency. The orientation of your microphone relative to the beacon can affect your measurement, so be sure to align the receive mic with the transmit speaker.
-3. For each beacon, measure the received Voltage magnitude as you move your microphone away from the beacon.  As a reminder, the spacing of your measurements is very important for spotting an important real-world phenomenon called multipath, and you'll need to rely on your earlier calculations to figure out spacing.
-4. Plot your analytical function on the same axes as your measured points.  
+3. For each beacon, measure the received Voltage magnitude as you move your microphone away from the beacon.  As a reminder, the spacing of your measurements is very important for spotting an important real-world phenomenon called multipath, and you'll need to rely on your earlier calculations to figure out that spacing.
+4. Make three plots, one for each beacon, showing the analytical model of beacon power on the same axes as your measured points.  
 
 :::{.callout-warning}
 We are using both benchtop electronics and water in this lab, and the two don't mix, so BE EXTREMELY CAREFUL when putting anything in the water, removing anything from the water or mounting anything near the water. Instructors will stop your experiments if they think they pose a water hazard to equipment.
