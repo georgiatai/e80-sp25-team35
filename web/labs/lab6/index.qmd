@@ -3,11 +3,9 @@ title: "Lab 6: Fluid Dynamics"
 number-sections: true
 ---
 
-**UNDER CONSTRUCTION, DO NOT USE FOR PRELAB**
-
 Team size: 4
 
-Submission Sheet: [html](/labs/lab6/submission.qmd) [Word](/labs/lab6/submission.docx)
+Submission Sheet: [html](./submission.qmd) [docx](./submission.docx)
 
 Prelab Help Sheet: None for this lab, but you've got this!  Review previous ones for ideas.
 
