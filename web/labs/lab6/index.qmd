@@ -162,9 +162,9 @@ Mounting the scaled model of the robot in the test chamber.
     2. Plot a curve of drag coefficient vs. Reynolds number using appropriate characteristic lengths and reference areas.
 
 
-## CFD Simulations of Cylindrical Objects
+## CFD Simulations of Cylindrical Objects and Robot Model
 
-In this section we will perform fluid dynamics simulations of the same objects that are being tested in the wind tunnel. This will offer us a chance to compare simulation and reality. We will also use similitude to compare our wind tunnel results against a simulation of a full-sized robot traveling in water.
+In this section we will perform fluid dynamics simulations of the same objects that are tested in the wind tunnel. This will offer us a chance to compare simulation and reality. We will also use similitude to compare our wind tunnel results against a simulation of a full-sized robot traveling in water.
 
 Make sure to download and watch Grandma Spark's step-by-step video guide to using COMSOL to model a cylinder in laminar flow (106 MB PowerPoint File, click [here](https://docs.google.com/presentation/d/1e_maE5dcjPOEUGKOjZue8UUbkSufHgzy/edit?usp=sharing&ouid=100121681850908143159&rtpof=true&sd=true)).  Each slide on the PowerPoint contains a video. Make sure that you press play on each video.  The guide has specific instructions for creating some of the trickier plots below: the velocity profile and the filled pressure contour plot.
 
@@ -204,9 +204,9 @@ Import settings for importing robot model to COMSOL
 
 ## CFD Simulations of Wings
 
-For parts 2 and 3 of this section, please make sure to watch  Grandma Spark's step-by-step video guide to using COMSOL to model a NACA 0009 airfoil in laminar flow (164 MB PowerPoint File, click [here](https://docs.google.com/presentation/d/1KFulcloNJmJO0Bwzbz9RL0ppA24EBcsr/edit?usp=sharing&ouid=100121681850908143159&rtpof=true&sd=true)). Each slide on the PowerPoint contains a video. Make sure that you press play on each video.
+In this section you will use CFD to simulate wings so that you can explore the effect of wing shape and angle of attack on lift and drag.
 
-What are the appropriate reference area and characteristic length to determine the lift force and coefficient of lift for the flat plate?  
+For parts 2 and 3 of this section, please make sure to watch  Grandma Spark's step-by-step video guide to using COMSOL to model a NACA 0009 airfoil in laminar flow (164 MB PowerPoint File, click [here](https://docs.google.com/presentation/d/1KFulcloNJmJO0Bwzbz9RL0ppA24EBcsr/edit?usp=sharing&ouid=100121681850908143159&rtpof=true&sd=true)). Each slide on the PowerPoint contains a video. Make sure that you press play on each video.
 
 1. Construct two wings in COMSOL. 
    1. a "Flat Plate Wing" that COULD be tested in the wind tunnel using the dimensions in @fig-plate-wing. Note that the wind tunnel test section is 1 ft x 1 ft x 2 ft. 
