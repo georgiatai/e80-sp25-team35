@@ -7,7 +7,7 @@ number-sections: true
 
 Team size: 4
 
-Submission Sheet: [html](/labs/lab5/submission.qmd) [Word](/labs/lab5/submission.docx)
+Submission Sheet: [html](/labs/lab6/submission.qmd) [Word](/labs/lab6/submission.docx)
 
 Prelab Help Sheet: None for this lab, but you've got this!  Review previous ones for ideas.
 
@@ -30,6 +30,8 @@ This lab will take place in the Engineering Computing Facility (ECF) in Parsons 
 You will be using COMSOL Multiphysics software in this lab. COMSOL is complicated software, and you will struggle to finish the lab if you do not read about its use and practice with it during prelab. You may practice using COMSOL and go through Granny Spark's COMSOL tutorials as part of prelab. However, you CANNOT run COMSOL simulations on LAB-RELATED objects outside of your designated lab time.  These objects include the cylindrical objects tested in the wind tunnel, the "flat plate wing" and the NACA 6412 wing. You also cannot use COMSOL during any other section's lab time slot because that can deprive students in lab of COMSOL licenses.
 
 Each team will have exactly 60 minutes to use the wind tunnel to run experiments and collect data.  The order that teams are sent to the wind tunnel is random and determined at the start of the section, so be ready to go first! 
+
+This is a rotation lab, so not all teams will be working on this lab in the same week.  Even numbered teams (12, 24, 36, etc.) will do this lab in week 6, while Odd numbered teams (12, 24, 36, etc.) work on [lab 5](lab5/index.qmd).  Odd numbered teams will do this lab in week 7, while Even numbered teams work on lab 5.  Be sure to watch the correct videos, do the correct quiz, and put in prelab effort for the correct lab!
 
 :::{.callout-warning}
 ## Safety Tips for the Wind Tunnel
