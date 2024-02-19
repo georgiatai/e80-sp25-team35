@@ -1,5 +1,5 @@
 ---
-title: "E80 Project Navigation Jump Start"
+title: "E80 Project Mini-Lab: The Navigation Jump Start"
 ---
 
 **UNDER CONSTRUCTION, DO NOT USE FOR PRELAB**
