@@ -2,7 +2,19 @@
 title: "E80 Project Design and Proposal"
 ---
 
-During the first lab section of your project you will need to produce a project proposal. The project proposal is made up of four parts: a budget indicating what you intend to buy for the project, a one-page maximum written description of your experiment, a detailed schematic showing how you will install your new sensors, and a mechanical drawing showing how you plan to mount or ruggedize the sensors for water submersion. Take a look at this [example proposal](https://drive.google.com/open?id=1MRynJcT4hXLgHcVIO9rsjBFQ6UUU_kM_) to see what we're looking for.
+Specifications: 
+
+Writing Template: 
+
+Example: [Word](https://drive.google.com/open?id=1MRynJcT4hXLgHcVIO9rsjBFQ6UUU_kM_)
+
+Faculty use [this checklist](https://docs.google.com/document/d/1Mu6EBuRauOxylP87Po1xO1yij7hNZuAZ/edit?usp=share_link&ouid=105511935419108795487&rtpof=true&sd=true) when checking students off for this week, so feel free to review your proposal against that list.
+
+## Introduction
+
+You will need to produce a project proposal and have it approved by two professors before spring break. The project proposal is made up of four parts: a budget indicating what you intend to buy for the project, a one-page maximum written description of your experiment, a mechanical drawing showing how you plan to mount or ruggedize the sensors for water submersion, and a detailed schematic showing how you will connect your new sensors to power and to the Teensy. Note that an example proposal is linked above.  The following sections describe each deliverable. **MORE RELEVANT EXAMPLE?**
+
+## Budget
 
 You will need to price the sensors and mechanical parts (easiest online) in order to make an accurate budget.
 You are expected to have selected parts for your experiment before submitting the budget. 
@@ -12,29 +24,6 @@ Common vendors include [Digikey](http://www.digikey.com/), [McMaster-Carr](https
 The faculty will not approve any budgets greater than $50 (including taxes and shipping). Supplies in the E80 lab don't count towards your budget limit (and remember that there are some links to get you started on the final set of lecture slides and the section above). 
 Some of the supplies, notably speakers and microphones, are available for temporary checkout for prototyping but not for permanent installation.
 These supplies are cheap enough that we expect you to buy your own for permanent installation.
-
-The one-page description of your project should lay out your scientific and/or engineering goals and describe how your sensor system will help you meet those goals.
-There are a few specific points that it should address:
-
-
-* It should answer the question, "Why would anyone do this project?" or "Why should I care about your results?"
-* It should outline your hypothesis and what you're comparing it to: what is the _x_ of your experiment, what is the _y_ and what two _x_-_y_ curves are you comparing? If you need to cite literature to establish your scientific relationship, then don't forget you can access papers through Mudd's network.
-* It should state the sensors you are using and describe how they relate to your scientific goals. Will they require any exceptional mechanical, electrical or software design?
-* It should convince the reader that you considered a number of design alternatives when you picked your project. The minimum bar for doing this is including five two-line project descriptions for projects that you considered but did not pursue.
-* It should outline requests for specific launch times or locations for your robot. There are two locations we can launch in Dana Point: the public beach and the Ocean Institute pier. We have a limited number of launch slots on the pier: two teams can launch in each half hour slot from 8:30 a.m. to 2:30 p.m. If your scientific goals would benefit from a particular launch time slot or slots on the pier, then you should request those slots in this project description. If some time slots are oversubscribed, we will award them randomly.  We will prioritize giving every team that wants one a deployment off the pier over giving one team multiple deployments.  
-
-Your schematic should be detailed and thorough and show every wire, resistor, capacitor (don't forget bypass capacitors) and power source that you intend to connect in order to get your sensor signals onto your MTB.  You should consider the voltage swing each component will provide and carefully design your analog front end and power supply so that these voltages are appropriate for the Teensy. Annotating voltage swings on your schematic is a good way to keep track of these design choices. You will be asked about every component on your schematic, so be prepared to back up your decisions with calculations or reference designs from the datasheets.
-
-You may find the design files for the PCBs you will use helpful while coming up with your schematic, so they are linked below. The CAD files for each board are viewable using[ KiCAD](http://kicad.org/). 
-Also, consider re-reading the [Introduction to the E80 Motherboard](https://drive.google.com/file/d/18bMajGNwH1K2yHB1dQLZRx5eqrYiNQWA/view?usp=sharing) document from lab 1.
-
-
-* Motherboard ([schematic](https://drive.google.com/file/d/1pk_mORYsxhedKjjqzhMrxj9H5ZVH3zqp/view?usp=sharing), [layout](https://drive.google.com/file/d/1pmm8xwpyAHAL5YvwMIQma4W8DuV-MP31/view?usp=sharing), [CAD files](https://drive.google.com/file/d/1pi9WNW7WoIx80xgb_0LWSUyA-LMfp94Z/view?usp=sharing))
-* Protoboard ([schematic](https://drive.google.com/open?id=1pDpDoSiCln73AbEeGSCm-o7L3ETTjlG9), [layout](https://drive.google.com/open?id=1VT_N11I8Alo8cQPUag5moUuXnGed80gd), [CAD files](https://drive.google.com/open?id=1NZ2dgC0PsSTcEsx0r2AD4S_84Wv5dpuq))
-
-You used the motherboard in labs 1, 2 and 7, so you should be familiar with it. All of your new electronics will be assembled on a new board called the protoboard, which has been designed to resemble a breadboard. Note that there are special areas on the protoboard layout for voltage regulators; you have battery power available to your protoboard but no regulated voltage supplies, so you will need to use these areas to add voltage regulators. The screw holes on all of the boards are grounded. Connections from the motherboard to protoboard will be made with a ribbon cable as shown [here](https://drive.google.com/open?id=1f263XprRhunVb96iLlj4cgUdvQr9Ukla) and [here](https://drive.google.com/open?id=1CA02afMMaOq7no6tP6REE3O2E691qiza).
-
-Your mechanical drawings should indicate sensor locations and be sufficient to convince a skeptical professor that your intended mechanical modifications are physically possible. Include approximate calculations - mass, center of gravity, buoyancy, or torque for motors - where appropriate to justify that these modifications serve your experimental goals. Especially include calculations if you think a professor will challenge you on the feasibility of your modification. ("e.g.: Can you really submerge an air filled tank with THAT motor?") Be sure to look up datasheets for motors if necessary.
 
 **Remember, you have $50 per team to spend towards your project.**
 A few important notes on spending:
@@ -47,7 +36,38 @@ A few important notes on spending:
 6. On the purchase request form, put Professor Brake as the professor to approve the purchase request.
 7. DO NOT FORGET TAXES AND SHIPPING COSTS WHEN CONSIDERING YOUR BUDGET.
 
-Faculty use [this checklist](https://docs.google.com/document/d/1Mu6EBuRauOxylP87Po1xO1yij7hNZuAZ/edit?usp=share_link&ouid=105511935419108795487&rtpof=true&sd=true) when checking students off for this week, so feel free to review your proposal against that list.
+## One-Page Description
+
+The one-page description of your project should lay out your scientific and/or engineering goals and describe how your sensor system will help you meet those goals.
+There are a few specific points that it should address:
+
+* It should answer the question, "Why would anyone do this project?" or "Why should I care about your results?"
+* It should outline your hypothesis and what you're comparing it to: what is the _x_ of your experiment, what is the _y_ and what two _x_-_y_ curves are you comparing? If you need to cite literature to establish your scientific relationship, then don't forget you can access papers through Mudd's network.
+* It should state the sensors you are using and describe how they relate to your scientific goals. Will they require any exceptional mechanical, electrical or software design?
+* It should convince the reader that you considered a number of design alternatives when you picked your project. The minimum bar for doing this is including five two-line project descriptions for projects that you considered but did not pursue.
+* It should outline requests for specific launch times or locations for your robot. There are two locations we can launch in Dana Point: the public beach and the Ocean Institute pier. We have a limited number of launch slots on the pier: two teams can launch in each half hour slot from 8:30 a.m. to 2:30 p.m. If your scientific goals would benefit from a particular launch time slot or slots on the pier, then you should request those slots in this project description. If some time slots are oversubscribed, we will award them randomly.  We will prioritize giving every team that wants one a deployment off the pier over giving one team multiple deployments.  
+
+## Mechanical Drawings
+
+Your mechanical drawings should indicate sensor locations and be sufficient to convince a skeptical professor that your intended mechanical modifications are physically possible. Include approximate calculations - mass, center of gravity, buoyancy, or torque for motors - where appropriate to justify that these modifications serve your experimental goals. Especially include calculations if you think a professor will challenge you on the feasibility of your modification. ("e.g.: Can you really submerge an air filled tank with THAT motor?") Be sure to look up datasheets for motors if necessary.
+
 
 [This](https://docs.google.com/document/d/1GFiMnHU6a3s1lfkIgrtkm0pdCMTTkv7l/edit?usp=share_link&ouid=105511935419108795487&rtpof=true&sd=trueBuRauOxylP87Po1xO1yij7hNZuAZ/edit?usp=share_link&ouid=105511935419108795487&rtpof=true&sd=true) is the list of parts available to you.
+
+## Schematic
+
+Your schematic should be detailed and thorough and show every wire, resistor, capacitor (don't forget bypass capacitors) and power source that you intend to connect in order to get your sensor signals onto your MTB.  You should consider the voltage swing each component will provide and carefully design your analog front end and power supply so that these voltages are appropriate for the Teensy. Annotating voltage swings on your schematic is a good way to keep track of these design choices. You will be asked about every component on your schematic, so be prepared to back up your decisions with calculations or reference designs from the datasheets.
+
+You may find the design files for the PCBs you will use helpful while coming up with your schematic, so they are linked below. The CAD files for each board are viewable using[ KiCAD](http://kicad.org/). 
+Also, consider re-reading the [Introduction to the E80 Motherboard](https://drive.google.com/file/d/18bMajGNwH1K2yHB1dQLZRx5eqrYiNQWA/view?usp=sharing) document from lab 1.
+
+
+* Motherboard ([schematic](https://drive.google.com/file/d/1pk_mORYsxhedKjjqzhMrxj9H5ZVH3zqp/view?usp=sharing), [layout](https://drive.google.com/file/d/1pmm8xwpyAHAL5YvwMIQma4W8DuV-MP31/view?usp=sharing), [CAD files](https://drive.google.com/file/d/1pi9WNW7WoIx80xgb_0LWSUyA-LMfp94Z/view?usp=sharing))
+* Protoboard ([schematic](https://drive.google.com/open?id=1pDpDoSiCln73AbEeGSCm-o7L3ETTjlG9), [layout](https://drive.google.com/open?id=1VT_N11I8Alo8cQPUag5moUuXnGed80gd), [CAD files](https://drive.google.com/open?id=1NZ2dgC0PsSTcEsx0r2AD4S_84Wv5dpuq))
+
+You used the motherboard in labs 1 and 2, so you should be familiar with it. 
+
+All of your new electronics will be assembled on a new board called the protoboard, which has been designed to resemble a breadboard. Note that there are special areas on the protoboard layout for voltage regulators; you have battery power available to your protoboard but no regulated voltage supplies, so you will need to use these areas to add voltage regulators. The screw holes on all of the boards are grounded. Connections from the motherboard to protoboard will be made with a ribbon cable as shown [here](https://drive.google.com/open?id=1f263XprRhunVb96iLlj4cgUdvQr9Ukla) and [here](https://drive.google.com/open?id=1CA02afMMaOq7no6tP6REE3O2E691qiza).
+
+
 
