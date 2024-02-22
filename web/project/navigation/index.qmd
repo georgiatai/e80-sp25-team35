@@ -6,10 +6,16 @@ title: "E80 Project Mini-Lab: The Navigation Jump Start"
 
 Team size: 4
 
+Submission sheet: [html](/projects/navigation/submission.qmd) [Word](/projects/navigation/submission.docx)
+
+Prelab help sheet: None, but you're pros at this point.
+
+Writing: None.
+
 **In order to give everyone access to the tank, we will be running the lab as follows:**
 
-- Group A: Run the lab as-is - Sections 1, 2, 3, 4, 5.
-- Group B: Run the lab out of order - Sections 1, 5, 2, 3, 4.
+- Odd numbered teams: Run the lab as-is - Sections 1, 2, 3, 4, 5.
+- Even numbered teams: Run the lab out of order - Sections 1, 5, 2, 3, 4.
 
 Until every team has completed the required portion of the lab, tank access for extra credit sections will be at the discretion of the Professor in charge.
 
@@ -36,7 +42,7 @@ For pre-lab purposes, a sample submission sheet that contains all of the questio
 
 Open [E80_Lab_07.ino](https://github.com/HMC-E80/E80-SP2023/blob/main/E80_Lab_07/E80_Lab_07.ino) in the Arduino IDE. This sketch will be used as starter code for lab 7. Also make sure you have the up to date [E80 libraries](https://github.com/HMC-E80/E80-SP2023) by performing a git fetch and checking that it's set as your current sketchbook. Confirm that you can compile and upload the starter code to your Teensy. 
 
-In lab 1 you modified your main .ino file using the Arduino IDE. In this lab you will be modifying library files which are written in C++ (and thus have file extension .cpp). These files need to be opened in a text or code editor like Notepad or Sublime, not a Word Processor like Microsoft Word. The most popular source code editor these days is Visual Studio (VS) Code which is cross platform. Both support syntax coloring. The changed files will be compiled to your robot when you compile the E80_Lab_07.ino file from the Arduino IDE. You will also be asked to refer to header files (with the file extension .h) which are used to set up constants, initialize variables and do other house cleaning for the .cpp files of the same name.
+In lab 1 you modified your main .ino file using the Arduino IDE. In this lab you will be modifying library files which are written in C++ (and thus have file extension .cpp). These files need to be opened in a text or code editor like Notepad or Sublime, not a Word Processor like Microsoft Word. The most popular source code editor these days is Visual Studio (VS) Code which is cross platform. Both support syntax coloring. The changed files will be compiled to your robot when you compile the E80_Lab_07.ino file from the Arduino IDE. You will also be asked to refer to header files (with the file extension `.h`) which are used to set up constants, initialize variables and do other house cleaning for the .cpp files of the same name.
 
 The libraries are included in E80_Lab_07.ino using #include statements at the top of the file. Then commands from the libraries are used to create special variables, which we call objects, to represent your sensors like the GPS and the IMU. Finally, those objects are used to interact with the sensors. Read the E80_Lab_07.ino file and make note of where the libraries are included and used. Figure out how often your sensors are sampled by reading  E80_Lab_07.ino and the TimingOffsets.h header file located in libraries/main and record your answer on your submission sheet.
 
