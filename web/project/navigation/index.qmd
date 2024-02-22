@@ -6,7 +6,7 @@ title: "E80 Project Mini-Lab: The Navigation Jump Start"
 
 Team size: 4
 
-Submission sheet: [html](/projects/navigation/submission.qmd) [Word](/projects/navigation/submission.docx)
+Submission sheet: [html](/project/navigation/submission.qmd) [Word](/project/navigation/submission.docx)
 
 Prelab help sheet: None, but you're pros at this point.
 
