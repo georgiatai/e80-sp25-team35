@@ -41,8 +41,12 @@ website:
           text: Field Deployment
         - href: project/report
           text: Present and Report
-      - href: reference/
-        text: Reference Designs
+      - text: References
+        menu:
+        - href: reference/inventory
+          text: Lab Inventory
+        - href: reference/design
+          text: Example Designs
       - href: history/
         text: History
     right:
