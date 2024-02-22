@@ -99,13 +99,17 @@ Your mechanical drawings should allow a professor to evaluate important design d
 
 ## Schematics
 
-Make a schematic that includes all of your sensor interface circuits. Your schematic should be detailed and thorough and show every wire, resistor, capacitor (don't forget bypass capacitors) and power source that you intend to connect in order to get your sensor signals onto your motherboard.  
+Make a schematic that includes all of your sensor interface circuits. Your schematic should be thorough; 
 
-You should consider the voltage swing each component will provide and carefully design your analog front end and power supply so that these voltages are appropriate for the Teensy. Annotating voltage swings on your schematic is a good way to keep track of these design choices. You will be asked about every component on your schematic, so include calculations for your designs and be ready to reference designs from the datasheets.
+* Show every wire, resistor, capacitor (don't forget bypass capacitors), and power source (i.e.: battery) that you intend to assemble into your final design.  
+* Annotate the expected Voltage swing on every node of the schematic.
+* Check that none of the Teensy pin nodes swing above 3.3 V or below 0 V.
+* Where appropriate, include relevant reference designs from datasheets (with citation) to justify your schematic choices.
+* Though we're not requiring simulations of your design here, having a working simulation of the design is a great idea.
 
-Follow good schematic-making practice when you illustrate these schematics.  One practice we have not discussed much in class is that it's acceptable to split big schematics over multiple sheets to make them easier to read.  So feel free to submit either one integrated image or several simpler ones, whichever is clearer.
+Follow good schematic-making practice when you draw these schematics. See the [lab 3 specs](/labs/lab3/submission.qmd) for a refresher on schematic practice. One practice we have not discussed much in class is that it's acceptable to split big schematics over multiple sheets to make them easier to read.  So feel free to submit either one integrated image or several simpler ones, whichever is clearer.
 
-All of your new electronics will be assembled on a new board called the protoboard.  We discuss it in greater details during the [build](/project/build), but its limited size should inform your circuit design.  The protoboard has the same number of rows as a standard breadboard, so don't pick designs that require more wires than would fit on a breadboard. 
+All of your new electronics will be assembled on a new board called the protoboard.  We discuss the protoboard in greater details during the [build](/project/build), but its limited size should inform your circuit design.  The protoboard has the same number of rows as a standard breadboard, so don't pick designs that require more wires than would fit on a breadboard. 
 
 You may find the design files for the PCBs you will use helpful while coming up with your schematic, so they are linked below. The CAD files for each board are viewable using [KiCAD](http://kicad.org/). 
 
