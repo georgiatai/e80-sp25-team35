@@ -11,23 +11,18 @@ Lab manuals are linked here.
 # Labs
 
 
-| Week            | (Odd numbered teams) | (Even numbered teams) |
-|----------------------|----------------|---------------------|
-| **1** (1/16-1/19)|  [Lab 0:<br>Tutorial and Skill Review](/labs/lab0)  |  [Lab 0:<br>Tutorial and Skill Review](/labs/lab0)  |
-| **2** (1/22-1/26)|  [Lab 1:<br>Go Autonomous](/labs/lab1)  |  [Lab 1:<br>Go Autonomous](/labs/lab1)  |
-| **3** (1/29-2/2)|  [Lab 2:<br>Basic Electrical Measurements](/labs/lab2)  |  [Lab 2:<br>Basic Electrical Measurements](/labs/lab2)  |
-| **4** (2/5-2/9)|  [Lab 3:<br>Op Amps and Marine Sensors](/labs/lab3)  |  [Lab 3:<br>Op Amps and Marine Sensors](/labs/lab3)  |
-| **5** (2/12-2/16)|  [Lab 4:<br>Temperature Sensors](/labs/lab4)  |  [Lab 4:<br>Temperature Sensors](/labs/lab4)  |
-| **6** (2/19-2/23)|  [Lab 5:<br>Underwater Acoustics](/labs/lab5)  |  [Lab 6:<br>Fluid Mechanics](/labs/lab6)  |
-| **7** (2/26-3/1)|  [Lab 6:<br>Fluid Mechanics](/labs/lab6)  |  [Lab 5:<br>Underwater Acoustics](/labs/lab5)  |
-| **8** (3/4-3/8)|  [Project week 1:](/project/proposal)    Propose and Design
+| Week             | (Odd numbered teams) | (Even numbered teams) |
+|------------------|----------------------|-----------------------|
+| **1** (1/16-1/19)|  [Lab 0:<br>Tutorial and Skill Review](/labs/lab0)     |  [Lab 0:<br>Tutorial and Skill Review](/labs/lab0)  |
+| **2** (1/22-1/26)|  [Lab 1:<br>Go Autonomous](/labs/lab1)                 |  [Lab 1:<br>Go Autonomous](/labs/lab1)  |
+| **3** (1/29-2/2) |  [Lab 2:<br>Basic Electrical Measurements](/labs/lab2) |  [Lab 2:<br>Basic Electrical Measurements](/labs/lab2)  |
+| **4** (2/5-2/9)  |  [Lab 3:<br>Op Amps and Marine Sensors](/labs/lab3)    |  [Lab 3:<br>Op Amps and Marine Sensors](/labs/lab3)  |
+| **5** (2/12-2/16)|  [Lab 4:<br>Temperature Sensors](/labs/lab4)           |  [Lab 4:<br>Temperature Sensors](/labs/lab4)  |
+| **6** (2/19-2/23)|  [Lab 5:<br>Underwater Acoustics](/labs/lab5)          |  [Lab 6:<br>Fluid Mechanics](/labs/lab6)  |
+| **7** (2/26-3/1) |  [Lab 6:<br>Fluid Mechanics](/labs/lab6)               |  [Lab 5:<br>Underwater Acoustics](/labs/lab5)  |
+| **8** (3/4-3/8)  |  [Project Proposal Week](/project/proposal)            | [Project Proposal Week](/project/proposal)
 | **9** (3/11-3/15)|  **Spring Break**  |  
-| **10** (3/18-3/22)|  [Lab 7:<br>Project Jump Start (ver 1)](/project/navigation)  |  [Lab 7:<br>Project Jump Start (ver 2)](/project/navigation)  |
-| **11** (3/25-3/29)|  [Project week 2: ](/project/build)  Breadboard and Test
-| **12** (4/1-4/5)|  [Project week 3: ](/project/build)  PCB Solder and Test 
-| **13** (4/8-4/12)|  [Project week 4: ](/project/field) Launch at pHake Lake  
-| **14** (4/15-4/19)|  [Project week 5:](/project/field)  Rebuild, retest
-| **15** (4/22-4/26)|  [Project week 6:](/project/report)   Analysis
+
 __________
 - **Saturday 4/20/2024**   <br>Relaunch at Dana Point<br>**ALL STUDENTS ARE EXPECTED TO ATTEND THE SATURDAY LAUNCH**
 
