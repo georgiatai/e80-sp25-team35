@@ -99,15 +99,14 @@ Your mechanical drawings should allow a professor to evaluate important design d
 
 ## Schematics
 
-Make a schematic that includes all of your sensor interface circuits. Your schematic should be thorough; 
+Make a schematic that adheres to good practice (as outlined in [lab 3 specs](/labs/lab3/submission.qmd)) and that includes all of your sensor interface circuits. Your schematic should be a comprehensive design document, so do the following: 
 
 * Show every wire, resistor, capacitor (don't forget bypass capacitors), and power source (i.e.: battery) that you intend to assemble into your final design.  
 * Annotate the expected Voltage swing on every node of the schematic.
 * Check that none of the Teensy pin nodes swing above 3.3 V or below 0 V.
 * Where appropriate, include relevant reference designs from datasheets (with citation) to justify your schematic choices.
 * Though we're not requiring simulations of your design here, having a working simulation of the design is a great idea.
-
-Follow good schematic-making practice when you draw these schematics. See the [lab 3 specs](/labs/lab3/submission.qmd) for a refresher on schematic practice. One practice we have not discussed much in class is that it's acceptable to split big schematics over multiple sheets to make them easier to read.  So feel free to submit either one integrated image or several simpler ones, whichever is clearer.
+* Split this big schematic into multiple smaller ones if it makes it easier to read. (It may still make sense to submit one big schematic, but consider whether a big schematic or several small ones will serve you better.)
 
 All of your new electronics will be assembled on a new board called the protoboard.  We discuss the protoboard in greater details during the [build](/project/build), but its limited size should inform your circuit design.  The protoboard has the same number of rows as a standard breadboard, so don't pick designs that require more wires than would fit on a breadboard. 
 
