@@ -12,6 +12,15 @@ Prelab help sheet: None, but you're pros at this point.
 
 Writing: None.
 
+## Introduction
+
+This week we're doing work in lab that is designed to accelerate you into the project.  We are going to structure the work like a lab from the first half of the class, but the goal is to provide you the tools you need to start right away on your project.  Specifically, we want you to leave this Jump Start with an autonomously controlled robot and a confident attitude towards understanding and modifying the robot code.
+
+One crucial difference between this an the lab is that you will do different activities depending on your project:
+
+- **Diving Activity**: In this activity you will build a pressure sensor and a P control loop for robot depth.  You will test your loop in the tank.  Pick this if you plan to have your robot dive or use a depth-controlled winch.
+- **Surface Navigation Activity**: In this activity you will use GPS and your magnetometer to control the bearing of your robot, and you will test that navigation system by walking around with your robot outside of Parsons.  Pick this if you plan to do surface navigation or if you intend to have your robot keep station (stay still).
+
 **In order to give everyone access to the tank, we will be running the lab as follows:**
 
 - Odd numbered teams: Run the lab as-is - Sections 1, 2, 3, 4, 5.
