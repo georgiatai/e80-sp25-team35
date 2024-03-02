@@ -2,6 +2,27 @@
 title: "Reference Designs"
 ---
 
+## Phase Shift Oscillator
+
+![Phase Shift Oscillator](img/phase_shift_osc.png){#fig-phase-shift-osc}
+
+Phase shift oscillators produce sinusoidal outputs.  The oscillation frequency in Hz is given by $f_{osc} = \sqrt{3}/(2\pi RC)$. The oscillation amplitude is hard to control, but we've seen ~ 1 Vpp in the past. Since this requires four op-amps, it's natural to implement it on one MCP6004.
+
+## Maximum and Minimum Detectors
+
+::: {#fig-minmax layout-ncol="2"}
+
+![Max Detector](img/phase_shift_osc.png){#fig-phase-shift-osc}
+
+![Min Detector](img/phase_shift_osc.png){#fig-phase-shift-osc}
+
+Maximum and minimum detector circuits
+:::
+
+## Salinity Sensor
+
+## Microphone Interface Circuits
+
 ## AUV Turbidity Meter
 
 This design adapts the lab turbidity meter to the requirements for being immersed and waterproofed. The instructions and procedure are [here](https://drive.google.com/open?id=1RYaInz-txbC4iaJD83_0HSwKYBlVGDN1HlEs4yDEMjM). A zip file of the design files is [here](https://drive.google.com/open?id=10QO_RUk4GNhHB0n_1xPkC-ebEDFHg0sX).
