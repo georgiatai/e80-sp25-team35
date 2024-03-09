@@ -1,8 +1,7 @@
 ---
 title: "E80 Project Mini-Lab: The Navigation Jump Start"
+number-sections: true
 ---
-
-**UNDER CONSTRUCTION, DO NOT USE FOR PRELAB**
 
 Team size: 4
 
@@ -16,38 +15,23 @@ Writing: None.
 
 This week we're doing work in lab that is designed to accelerate you into the project.  We are going to structure the work like a lab from the first half of the class, but the goal is to provide you the tools you need to start right away on your project.  Specifically, we want you to leave this Jump Start with an autonomously controlled robot and a confident attitude towards understanding and modifying the robot code.
 
-One crucial difference between this an the lab is that you will do different activities depending on your project:
+In this lab you are going to test out using your IMU data to dead reckon a course, which is an echo of the work that you did in lab 1.  Then you are going to learn about or assemble a new sensor and your [E80 protoboard](/reference/board), then finally you'll to modify your robot software to implement a control loop. One crucial difference between this activity and a normal lab is that you will practice these skills by doing different activities depending on your project.  You will select one of the following activities to pursue during this lab:
 
-- **Diving Activity**: In this activity you will build a pressure sensor and a P control loop for robot depth.  You will test your loop in the tank.  Pick this if you plan to have your robot dive or use a depth-controlled winch.
-- **Surface Navigation Activity**: In this activity you will use GPS and your magnetometer to control the bearing of your robot, and you will test that navigation system by walking around with your robot outside of Parsons.  Pick this if you plan to do surface navigation or if you intend to have your robot keep station (stay still).
+- **Diving Activity**: In this activity you will build a pressure sensor and a P control loop for robot depth.  You will test your loop in the tank.  Pick this if you plan to have your robot dive or use a depth-controlled winch.  It is possible that there will be a queue for the tank if many students in your section are doing the diving activity.  Feel free to start on your robot [build](/labs/build) while you are waiting.
+- **Surface Navigation Activity**: In this activity you will use GPS and your magnetometer to control the bearing of your robot, and you will test that navigation system by walking around with your robot outside of Parsons.  Pick this if you plan to do surface navigation, if you intend to have your robot keep station (stay still), or if you plan to do a hybrid diving/surface navigation scheme.
 
-**In order to give everyone access to the tank, we will be running the lab as follows:**
+After successful completion of this lab, you will be able to:
 
-- Odd numbered teams: Run the lab as-is - Sections 1, 2, 3, 4, 5.
-- Even numbered teams: Run the lab out of order - Sections 1, 5, 2, 3, 4.
-
-Until every team has completed the required portion of the lab, tank access for extra credit sections will be at the discretion of the Professor in charge.
-
-
-## Learning Objectives
-
-After successful completion of this lab, you will be able to…
-
-1. Use your robot to log GPS signals.
-2. Implement a proportional control algorithm for depth control.
-3. Calibrate the magnetometer on in the inertial measurement unit.
-
-
-## 0. Introduction
-
-The objective of this lab is to equip your robot with the ability to autonomously navigate between depth or X, Y waypoints. By doing so, you will learn how your robot's software fits together and about various navigation sensors.
-
-This lab will be done in teams of 4 students. The lab will take place in multiple locations: students will start work in the E80 lab room, but some experiments will be conducted in the Parsons parking lot (where your GPS can receive signals) and in the tank room. Don't forget that you need to check out GPS's and other expensive equipment from professors or proctors. You will also need to fill out hardware failure reports if you need replacements for these pieces of equipment.
-
-For pre-lab purposes, a sample submission sheet that contains all of the questions and requirements on the submission sheet is [here](https://docs.google.com/document/d/1Otjc2N6Xdpct_byAJIK1l4fUhNEvcfCu8h8wzWKg-kM/edit?usp=sharing). 
-
+- [ ] Accurately discuss and calculate the effects of error accumulation on IMU dead reckoning
+- [ ] Modify and use your protoboard
+- [ ] Use a sensor appropriate to your chosen type of navigation: either the GPS and IMU or a pressure sensor
+- [ ] Modify and use the example robot code and the C++ libraries that we provide.
 
 ## 1. Familiarize Yourself With the Software
+
+https://www.learncpp.com/
+https://en.cppreference.com/w/
+
 
 Open [E80_Lab_07.ino](https://github.com/HMC-E80/E80-SP2023/blob/main/E80_Lab_07/E80_Lab_07.ino) in the Arduino IDE. This sketch will be used as starter code for lab 7. Also make sure you have the up to date [E80 libraries](https://github.com/HMC-E80/E80-SP2023) by performing a git fetch and checking that it's set as your current sketchbook. Confirm that you can compile and upload the starter code to your Teensy. 
 
