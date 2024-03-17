@@ -64,13 +64,7 @@ We'll be linking to specific files on the E80 Github repository below to talk ab
 
 Read this section and make the requested modification to your code. We recommend reading this section with your E80 software open in a code editor (VScode, Sublime, Notepad++, etc., NOT MS Word) so that you can look for features of the code as we discuss them.  We also think **every member of your team should do this section** even though you'll only turn in one submission sheet.
 
-The E80 robot code appears in three files: `E80_Lab_07_dive.ino`, `E80_Lab_07_surface.ino` and `Default_Robot.ino`.  We intend for you to use `Default_Robot.ino` on your final project, but you should modify `E80_Lab_07_dive.ino` and `E80_Lab_07_surface.ino` this week.  Look at `E80_Lab_07_dive.ino` in this section.
-
-:::{.callout-note collapse="true"}
-## Why Three Files for the E80 Robot Code?
-
-The dive and surface programs are simplified versions of `Default_Robot.ino`, so they're easier to learn from.  The dive and surface programs also have a few key functions removed, so that you have to figure them out on your own when writing control loops later.  If you're stuck, feel free to look at `Default_Robot.ino` for inspiration to write those functions, but it's intended that you figure out and write your own control laws this week.
-:::
+The E80 robot code appears in three files: `E80_Lab_07_dive.ino`, `E80_Lab_07_surface.ino` and `Default_Robot.ino`.  We intend for you to use `Default_Robot.ino` on your final project, but you should modify `E80_Lab_07_dive.ino` and `E80_Lab_07_surface.ino` this week. (The dive and surface programs are simplified versions of `Default_Robot.ino`, so they're easier to learn from.)  Look at `E80_Lab_07_dive.ino` in this section.
 
 The E80 robot code all has the `.ino` suffix, which means it is encoded in Arduino files (Language [tutorials](https://www.arduino.cc/en/Tutorial/HomePage) and [reference](https://www.arduino.cc/reference/en/)), and as such these files have two extremely important functions: `setup()` and `loop()`.  The `setup()` function is run once when your robot powers on, and then the robot runs the `loop()` function over and over until power is removed.  
 
