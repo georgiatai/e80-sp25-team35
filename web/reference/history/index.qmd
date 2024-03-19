@@ -4,7 +4,7 @@ title: "History"
 
 ## 2023
 
-An [ASV with a side-scan sonar](img/IMG_0073.JPG) that successfully mapped the depths of Dana Point.
+An [ASV with a side-scan sonar](img/IMG_0073.JPG) that successfully [mapped the depths of Dana Point](img/side_scan_data.png).
 
 An [AUV that measured light intensity](https://drive.google.com/file/d/1EBH-23sqoNi2aSR8oisyuDFHgmclQUPq/view?usp=sharing) at different colors vs. depth with an unusually good calibration scheme involving [a Go-Pro that descended with the AUV](https://drive.google.com/file/d/1mi6jaRq8IQ_dZmOhy1kvfyUiDuMfUEqh/view?usp=sharing).
 
