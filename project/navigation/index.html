@@ -554,7 +554,7 @@ Note
 <ol type="1">
 <li>To calculate <code>state.y</code>, use the relationship between the distance along an arc’s edge, the radius of the arc, and the angle, (e.g.&nbsp;<code>state.y = R_earth*latitudeChange</code>).</li>
 <li>To calculate <code>state.x</code>, note that it is a function of latitude, (e.g.&nbsp;<code>state.x=R_earth*longitudeChange*cos(latitude at origin)</code>).</li>
-<li>To calculate <code>state.yaw</code>, add an appropriate offset to <code>state.heading</code>.</li>
+<li>To calculate <code>state.yaw</code>, add an appropriate offset to <code>state.heading</code> and, if necessary, multiply some part of your expression by -1 to flip around a sign.</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
