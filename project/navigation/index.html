@@ -131,7 +131,7 @@ window.Quarto = {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
         <li>
     <a class="dropdown-item" href="../../labs/overview">
- <span class="dropdown-text">Lab Overview</span></a>
+ <span class="dropdown-text">Overview and Safety</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../labs/lab0">
@@ -254,13 +254,16 @@ window.Quarto = {
   <li><a href="#diving-activity" id="toc-diving-activity" class="nav-link" data-scroll-target="#diving-activity"><span class="header-section-number">3</span> Diving Activity</a>
   <ul class="collapse">
   <li><a href="#calibrate-and-test-a-pressure-sensor" id="toc-calibrate-and-test-a-pressure-sensor" class="nav-link" data-scroll-target="#calibrate-and-test-a-pressure-sensor"><span class="header-section-number">3.1</span> Calibrate and Test a Pressure Sensor</a></li>
-  <li><a href="#write-a-p-control-algorithm-for-pressure-and-test-it" id="toc-write-a-p-control-algorithm-for-pressure-and-test-it" class="nav-link" data-scroll-target="#write-a-p-control-algorithm-for-pressure-and-test-it"><span class="header-section-number">3.2</span> Write a P Control Algorithm for Pressure and Test It</a></li>
+  <li><a href="#write-a-p-control-algorithm-for-depth" id="toc-write-a-p-control-algorithm-for-depth" class="nav-link" data-scroll-target="#write-a-p-control-algorithm-for-depth"><span class="header-section-number">3.2</span> Write a P Control Algorithm for Depth</a></li>
+  <li><a href="#test-the-p-control-algorithm" id="toc-test-the-p-control-algorithm" class="nav-link" data-scroll-target="#test-the-p-control-algorithm"><span class="header-section-number">3.3</span> Test the P Control Algorithm</a></li>
   </ul></li>
   <li><a href="#surface-navigation-activity" id="toc-surface-navigation-activity" class="nav-link" data-scroll-target="#surface-navigation-activity"><span class="header-section-number">4</span> Surface Navigation Activity</a>
   <ul class="collapse">
   <li><a href="#magnetometer-calibration" id="toc-magnetometer-calibration" class="nav-link" data-scroll-target="#magnetometer-calibration"><span class="header-section-number">4.1</span> Magnetometer Calibration</a></li>
-  <li><a href="#position-measurements-via-gps" id="toc-position-measurements-via-gps" class="nav-link" data-scroll-target="#position-measurements-via-gps"><span class="header-section-number">4.2</span> Position Measurements via GPS</a></li>
-  <li><a href="#proportional-surface-control" id="toc-proportional-surface-control" class="nav-link" data-scroll-target="#proportional-surface-control"><span class="header-section-number">4.3</span> Proportional Surface Control</a></li>
+  <li><a href="#gps-integration" id="toc-gps-integration" class="nav-link" data-scroll-target="#gps-integration"><span class="header-section-number">4.2</span> GPS Integration</a></li>
+  <li><a href="#write-latitude-and-longitude-software" id="toc-write-latitude-and-longitude-software" class="nav-link" data-scroll-target="#write-latitude-and-longitude-software"><span class="header-section-number">4.3</span> Write Latitude and Longitude Software</a></li>
+  <li><a href="#position-measurements-via-gps" id="toc-position-measurements-via-gps" class="nav-link" data-scroll-target="#position-measurements-via-gps"><span class="header-section-number">4.4</span> Position Measurements via GPS</a></li>
+  <li><a href="#proportional-surface-control" id="toc-proportional-surface-control" class="nav-link" data-scroll-target="#proportional-surface-control"><span class="header-section-number">4.5</span> Proportional Surface Control</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -380,8 +383,21 @@ Tip
 <p>You generally should not include calls to <code>Serial.println()</code> in your code, even though it’s standard practice for Arduino, because it messes with our <code>printer</code> object. The <code>printer</code> takes great pains to keep all the text easy to read as the robot spits out updates, and random print statements can cause it to jitter around. Use <code>printer.printMessage()</code> for one time messages (see <code>DepthControl.cpp</code> for an example) and <code>printer.printValue()</code> to print recurring values (as seen in the <code>loop()</code> function of the E80 code).</p>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Be sure to read the <code>README</code> in the libraries folder because it contains a lot of information about the features and adjustable knobs in each file. The adjustments described in the <code>README</code> file are sufficient to cover most standard student projects, so you might not even need to write code.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -390,7 +406,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Exploring the code in this section highlights some of the interaction between the header (<code>.h</code>), library (<code>.cpp</code>), and Arduino (<code>.ino</code>) files. The header files are the interfaces, they hold information on variables that are used in other files and the functions of the library files of the same name. The library files are the implementations of the functions defined in the headers, and they use the variables held in the headers. The Arduino file sketch is the top level of the program, and it invokes library functions and header variables to implement the desired behavior of the robot.</p>
 </div>
@@ -416,17 +432,17 @@ Tip
 <section id="calibrate-and-test-a-pressure-sensor" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="calibrate-and-test-a-pressure-sensor"><span class="header-section-number">3.1</span> Calibrate and Test a Pressure Sensor</h3>
 <p>In order to implement closed loop depth control with your AUV, it first needs to be able to sense its current depth, which we will do by interpreting a pressure sensor. You have two options to make your pressure sensor: build the pressure sensor from your project proposal on a breadboard, or use one of our pre-made pressure sensor adapter PCBs (<a href="https://drive.google.com/open?id=1LEGhYjHPmEy7TEqDj1MgLXBuiTXaycc3">picture</a>, <a href="https://drive.google.com/open?id=1KLr1kXQqwAI7urwtZSGdn_CvxM2G_UvH">schematic</a>, <a href="https://drive.google.com/open?id=1L3BF7umlX180xhOMnQ9K8Ubop1LF_Auk">layout</a>, <a href="https://drive.google.com/open?id=1JyV-FahVbUNkURrN65v0to_McqpwAE12">KiCAD</a>). We recommend building your own design to get a start on your project <a href="../../project/build">build</a>, but feel free to use our PCB if you’re short on time. (Do note that our PCB uses a weird op-amp circuit that you’ll need to analyze on your own.)</p>
-<p>In a deviation from previous practice, you will measure the operation of this sensor using your Teensy. By measuring your pressure directly in Teensy units, you can write code that interacts with your results in a direct way. We will take advantage of the serial data</p>
+<p>In a deviation from previous practice, you will measure the operation of this sensor using your Teensy. By measuring your pressure directly in the Teensy, you can write code that interacts with your results in a direct way. We will take advantage of the serial data</p>
 <ol type="1">
 <li>Attach your pressure sensor output to pin A0 on the Teensy.</li>
 <li>Add a line showing your current pressure measurement to your robot’s serial report. Edit <code>updateState()</code> in <code>ZStateEstimator.cpp</code> by uncommenting the two lines of code below the calculation of the z position.</li>
-<li>Run <code>E80_Lab_07_dive.ino</code>. The pressure sensor voltage should now appear in the serial monitor, and you will use that display to calibrate your pressure sensor.</li>
+<li>Run <code>E80_Lab_07_dive.ino</code>. The pressure sensor Voltage should now appear in the serial monitor, and you will use that display to calibrate your pressure sensor.</li>
 <li>Use a graduated cylinder and a meter stick with pressure tubing attached to make a calibration curve with at least seven points between depth and Teensy-reported Voltage.</li>
 <li>Modify <code>depthCal_slope</code> and <code>depthCal_intercept</code> in <code>ZStateEstimator.h</code> so your Teensy display reports the proper depth in meters.</li>
 </ol>
 </section>
-<section id="write-a-p-control-algorithm-for-pressure-and-test-it" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="write-a-p-control-algorithm-for-pressure-and-test-it"><span class="header-section-number">3.2</span> Write a P Control Algorithm for Pressure and Test It</h3>
+<section id="write-a-p-control-algorithm-for-depth" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="write-a-p-control-algorithm-for-depth"><span class="header-section-number">3.2</span> Write a P Control Algorithm for Depth</h3>
 <p>Add a Proportional depth control system to your robot by modifying the <code>DepthControl.cpp file</code>. Add the following steps:</p>
 <ol type="1">
 <li>Assign the desired depth to a variable named <code>depth_des</code>. The desired depth can be found in the <code>wayPoints</code> array at the index <code>currentWayPoint</code> (i.e.: at <code>wayPoints[currentWayPoint]</code>).</li>
@@ -449,7 +465,7 @@ Tip
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -458,12 +474,15 @@ Details About the Code
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In the library file named <code>ZStateEstimator.cpp</code>, in the function called <code>ZStateEstimator::updateState()</code>, you can see that the z position (depth) of the robot is calculated using the function’s input <code>pressure_signal</code>. The main <code>loop()</code> of the Arduino code is where <code>z_state_estimator.updateState()</code> is called. By reviewing this <code>loop()</code>, you can see that this <code>pressure_signal</code> input is receiving the output of <code>analogRead(PRESSURE_PIN)</code>. <code>analogRead()</code> is an Arduino function that reads the value of a specified pin, and <code>PRESSURE_PIN</code> is a variable set in <code>Pinouts.h</code>, currently set to pin A0 (pin 14) of the Teensy. The <code>pressure_signal</code> input provides the pressure sensor signal in Teensy units. The <code>ZStateEstimator::updateState()</code> function then converts from Teensy units to Volts, then finally converts from Volts to depth [m] using the variables <code>depthCal_slope</code> and <code>depthCal_intercept</code>. This depth measurement is stored in <code>state.z</code>.</p>
 </div>
 </div>
 </div>
+</section>
+<section id="test-the-p-control-algorithm" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="test-the-p-control-algorithm"><span class="header-section-number">3.3</span> Test the P Control Algorithm</h3>
 <p>Test your depth P control using the meter stick with tubing and the graduated cylinder.</p>
 <ol type="1">
 <li>Attach the pressure tubing to your pressure sensor and run <code>E80_Lab_07_dive.ino</code>.<br>
@@ -492,7 +511,7 @@ Details About the Code
 <ol type="1">
 <li>Bring your robot to the tank room, run <code>E80_Lab_07_dive.ino</code>, and put the robot into the tank. Watch out for splashes onto your computer or motherboard as you put the robot in.</li>
 <li>Let the robot go to the two depth waypoints at 0.5 m and 1 m while keeping an eye on the values and messages printed to the serial monitor. Be sure to log your data.</li>
-<li>Plot the logged uV, depth and depth_des as a function of time.</li>
+<li>Plot the logged <code>uV</code>, <code>depth</code> and <code>depth_des</code> as a function of time.</li>
 </ol>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -527,12 +546,12 @@ Note
 <p>In this activity, you will design a P control loop that interacts with a magnetometer and GPS sensor to control the robot’s angle. You will need to modify <code>E80_Lab_07_surface.ino</code> and the <a href="https://github.com/HMC-E80/E80/tree/main/libraries/main">E80 C++ libraries</a> to do so.</p>
 <section id="magnetometer-calibration" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="magnetometer-calibration"><span class="header-section-number">4.1</span> Magnetometer Calibration</h3>
-<p>A magnetometer measures the earth’s magnetic field, so it can be used as a compass to sense your robot’s heading. Read <a href="https://digilent.com/blog/how-to-convert-magnetometer-data-into-compass-heading/">this</a> article describing how it works. We have a magnetometer integrated into our IMU. Every magnetometer has errors in its measurement, which can be byproducts of manufacturing or of local magnetic disturbances (eg: the magnetic declination is -10.52 degrees at Mudd). You need to calibrate those errors out before you can trust your magnetometer results. This <a href="https://github.com/kriswiner/MPU6050/wiki/Simple-and-Effective-Magnetometer-Calibration">article on magnetometer calibration</a> is a good summary of the process.</p>
+<p>A magnetometer measures the earth’s magnetic field, so it can be used as a compass to sense your robot’s heading. Read <a href="https://digilent.com/blog/how-to-convert-magnetometer-data-into-compass-heading/">this</a> article describing how it works. We have a magnetometer integrated into our IMU. Every magnetometer has errors in its measurement, which can be byproducts of manufacturing or of local magnetic disturbances (eg: the magnetic declination is -10.52° at Mudd). You need to calibrate those errors out before you can trust your magnetometer results. This <a href="https://github.com/kriswiner/MPU6050/wiki/Simple-and-Effective-Magnetometer-Calibration">article on magnetometer calibration</a> is a good summary of the process.</p>
 <ol type="1">
-<li>Take your robot outside, far from buildings, and log your magnetometer data while your robot is held upright and you slowly (over ~10s) rotate 360 degrees while standing in place. Save the logged data from this exercise for later.</li>
+<li>Take your robot outside, far from buildings, run <code>E80_Lab_07_surface.ino</code>, and log your magnetometer data while your robot is held upright and you slowly (over ~10s) rotate 360 degrees while standing in place. Save the logged data from this exercise for later.</li>
 <li>Program your Teensy with our magnetic calibration software – <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/Mag_Calibration/Mag_Calibration.ino">Mag_Calibration.ino</a> – and use <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/MATLAB/Mag_Calibration.m">Mag_Calibration.m</a> to extract the hard and soft iron correction coefficients. You will need MATLAB version 2018b or later to run this code. Save the figure generated by <code>Mag_Calibration.m</code> to your submission sheet.</li>
-<li>Update <code>SensorIMU.h</code> with the hard and soft iron coefficients.</li>
-<li>Turn in a circle again outside and save your magnetometer readings again.</li>
+<li>Update the <code>mag_offsets</code> and <code>mag_comp</code> variables in <code>SensorIMU.h</code> with the hard and soft iron coefficients you just measured.</li>
+<li>Run <code>E80_Lab_07_surface.ino</code> and turn in a circle outside again. Also save these magnetometer readings.</li>
 <li>Generate the following two plots:
 <ol type="1">
 <li>A scatter plot of mx vs.&nbsp;my where your calibrated and uncalibrated data are superimposed. Find appropriate units for the axes in <code>Mag_Calibration.m</code>.</li>
@@ -540,16 +559,29 @@ Note
 </ol></li>
 </ol>
 </section>
-<section id="position-measurements-via-gps" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="position-measurements-via-gps"><span class="header-section-number">4.2</span> Position Measurements via GPS</h3>
-<p>Integrate the <a href="https://www.adafruit.com/product/746">Adafruit Ultimate GPS</a> into the board stack so that the Teensy has access to GPS measurements</p>
+<section id="gps-integration" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="gps-integration"><span class="header-section-number">4.2</span> GPS Integration</h3>
+<p>Integrate the <a href="https://www.adafruit.com/product/746">Adafruit Ultimate GPS</a> into the motherboard</p>
 <ol type="1">
 <li>Solder a 9x1 female header pin row onto the motherboard at the position labelled GPS (see <a href="../../labs/lab1/">Lab 1</a> for details).</li>
-<li>Try to find an assembled GPS. If you can’t find one, then solder male header pins to the BOTTOM of the GPS breakout board. Be sure to get the orientation correct, (see image <a href="https://drive.google.com/file/d/1lottcceJ83MBIgc4sj6F24H2B01YVizx/view?usp=sharing">here</a>).</li>
+<li>Try to find an assembled GPS. If you can’t find one, then solder male header pins to the BOTTOM of the GPS breakout board. Be sure to get the orientation correct; <a href="#fig-gps-on-board" class="quarto-xref">Figure&nbsp;1</a> shows the correct orientation.</li>
 <li>Use screws, nuts, and standoffs to help secure the GPS breakout board to the motherboard.</li>
 </ol>
+<div id="fig-gps-on-board" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gps-on-board-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/mtb_v3.0_cropped.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gps-on-board-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: A motherboard with a GPS attached. The GPS here doesn’t have standoffs in the left two holes, but you should add those on your board.
+</figcaption>
+</figure>
+</div>
 <p>Go outside the building and test your GPS Sensor integration by opening the serial monitor while <code>E80_Lab_07_surface.ino</code> is running. Make sure your battery is plugged into the motherboard because your GPS is powered off the battery (NOT off the USB connection that powers your Teensy). Make sure you achieve GPS lock and see &gt;4 satellites.</p>
-<p>Modify the library file <code>XYStateEstimator.cpp</code> so that it calculates the x,y position (in meters) of the board board with respect to a Cartesian coordinate frame whose origin is at ( 34.106465°, -117.712488°). Consult the <code>XYStateEstimator.h</code> file to see what variables you have available. Design your coordinate frame so the X axis points due East and the Y axis points due North. The code to make this transformation should be placed in the function named <code>updateState()</code> in <code>XYStateEstimator.cpp</code>, and the calculated positions will be stored in the variables <code>state.x</code> and <code>state.y</code>. To do this, we will use a modified version of the <a href="https://en.wikipedia.org/wiki/Equirectangular_projection">Forward Equirectangular Projection</a>, where we multiply use the radius of curvature <code>R_earth</code> to scale latitude and longitude angles in order to calculate arc lengths on the Earth’s surface. This conversion assumes that the earth is a sphere (which it is to within ±0.25%).</p>
+</section>
+<section id="write-latitude-and-longitude-software" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="write-latitude-and-longitude-software"><span class="header-section-number">4.3</span> Write Latitude and Longitude Software</h3>
+<p>Modify the library file <code>XYStateEstimator.cpp</code> so that it calculates the x,y position (in meters) of the board with respect to a Cartesian coordinate frame whose origin is at ( 34.106465°, -117.712488°). Consult the <code>XYStateEstimator.h</code> file to see what variables you have available. Design your coordinate frame so the X axis points due East and the Y axis points due North. The code to make this transformation should be placed in the function named <code>updateState()</code> in <code>XYStateEstimator.cpp</code>, and the calculated positions will be stored in the variables <code>state.x</code> and <code>state.y</code>. To do this, we will use a modified version of the <a href="https://en.wikipedia.org/wiki/Equirectangular_projection">Forward Equirectangular Projection</a>, where we multiply use the radius of curvature <code>R_earth</code> to scale latitude and longitude angles in order to calculate arc lengths on the Earth’s surface. This conversion assumes that the earth is a sphere (which it is to within ±0.25%).</p>
 <p>While we’re here, we have a little work to do to calculate yaw correctly. In this class we are using east-north-up <a href="https://en.wikipedia.org/wiki/Local_tangent_plane_coordinates">local tangent plane coordinates</a>. This means that you need to convert the heading from the IMU, which should have 0 degrees due North and positive angle in the CW direction, to yaw angles where 0 degrees points in the positive X direction (due East), and positive angles are in the CCW direction. If 0 degrees doesn’t face perfectly East, (which is location dependent due to abnormalities in the Earth’s magnetic field), you can add an offset angle to ensure it does. Put code to make this conversion in <code>XYStateEstimator.cpp</code> in the <code>updateState()</code> function. Store the result in <code>state.yaw</code>.</p>
 <ol type="1">
 <li>To calculate <code>state.y</code>, use the relationship between the distance along an arc’s edge, the radius of the arc, and the angle, (e.g.&nbsp;<code>state.y = R_earth*latitudeChange</code>).</li>
@@ -557,7 +589,7 @@ Note
 <li>To calculate <code>state.yaw</code>, add an appropriate offset to <code>state.heading</code> and, if necessary, multiply some part of your expression by -1 to flip around a sign.</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -566,7 +598,7 @@ Latitude and Longitude Background
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>It may help to first make sure you are aware of how longitude and latitude work. This <a href="http://whatis.techtarget.com/definition/latitude-and-longitude">link</a> is helpful and has a nice image to help visualize the coordinate system. There are several algorithms that have been used to convert longitude-latitude coordinates to x-y coordinates. There is the <a href="http://www.movable-type.co.uk/scripts/latlong-vincenty.html">Vincenty formula</a>, the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine equation</a>, and linear transformations that simply scale the coordinates. The first two methods incorporate the curvature of the earth which is important when the vehicle is traveling many kilometers. Scaling methods are easier, but can only be used if distances are short. A good reference can be found <a href="http://www.movable-type.co.uk/scripts/latlong.html">here</a>.</p>
 </div>
@@ -598,6 +630,9 @@ Tip
 <p>The most common programming mistakes that we see are messing up units (is this angle in degrees or radians?), and failing to re-map angles between -<span class="math inline">\(\pi\)</span> and <span class="math inline">\(\pi\)</span> after they are calculated. Letting an angle be <span class="math inline">\(3\pi/2\)</span> will crash a lot of your code unless you’re very careful.</p>
 </div>
 </div>
+</section>
+<section id="position-measurements-via-gps" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="position-measurements-via-gps"><span class="header-section-number">4.4</span> Position Measurements via GPS</h3>
 <p>To test that your sketch is functioning well, log the x,y positions (they are logged by default in the sample code) as you walk from the coordinate system origin to Foothill Blvd.</p>
 <ol type="1">
 <li>Run <code>E80_Lab_07_surface.ino</code> outside and ensure that you achieve GPS lock and are logging reasonable GPS data. It takes time (sometimes a few minutes) before the GPS receiver gets a lock on the signals from the satellites. The GPS lock LED can help you identify if your board has achieved lock.</li>
@@ -607,15 +642,25 @@ Tip
 <li>Walk along the sidewalk East towards Shanahan.</li>
 <li>Walk South between Shanahan and Parsons.</li>
 <li>Cut West back to Parson’s building and end at the origin.</li>
-<li>The path is illustrated <a href="https://drive.google.com/open?id=1rBsJs8E7wg4oA9Xmiy82D-S-YzqJeyOO">here</a>. You may want to have the serial monitor open (and print x,y to the screen) when walking the course. This will inform you if your conversion makes sense.<br>
+<li>The path is illustrated in <a href="#fig-gps-test" class="quarto-xref">Figure&nbsp;2</a>. You may want to have the serial monitor open (and print x,y to the screen) when walking the course. This will inform you if your conversion makes sense.<br>
 </li>
 </ol></li>
 <li>Using MATLAB, plot the logged x,y positions from the path. Only plot the x,y points for which the GPS has a lock on satellites. Overlay these points on an image of campus using the <code>imread</code> and <code>image</code> Matlab commands in addition to normal plotting functions. The <code>hold on</code> command may help.</li>
 </ol>
+<div id="fig-gps-test" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gps-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/GPS_test_2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gps-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: A path to walk to test the GPS.
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="proportional-surface-control" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="proportional-surface-control"><span class="header-section-number">4.3</span> Proportional Surface Control</h3>
-<p>In this section you will implement a Proportional surface control system with your AUV using the GPS on your motherboard. Use <code>E80_Lab_07_surface.ino</code> as the starter code for this portion. You will also interact with two new library files: SurfaceControl.cpp and SurfaceControl.h.</p>
+<section id="proportional-surface-control" class="level3" data-number="4.5">
+<h3 data-number="4.5" class="anchored" data-anchor-id="proportional-surface-control"><span class="header-section-number">4.5</span> Proportional Surface Control</h3>
+<p>In this section you will implement a Proportional surface control system with your AUV using the GPS on your motherboard. Use <code>E80_Lab_07_surface.ino</code> as the starter code for this portion. You will also interact with two new library files: <code>SurfaceControl.cpp</code> and <code>SurfaceControl.h</code>.</p>
 <p>Add a Proportional surface control system to your robot by modifying the <code>SurfaceControl.cpp file</code>. Add the following steps:</p>
 <ol type="1">
 <li>Confirm that you can compile and upload the starter code to your Teensy before you make any changes.</li>
@@ -642,12 +687,22 @@ Tip
 </div>
 <p>Test your P control by walking the campus while trying to obey the commands given by <code>uR</code> and <code>uL</code>.</p>
 <ol type="1">
-<li>Make sure the path defined is in the code to be the three x,y coordinates (125,-40), (150,-40), (125,-40). This should walk you 25 meters along the centerline of campus (see picture <a href="https://drive.google.com/file/d/0BwiB3SVueuOpTUc5X3pWR3hZR3M/view?usp=sharing&amp;resourcekey=0-COFjIscDDQXvc7NwLBZAuA">here</a>).</li>
+<li>Make sure the path defined is in the code to be the three x,y coordinates (125,-40), (150,-40), (125,-40). This should walk you 25 meters along the centerline of campus (see <a href="#fig-p-path" class="quarto-xref">Figure&nbsp;3</a>).</li>
 <li>Go to the origin.</li>
 <li>Walk at a slow speed, turning in response to the u_R and u_L values printed to the Serial monitor. If the the values are <code>uR=45</code> and <code>uL = 55</code>, then veer right to try to equalize <code>uR</code> and <code>uL</code>. Be sure to save your logged data.<br>
 </li>
 <li>Plot the logged path of x, y points on top of an image of campus. Also plot the angle error and control effort u as a function of time.</li>
 </ol>
+<div id="fig-p-path" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-p-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/ShanPControlPath.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-p-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: A path to walk to test GPS-based P control of robot angle.
+</figcaption>
+</figure>
+</div>
 <p>Finally, if you have time, attach motors to the Motor A and Motor B port and repeat the above experiment, this time obeying your observations of the motor’s rotation rates rather than the printed u_R and u_L values. Modify Kr and Kl if necessary to balance your motors. Pay special attention to how motors affect your yaw measurement: they give off powerful magnetic fields that are likely to interfere with your experiment if you don’t handle them with care. No plots are required for this extra activity, but it can give you insight into how your robot will perform during the project deployments.</p>
 
 
