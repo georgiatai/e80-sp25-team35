@@ -87,6 +87,10 @@ Finally, look at `TimingOffsets.h` to figure out how often your main loop runs, 
 You generally should not include calls to `Serial.println()` in your code, even though it's standard practice for Arduino, because it messes with our `printer` object.  The `printer` takes great pains to keep all the text easy to read as the robot spits out updates, and random print statements can cause it to jitter around.  Use `printer.printMessage()` for one time messages (see `DepthControl.cpp` for an example) and `printer.printValue()` to print recurring values (as seen in the `loop()` function of the E80 code).
 :::
 
+:::{.callout-tip}
+Be sure to read the `README` in the libraries folder because it contains a lot of information about the features and adjustable knobs in each file. The adjustments described in the `README` file are sufficient to cover most standard student projects, so you might not even need to write code.
+:::
+
 ::: {.callout-note collapse="true"}
 ## .cpp vs. .h vs. .ino
 
