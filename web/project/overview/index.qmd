@@ -30,7 +30,6 @@ This project is structured as a set of cumulative deliverables which will help y
 |  5   | [Rebuild and Final Deployment](/project/field)   | None, though deployment *on Saturday* at Dana Point is the second and last chance to get data for your report. | 
 |  6   | [Analyze Data](/project/report)                  | Rough draft of your report. Submit on Canvas on Friday                       |
 |  7   | [Final Presentation and Report](/project/report) | Upload presentation slides and report to Canvas by 11:59PM the night before. |
-__________
 
 
 
