@@ -37,6 +37,16 @@ There are two locations we can launch in Dana Point: the public beach and the Oc
 deployment off the pier over giving one team multiple deployments.  
 :::
 
+:::{.callout-note collaps="true"}
+## Dana Point Videos
+
+Videos have been recorded to give students a sense of the following environment characteristics:
+
+* [Water outside the harbor](https://drive.google.com/file/d/0BwiB3SVueuOpV05GVWgtaV9tMFk/view?usp=sharing&resourcekey=0-01dqmgvU3OkorvewX5pyyw). We do not allow you to operate a robot here.  Most AUVs will be trashed.
+* [Worst case currents close to docks](https://drive.google.com/file/d/0BwiB3SVueuOpUmVjWnM2RUZ6OWM/view?usp=sharing&resourcekey=0-Gw-EZ0-FcsKywoIa2LI3lA). No motors are turned on in this video.
+* [Normal AUV navigation in the harbor](https://drive.google.com/file/d/0BwiB3SVueuOpa2oyTURlUVFmVkk/view?usp=sharing&resourcekey=0-3BT_e71MRrCcpbY7x37i3w).
+* [Water clarity](https://drive.google.com/file/d/1D0d_-GQWR-jZdyS6DVEm35iIVWuAI0Vb/view?usp=sharing).
+:::
 
 ## Budget
 
