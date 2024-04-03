@@ -185,7 +185,7 @@ window.Quarto = {
  <span class="dropdown-text">Build and Integrate</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../project/field">
+    <a class="dropdown-item" href="../../project/deploy">
  <span class="dropdown-text">Field Deployment</span></a>
   </li>  
         <li>
@@ -294,7 +294,7 @@ Figure&nbsp;1: Phase Shift Oscillator
 </figcaption>
 </figure>
 </div>
-<p>Phase shift oscillators produce sinusoidal outputs. The oscillation frequency in Hz is given by <span class="math inline">\(f_{osc} = \sqrt{3}/(2\pi RC)\)</span>. In order for this to operate, <span class="math inline">\(R_1/R_2\)</span> must be 8. The oscillation amplitude is hard to control, but we’ve seen ~ 1 Vpp in the past. The oscillation tends to be centered mid-rail. Since this requires four op-amps, it’s natural to implement it on one MCP6004.</p>
+<p>Phase shift oscillators produce sinusoidal outputs. The oscillation frequency in Hz is given by <span class="math inline">\(f_{osc} = \sqrt{3}/(2\pi RC)\)</span>. In order for this to operate, <span class="math inline">\(R_1/R_2\)</span> must be 8, and it helps if <span class="math inline">\(R_2\)</span> is fairly large (&gt;100 k<span class="math inline">\(\Omega\)</span>). The oscillation amplitude is hard to control, but we’ve seen ~ 1 Vpp in the past. The oscillation tends to be centered mid-rail. Since this requires four op-amps, it’s natural to implement it on one MCP6004.</p>
 </section>
 <section id="sine-wave-generator" class="level2">
 <h2 class="anchored" data-anchor-id="sine-wave-generator">555 Sine Wave Generator</h2>
@@ -475,8 +475,8 @@ In-Lab Audio Tests
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>For Testing</strong>, it’s handy to be able to test your circuit from a function generator without getting all the Teensy code working. The old function generators (the <a href="https://www.keysight.com/us/en/assets/9018-04436/user-manuals/9018-04436.pdf">HP/Agilent 33120A</a>) and some of our lab equipment can help with that.</p>
-<p>You can send a burst of sine waves, i.e.: a small number of sine wave cycles, by using internally triggered burst modulation, an advanced feature of the old signal generators (the <a href="https://www.keysight.com/us/en/assets/9018-04436/user-manuals/9018-04436.pdf">HP/Agilent 33120A</a>). This function is not available on the function generators in the oscilloscope. You can control burst mode by pressing the series of keys shown below. Read the manual for clarification on how these key presses work.</p>
+<p><strong>For Testing</strong>, it’s handy to be able to test your circuit from a function generator without getting all the Teensy code working. The old function generators (the <a href="https://www.keysight.com/us/en/assets/9018-04436/user-manuals/9018-04436.pdf">HP/Agilent 33120A</a>) can help with that. You can send a burst of sine waves, i.e.: a small number of sine wave cycles, by using internally triggered burst modulation on the <a href="https://www.keysight.com/us/en/assets/9018-04436/user-manuals/9018-04436.pdf">HP/Agilent 33120A</a>. This function is not available on the function generators built into the oscilloscope.</p>
+<p>You can control burst mode by pressing the series of keys shown below. Read the manual for clarification on how these key presses work.</p>
 <ul>
 <li>Turn burst modulation mode on: Shift + the ramp/burst button / The text ‘burst’ will be highlighted at the top of the screen.</li>
 <li>Turn burst modulation mode off: Shift + the ramp/burst button / The text ‘burst’ will no longer be highlighted at the top of the screen.</li>
@@ -520,7 +520,14 @@ In-Lab Audio Tests
 </section>
 <section id="weather-vane" class="level2">
 <h2 class="anchored" data-anchor-id="weather-vane">Weather Vane</h2>
-<p>A weather vane is used for indicating wind direction relative to the local coordinates of a surface craft. It is not so useful for a submersible. There are two possible sensors for the weather vane. The first is the MLX90316. The instructions and procedure are <a href="https://drive.google.com/open?id=1f8EBwjwC41yVn9NPL-A11Ml1rJ3tqBN0ptcQc6E8O4U">here</a>. The second is the ACE128. The instructions and procedures are <a href="https://drive.google.com/open?id=1nxSudsfMWcUmk4KY5xAjlgvL6IgpMP_TdypqefZIsCw">here</a>. A zip file of the design files for both is <a href="https://drive.google.com/open?id=10XoZwejIFrBTcVLfXJGrxdgBVczbB9Cn">here</a>.</p>
+<p>A weather vane is used for indicating wind direction relative to the local coordinates of a surface craft. It is not so useful for a submersible. There are three possible sensors for the weather vane.</p>
+<ul>
+<li>The first is the MLX90316. The instructions and procedure are <a href="https://drive.google.com/open?id=1f8EBwjwC41yVn9NPL-A11Ml1rJ3tqBN0ptcQc6E8O4U">here</a>.</li>
+<li>The second is the ACE128. The instructions and procedures are <a href="https://drive.google.com/open?id=1nxSudsfMWcUmk4KY5xAjlgvL6IgpMP_TdypqefZIsCw">here</a>.</li>
+<li>For convenience, a zip file of the design files for both is <a href="https://drive.google.com/open?id=10XoZwejIFrBTcVLfXJGrxdgBVczbB9Cn">here</a>.<br>
+</li>
+<li>The third is a simple potentiometer. If you attach the rotor to the weather vane, then as it rotates, the wiper output should produce a time varying analog voltage. This can run into issues with mechanical stiffness of the potentiometer, but the readout circuit is very easy (perhaps as simple as a unity gain buffer).</li>
+</ul>
 </section>
 <section id="velocity-sensors" class="level2">
 <h2 class="anchored" data-anchor-id="velocity-sensors">Velocity Sensors</h2>
