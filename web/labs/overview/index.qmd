@@ -4,8 +4,8 @@ title: "Lab Overview"
 
 Put these crucial lab and project dates on your calendar!
 
-- Friday {{<var dates.kickoff>}}, 1:15PM-3:15PM: Kickoff lecture
-- Friday {{<var dates.projkickoff>}}, 1:15PM-3:15PM:  Project kickoff lecture
+- Friday {{<var dates.kickoff>}}, 1:15PM-3:15PM: Kickoff lecture in {{<var rooms.kickoff>}}
+- Friday {{<var dates.project_kickoff>}}, 1:15PM-3:15PM:  Project kickoff lecture in {{<var rooms.project_kickoff>}}
 - **Saturday** {{<var dates.dana>}}, 6:30AM-5:30PM:   Robot deployment *on Saturday*  at Dana Point. <br> **ALL STUDENTS ARE EXPECTED TO ATTEND THE SATURDAY LAUNCH**
 - Wednesday {{<var dates.present>}}, time TBD:   Project presentations for all groups during presentation days.
 
@@ -63,5 +63,10 @@ A submission sheet is due at the end of each 4-hour lab period. The submission s
 ## Hardware checkout
 You will work with some expensive hardware in this class. Expensive hardware like motherboards and batteries must be explicitly checked out from a professor or proctor so that we can track where it is. If any hardware that you checked out breaks,  you will need to request a replacement from a professor. You make this request by filling out an [error report](https://drive.google.com/open?id=1FnHDzDSCuc3pAsEXzUg6BnTacfLF-ODs) (paper copies will be in lab). This report needs to be well thought out; professors will reject reports that don't represent sufficient testing or thought. You will keep this hardware with you throughout the semester in your storage box. 
 
-## SAFETY QUESTIONs
-Labs will include callout boxes labeled "SAFETY QUESTION: the question text".  ALL group members must be able to answer these questions before the lab.  Failing to understand the SAFETY QUESTIONs can damage equipment or harm lab users.  You should always feel empowered to stop work and grab an instructor if you find a safety question that makes you unsure.
+## Warning Callouts
+Labs will include warning callout boxes, an example of which is below, to indicate safety hazards.  All group members must understand the warning and associated safety precaution before lab.  Failing to carefully read warnings can damage equipment or harm lab users.  You should always feel empowered to stop work and grab an instructor if you find a warning that makes you unsure.
+
+:::{.callout-warning}
+
+This text would describe a way that you can injure yourself or damage equipment.
+:::
