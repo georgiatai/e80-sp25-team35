@@ -267,5 +267,5 @@ This comparison is a good example of how E79 can be applied and a good example o
 :::
 
 :::{.callout-note}
-**IMPORTANT CLEANUP**:  Please return the battery charger to the center table. These will be shared among the different lab sections. Also, put your ballast weights, board, Teensy, penetrator bolt (with motors), battery and robot frame in your labelled Tupperware container in the cupboard. Please return SD card and SD card reader to the proctor or Lynn.
+**IMPORTANT CLEANUP**:  Please return the battery charger to the center table. These will be shared among the different lab sections. Also, put your ballast weights, board, Teensy, penetrator bolt (with motors), battery and robot frame in your labelled Tupperware container in the cupboard. Please return SD card and SD card reader to a proctor or instructor.
 :::
