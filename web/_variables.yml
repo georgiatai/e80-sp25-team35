@@ -1,5 +1,7 @@
-# Update this file to change parts of the website that vary year-to-year
-# The table of office hours in web/index.qmd must also be updated by hand
+# Yearly website update process
+# 1. Update this file to change parts of the website that vary year-to-year
+# 2. Update the table of office hours in web/index.qmd
+# 3. Verify that the table in the web/labs/overview/index.qmd has correct Friday info
 
 github-url: https://github.com/HMC-E80/E80-SP2024
 
@@ -28,5 +30,10 @@ rooms:
   writing2: Shan 2450
   writing3: Shan 2454
 
-final_presentation_url: https://docs.google.com/document/d/1ltmOAPcsXo1oMD4QBFbGct2N6RvV70-YT7UooeG7Ylw/edit
-canvas_root_url: https://harveymuddcollege.instructure.com/courses/1097
+urls:
+  final_presentation_schedule: https://docs.google.com/document/d/1ltmOAPcsXo1oMD4QBFbGct2N6RvV70-YT7UooeG7Ylw/edit
+  canvas_root: https://harveymuddcollege.instructure.com/courses/1097
+  discord_invite: https://discord.gg/Eu7gFZKgcj
+  kit_payment_form: https://docs.google.com/forms/d/e/1FAIpQLSfLGyW_zk6jB89jHjIme0mkHV_LVAtXeJSDNIf7njMEDN1t1w/viewform
+  kit_waiver_request: https://docs.google.com/forms/d/e/1FAIpQLScM-5lYfwQAE_5v6WAz357C1cftwr4sNQRPj4dC_GaPD-ihvw/viewform
+
