@@ -6,9 +6,13 @@ Final Presentation Rubric [html](presentation_rubric.qmd) [docx](presentation_ru
 
 Final Report Rubric [html](report_rubric.qmd) [docx](report_rubric.docx)
 
-Peer Review Feedback html docx
+Peer Review Feedback Instructions [html](peer-review-instructions.qmd)
+
+Peer Review Worksheet [html](peer-review-worksheet.qmd) [docx](peer-review-worksheet.docx)
 
 Final Report presentation schedule [gdoc]({{<var urls.final_presentation_schedule>}})
+
+## Instructions
 
 The final week of the project is dedicated to analyzing your data, figuring out how to report it, and wrapping up the class.  After that, you prepare and deliver a final report and presentation to describer your efforts.  This document describes the analysis week, the final report, and the final presentation.
 
@@ -18,7 +22,9 @@ Though you are still free to work on your report and analysis in office hours an
 
 **Required: Fill out the end-of-semester evaluation** -- We are going to give you time in lab to fill out your end-of-semester course evaluations and the E80 post-survey.  Note that participating in these evaluations is worth points on your final grade. Be sure to fill out an evaluation for your section professor.  Odd numbered teams should also fill out a second evaluation for {{<var people.dev1>}}, and even numbered teams should also fill out a second evaluation for {{<var people.dev2>}}.
 
-**Required: Have a writing conference with an instructor** -- Josh write this part!
+**Required: Have a writing conference with an instructor** -- You will also have a scheduled conference with an instructor where we will sit with your team to discuss our feedback on your Lab 6 tech memo.
+The goal of this meeting will be to share high-level feedback on what you did well and to suggest areas for improvement on your final report.
+A schedule of conference times and locations will be circulated via Discord.
 
 **Optional: Work with your team on writing and producing slides** -- All of your team members are guaranteed to be available during your lab section, so this can be high value writing and discussion time. Teaching staff will also be available to answer questions about writing and data presentation.
 
@@ -61,7 +67,7 @@ This content is typically organized as follows (note that the report will also n
     a. Expected stimulus sizes from theory
     b. Sensor Selection - what sensors did you select, why, how do they match expected behavior
     c. Circuit Design - calculations to show component selection and that signals will be in range
-    d. Software Considerations - is the 10Hz `default_robot.ino` sampling rate fast enough, did you write any code for the sensor
+    d. Software Considerations - is the 10 Hz `default_robot.ino` sampling rate fast enough, did you write any code for the sensor
     e. Sensor Validation/Calibration - show the sensor working in controlled conditions
 3. Robot Design - mechanical calculations, sensor mounting, waterproofing, other circuits that haven't been discussed yet (eg: regulators)
 4. Deployment Details - what steps were taken for each deployment, where were the deployments (and what were the trajectories), how did you account for safety
@@ -90,7 +96,7 @@ Please be at least ten minutes early to your presentation.
 
 ## Final Report
 
-Each team is responsible for submitting a report on their deployments in [IEEE format](https://www.ieee.org/conferences/publishing/templates.html). The report has a maximum length of ten pages including figures, references and appendices. Your purpose is to convey your experiments, your apparatus and your results such that a reader could replicate your experiment and compare their results to yours. You should assume your audience is made of technical professionals of diverse backgrounds (i.e.: not all instructors of the course) who are unfamiliar with your specific project. Note that this is a different audience than the  presentation. [This rubric](presentation_rubric.qmd) will be used to grade the reports.   
+Each team is responsible for submitting a report on their deployments in [IEEE format](https://www.ieee.org/conferences/publishing/templates.html). The report has a maximum length of ten pages including figures, references and appendices. Your purpose is to convey your experiments, your apparatus and your results such that a reader could replicate your experiment and compare their results to yours. You should assume your audience is made of technical professionals of diverse backgrounds (i.e.: not all instructors of the course) who are unfamiliar with your specific project. Note that this is a different audience than the  presentation. [This rubric](report_rubric.qmd) will be used to grade the reports.   
 
 Here are a few tips for good report writing:
 
@@ -102,6 +108,6 @@ Here are a few tips for good report writing:
 
 Here are [some examples](https://drive.google.com/file/d/1S9CDXcDnjuwNG8Eaq6cG5EOcC_Bojqcw/view?usp=sharing) of student reports.
 
-A rough draft of your final report is due at 5:00PM on the last day of classes.
+A rough draft of your final report is due at 5:00 PM on the last day of classes.
 
-The final draft is due at at 11:59PM the day before your final presentation.
+The final draft is due at at 11:59 PM the day before your final presentation.
