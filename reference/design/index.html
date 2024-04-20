@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -369,7 +369,7 @@ Figure&nbsp;4: An inverting amplifier with a variable gain controlled by a Teens
 <section id="salinity-sensor" class="level2">
 <h2 class="anchored" data-anchor-id="salinity-sensor">Salinity Sensor</h2>
 <p>Salinity is a measure of the total dissolved salt content of water. It is an extremely important and common measurement in oceanographic studies. Salinity measurements are used to track the flow of water and map the hydrological cycle, calibrate acoustic communication links, and understand biological phenomena like algal blooms.</p>
-<p>You measure salinity by measuring salt water’s conductivity, then backing out the salt concentration that would result in that conductivity. Some online calculators can help with this process. <a href="http://www.fivecreeks.org/monitor/sal.shtml">This</a> converts from a measured conductivity to salinity, and <a href="https://www.hamzasreef.com/Contents/Calculators/SalinityConversion.php">this</a> converts from salinity to conductivity. Note that both converters depend on water temperature, so you’ll probably need to deploy a temperature probe at the same time.</p>
+<p>You measure salinity by measuring salt water’s conductivity, then backing out the salt concentration that would result in that conductivity. Some online calculators can help with this process. <a href="http://www.fivecreeks.org/monitor/sal.shtml">This</a> converts from a measured conductivity to salinity, and <a href="https://www.hamzasreef.com/Contents/Calculators/SalinityConversion.php">this</a> converts from salinity to conductivity. Note that both converters depend on water temperature, so you’ll probably need to deploy a temperature probe at the same time. Here’s an example of some <a href="https://drive.google.com/file/d/1wtEeyfcI0ObH-54Jn9V4pzgGdI38T4-9/view?usp=sharing">measurements</a> performed by E80 staff that show the temperature effects.</p>
 <p>Salt, water and electrons will undergo chemical reactions at the surface of your salinity probe that can deposit metal salts on your electrodes. These salts can form non-conductive films that corrupt your conductivity measurements. You can prevent salt buildup by reversing the surface reactions, so applying an AC voltage to your probe prevents buildup over time. This same chemistry can also cause your circuit to fail if the electrode area is too small or the voltage applied to the solution is too low. We also recommend stainless steel as your probe material. Stainless steel wire can help too because salt water readily corrodes copper.</p>
 <p>With these considerations, we recommend the following circuit to measure salinity.</p>
 <div id="fig-salinity" class="quarto-figure quarto-figure-center quarto-float anchored">
