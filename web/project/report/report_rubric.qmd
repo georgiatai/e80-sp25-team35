@@ -110,33 +110,34 @@ List and cite all relevant references.  Be especially careful to cite sources fo
 ## English usage 
 
 ### Grammar/Usage/Mechanics 
-____ Superior – Free of spelling, capitalization, and usage errors. Few, if any, errors in punctuation. Sophisticated and consistent command of standard English.
-____ Good – Number and type of errors does not interfere with meaning. Few, if any, spelling, capitalization, or usage errors.
-____ Marginal – Number and type of errors may interfere with meaning at some points. Some spelling, capitalization, or usage errors. Some fragments and/or run-ons. Some errors in punctuation.
-____ Inadequate – Number and type of errors obscure meaning. Frequent errors in spelling, capitalization, and usage. Many fragments and/or run-ons. Serious and frequent punctuation errors.
+- Superior – Free of spelling, capitalization, and usage errors. Few, if any, errors in punctuation. Sophisticated and consistent command of standard English.
+- Good – Number and type of errors does not interfere with meaning. Few, if any, spelling, capitalization, or usage errors.
+- Marginal – Number and type of errors may interfere with meaning at some points. Some spelling, capitalization, or usage errors. Some fragments and/or run-ons. Some errors in punctuation.
+- Inadequate – Number and type of errors obscure meaning. Frequent errors in spelling, capitalization, and usage. Many fragments and/or run-ons. Serious and frequent punctuation errors.
 
 ### Style/Organization 
 
 #### Transitions
-____ Superior – Ideas/paragraphs/sections are connected by effective transition words and phrases.Precise, interesting, and accurate word choice. Writing style enhances readability of writing.
-____ Good – Transitions used. Word choice is adequate to convey meaning.
-____ Marginal – Few or no transitions. Overall style choppy.
-____ Inadequate – No transitions. Sentence style choppy. Vocabulary limited.
+- Superior – Ideas/paragraphs/sections are connected by effective transition words and phrases.Precise, interesting, and accurate word choice. Writing style enhances readability of writing.
+- Good – Transitions used. Word choice is adequate to convey meaning.
+- Marginal – Few or no transitions. Overall style choppy.
+- Inadequate – No transitions. Sentence style choppy. Vocabulary limited.
 
 #### Focus
-____ Superior – Language choices (degree of jargon) and use of background material reflect attention to audience. Writing has a clear, distinct focus.
-____ Good – Most material is appropriate to audience. Focus may be unclear at points.
-____ Marginal – Little evidence of attentiveness to audience. Focus on topic not consistently sustained.
-____ Inadequate – No evidence of attentiveness to audience. Writing is unfocused.
+- Superior – Language choices (degree of jargon) and use of background material reflect attention to audience. Writing has a clear, distinct focus.
+- Good – Most material is appropriate to audience. Focus may be unclear at points.
+- Marginal – Little evidence of attentiveness to audience. Focus on topic not consistently sustained.
+- Inadequate – No evidence of attentiveness to audience. Writing is unfocused.
 
 #### Organization
-____ Superior – Generally well-developed ideas have a logical flow. Introductory and closing material is used effectively. Piece has a sense of completeness.
-____ Good – Ideas may not be in their most effective order. Some main points are underdeveloped. Some attempt is made at introductory and closing material; piece has a sense of completeness.
-____ Marginal – Order of ideas not entirely effective. Lack of distinction between main and supporting statements. Piece seems incomplete.
-____ Inadequate – Lack of cohesive plan for presentation of material. No opening or closing. Incomplete.
+- Superior – Generally well-developed ideas have a logical flow. Introductory and closing material is used effectively. Piece has a sense of completeness.
+- Good – Ideas may not be in their most effective order. Some main points are underdeveloped. Some attempt is made at introductory and closing material; piece has a sense of completeness.
+- Marginal – Order of ideas not entirely effective. Lack of distinction between main and supporting statements. Piece seems incomplete.
+- Inadequate – Lack of cohesive plan for presentation of material. No opening or closing. Incomplete.
 
 #### Elaboration / Support
-____ Superior – Each main idea is supported by detailed data or reasoning. All details are related to topic. Complete, correct documentation of a wide variety of sources.
-____ Good – Details and/or data in some paragraphs may be sketchy; details may be insufficient to reach conclusions. All details are related to topic. Complete documentation of a variety of sources.
-____ Marginal – Details may appear to be listed rather than integrated into coherent flow; some details are irrelevant. Marginal documentation of sources; some key sources may be missing.
-____ Inadequate – Half or more of conclusions/main ideas are not supported by details. Half or more details cited are irrelevant. Inadequate documentation of inadequate sources.
+
+- Superior – Each main idea is supported by detailed data or reasoning. All details are related to topic. Complete, correct documentation of a wide variety of sources.
+- Good – Details and/or data in some paragraphs may be sketchy; details may be insufficient to reach conclusions. All details are related to topic. Complete documentation of a variety of sources.
+- Marginal – Details may appear to be listed rather than integrated into coherent flow; some details are irrelevant. Marginal documentation of sources; some key sources may be missing.
+- Inadequate – Half or more of conclusions/main ideas are not supported by details. Half or more details cited are irrelevant. Inadequate documentation of inadequate sources.
