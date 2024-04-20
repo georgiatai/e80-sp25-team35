@@ -10,11 +10,11 @@ Peer Review Feedback Instructions [html](peer-review-instructions.qmd)
 
 Peer Review Worksheet [html](peer-review-worksheet.qmd) [docx](peer-review-worksheet.docx)
 
-Final Report presentation schedule [gdoc]({{<var urls.final_presentation_schedule>}})
+Final Presentation Schedule [gdoc]({{<var urls.final_presentation_schedule>}})
 
 ## Instructions
 
-The final week of the project is dedicated to analyzing your data, figuring out how to report it, and wrapping up the class.  After that, you prepare and deliver a final report and presentation to describer your efforts.  This document describes the analysis week, the final report, and the final presentation.
+The final week of the project is dedicated to analyzing your data, figuring out how to report it, and doing end-of-class surveys.  After that, you prepare and deliver a final report and presentation to describe your efforts.  This document describes the analysis week, the final report, and the final presentation.
 
 ## Analysis Week
 
@@ -62,17 +62,17 @@ Successful reports and presentations usually include discussions of:
 
 This content is typically organized as follows (note that the report will also need an abstract even though it is not listed here):
 
-1. Introduction - describe your scientific or engineering goals
+1. Introduction - Describe your scientific or engineering goals.
 2. Sensor Design - for each sensor
-    a. Expected stimulus sizes from theory
-    b. Sensor Selection - what sensors did you select, why, how do they match expected behavior
-    c. Circuit Design - calculations to show component selection and that signals will be in range
-    d. Software Considerations - is the 10 Hz `default_robot.ino` sampling rate fast enough, did you write any code for the sensor
-    e. Sensor Validation/Calibration - show the sensor working in controlled conditions
-3. Robot Design - mechanical calculations, sensor mounting, waterproofing, other circuits that haven't been discussed yet (eg: regulators)
-4. Deployment Details - what steps were taken for each deployment, where were the deployments (and what were the trajectories), how did you account for safety
-5. Results - include comparisons to theoretical models
-6. Conclusion - recap, recommendations for future work, interpretation of results and main takeaway
+    a. Theory of Input Quantity - What are the expected sensor input sizes (e.g.: temperature swings)  from theory or historical data?
+    b. Sensor Selection - What sensors did you select? Why? Do they match expected behavior.
+    c. Circuit Design - Show full schematics, calculations used to select components, and calculations showing that signals will be in range for the Teensy.
+    d. Software Considerations - Is the 10 Hz `default_robot.ino` sampling rate fast enough? Did you write any additional code for the sensor?
+    e. Sensor Validation/Calibration - Show the sensor working in controlled conditions.
+3. Robot Design - Show mechanical calculations, sensor mounting designs, unusual details of waterproofing, and schematics for other circuits that haven't been discussed yet (eg: regulators).
+4. Deployment Details - What steps were taken to prepare your robot for deployment? Where were the deployments (and what were the trajectories)? How did you account for safety in your deployments?
+5. Results - Include comparisons to theoretical models and ground truth measurements.
+6. Conclusion - Provide a recap, recommendations for future work, interpretation of results, and a main takeaway for the audience.
 
 It is possible to deviate from this outline if doing so would tell your robot's story better, but this works well for almost all E80 deployments. Feel free to discuss such changes to the outline with instructors.
 
