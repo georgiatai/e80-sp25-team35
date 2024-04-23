@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -217,9 +246,11 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#electrical" id="toc-electrical" class="nav-link active" data-scroll-target="#electrical">Electrical</a>
   <ul class="collapse">
+  <li><a href="#resistors" id="toc-resistors" class="nav-link" data-scroll-target="#resistors">Resistors</a></li>
+  <li><a href="#capacitors" id="toc-capacitors" class="nav-link" data-scroll-target="#capacitors">Capacitors</a></li>
+  <li><a href="#other-passives" id="toc-other-passives" class="nav-link" data-scroll-target="#other-passives">Other Passives</a></li>
   <li><a href="#op-amps" id="toc-op-amps" class="nav-link" data-scroll-target="#op-amps">Op amps</a></li>
-  <li><a href="#passives" id="toc-passives" class="nav-link" data-scroll-target="#passives">Passives</a></li>
-  <li><a href="#sensors" id="toc-sensors" class="nav-link" data-scroll-target="#sensors">Sensors</a></li>
+  <li><a href="#sensors-and-other-chips" id="toc-sensors-and-other-chips" class="nav-link" data-scroll-target="#sensors-and-other-chips">Sensors and Other Chips</a></li>
   <li><a href="#connectors" id="toc-connectors" class="nav-link" data-scroll-target="#connectors">Connectors</a></li>
   </ul></li>
   <li><a href="#mechanical" id="toc-mechanical" class="nav-link" data-scroll-target="#mechanical">Mechanical</a></li>
@@ -251,6 +282,160 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="electrical" class="level2">
 <h2 class="anchored" data-anchor-id="electrical">Electrical</h2>
+<section id="resistors" class="level3">
+<h3 class="anchored" data-anchor-id="resistors">Resistors</h3>
+<p>The table below is in units of Ohms. Entries indicate we have resistors, blank spaces indicate that resistors are not stocked. Standard SI prefixes (k for kilo, M for mega) are used.</p>
+<table class="table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>1-10</th>
+<th>10 -100</th>
+<th>100-1k</th>
+<th>1k-10k</th>
+<th>10k - 100k</th>
+<th>100k - 1M</th>
+<th>1M - 10M</th>
+<th>10M-100M</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>10</td>
+<td>100</td>
+<td>1k</td>
+<td>10k</td>
+<td>100k</td>
+<td>1M</td>
+<td>10M</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>20</td>
+<td>200</td>
+<td>2k</td>
+<td></td>
+<td>200k</td>
+<td></td>
+<td>20M</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>220</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>47k</td>
+<td>470k</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>510</td>
+<td>5.1k</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>9.1M</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>These resistors are the ones stocked in the E80 parts boxes (according to the <a href="https://en.wikipedia.org/wiki/E_series_of_preferred_numbers">E12 preferred numbers</a>). Many other resistors are available in the analog lab closet. Don’t take resistors (or any other components) from E84 stock.</p>
+</section>
+<section id="capacitors" class="level3">
+<h3 class="anchored" data-anchor-id="capacitors">Capacitors</h3>
+<p>The table below is in units of Farads. Entries indicate we have capacitors, blank spaces indicate that resistors are not stocked. Standard SI prefixes (n for nano, <span class="math inline">\(\mu\)</span> for micro) are used.</p>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 19%">
+<col style="width: 24%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>1n-10n</th>
+<th>10n -100n</th>
+<th>100n-1<span class="math inline">\(\mu\)</span></th>
+<th>1<span class="math inline">\(\mu\)</span>-10<span class="math inline">\(\mu\)</span></th>
+<th>10<span class="math inline">\(\mu\)</span> - 100<span class="math inline">\(\mu\)</span></th>
+<th>100<span class="math inline">\(\mu\)</span> - 1m</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1n</td>
+<td></td>
+<td>100n</td>
+<td>1<span class="math inline">\(\mu\)</span></td>
+<td>10<span class="math inline">\(\mu\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>330n</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>470n</td>
+<td></td>
+<td></td>
+<td>470<span class="math inline">\(\mu\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>These capacitors are the ones stocked in the E80 parts boxes. Many other capacitors are available in the analog lab closet. Don’t take capacitors (or any other components) from E84 stock.</p>
+</section>
+<section id="other-passives" class="level3">
+<h3 class="anchored" data-anchor-id="other-passives">Other Passives</h3>
+<ul>
+<li>Potentiometers (in the drawers labeled “trimmer”. Values include 1k and 10k.)</li>
+<li>10k thermistor (490-12820-ND)</li>
+<li>47k thermistor (490-14853-ND)</li>
+<li>100k thermistor (490-5633-ND)</li>
+<li>Infrared LED (1080-1071-ND)</li>
+<li>Photodiode (365-1085-ND)</li>
+<li>Red LED (L513SRD-C)</li>
+</ul>
+</section>
 <section id="op-amps" class="level3">
 <h3 class="anchored" data-anchor-id="op-amps">Op amps</h3>
 <ul>
@@ -262,25 +447,14 @@ ul.task-list li input[type="checkbox"] {
 <li>TL081</li>
 </ul>
 </section>
-<section id="passives" class="level3">
-<h3 class="anchored" data-anchor-id="passives">Passives</h3>
-<ul>
-<li>Assorted resistors (available in lab and in the stock room)</li>
-<li>10k thermistor (490-12820-ND)</li>
-<li>47k thermistor (490-14853-ND)</li>
-<li>100k thermistor (490-5633-ND)</li>
-<li>Assorted capacitors (available in lab and in the stock room)</li>
-<li>Infrared LED (1080-1071-ND)</li>
-<li>Photodiode (365-1085-ND)</li>
-</ul>
-</section>
-<section id="sensors" class="level3">
-<h3 class="anchored" data-anchor-id="sensors">Sensors</h3>
+<section id="sensors-and-other-chips" class="level3">
+<h3 class="anchored" data-anchor-id="sensors-and-other-chips">Sensors and Other Chips</h3>
 <ul>
 <li>Solid state temperature sensor (MCP9701A-E/TO-ND)</li>
 <li>Absolute pressure sensor (MPX5700ASX-ND) tracked with checkout sheet and error reports</li>
 <li>Microphone (Mfg. part number: CME-1538-100LB; Digi-Key #: 102-2190-ND)</li>
 <li>Thermocouple wire</li>
+<li>555 Timer (296-21753-5-ND)</li>
 <li>5V regulator (MC7805CT-BPMS-ND)</li>
 <li>LM384 audio amp</li>
 <li>Teensy 4.0 tracked with checkout sheet and error reports</li>
