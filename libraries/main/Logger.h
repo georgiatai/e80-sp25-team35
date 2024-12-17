@@ -12,6 +12,7 @@
 // number of blocks in the buffer
 #define BUFFER_BLOCK_COUNT 5
 #define MAX_NUM_DATASOURCES 10
+#define NUM_OF_BUFFERS 100
 
 #include <Arduino.h>
 #include <SPI.h>
@@ -31,13 +32,16 @@ public:
 	// records all data at the time it's called to the SD
 	void log(void);
 
+	void save_to_sd(void);
+
 	String printState(void);
 	int lastExecutionTime = -1;
 	bool keepLogging = false;
 
 private:
 	void padding(int number, byte width, String & str);
-
+	unsigned char buffer[NUM_OF_BUFFERS][BYTES_PER_BLOCK];
+	int curr_buffer = 0;
 	DataSource* sources[MAX_NUM_DATASOURCES];
 	unsigned int num_datasources;
 	char logfilename[LOG_FILENAME_BUFFERLEN];

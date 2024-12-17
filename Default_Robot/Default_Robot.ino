@@ -49,6 +49,7 @@ BurstADCSampler burst_adc;
 int loopStartTime;
 int currentTime;
 int current_way_point = 0;
+int buff_counter = 0;
 volatile bool EF_States[NUM_FLAGS] = {1,1,1};
 
 // GPS Waypoints
@@ -172,7 +173,12 @@ void loop() {
 
   if ( currentTime- logger.lastExecutionTime > LOOP_PERIOD && logger.keepLogging ) {
     logger.lastExecutionTime = currentTime;
+    buff_counter++;
     logger.log();
+    if ( buff_counter > NUM_OF_BUFFERS - 1 ){
+      logger.save_to_sd();
+      buff_counter = 0;
+    }
   }
 }
 

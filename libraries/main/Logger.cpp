@@ -91,14 +91,16 @@ void Logger::init(void) {
 void Logger::log(void){
 	// record data from sources
 	size_t idx = 0;
-	unsigned char buffer[BYTES_PER_BLOCK];
 	for(size_t i = 0; i < num_datasources; ++i) {
-		idx = sources[i]->writeDataBytes(buffer, idx);
+		idx = sources[i]->writeDataBytes(buffer[curr_buffer], idx);
 		if (idx >= BYTES_PER_BLOCK) {
 			printer.printMessage("Too much data per log. Increase BYTES_PER_BLOCK or reduce data", 2);
 		}
 	}
+	curr_buffer++;
+}
 
+void Logger::save_to_sd(void){
 	// write data to SD
 	if (writtenBlocks >= FILE_BLOCK_COUNT) {
 		printer.printMessage("Current file size limit reached. Change FILE_BLOCK_COUNT to fix. Stopping logging for now.",0);
@@ -107,13 +109,16 @@ void Logger::log(void){
 
 	file = SD.open(logfilename, FILE_WRITE);
 	if (file) {
-		int bytes = file.write(&buffer[0],BYTES_PER_BLOCK);
-		if (!bytes) {
-			printer.printMessage("Logger: Error printing to SD",0);
+		for ( int i = 0; i < curr_buffer; i++ ){
+			int bytes = file.write(buffer[i],BYTES_PER_BLOCK);
+			if (!bytes) {
+				printer.printMessage("Logger: Error printing to SD",0);
+			}
 		}
 	}
 	file.close();
 
+	curr_buffer = 0;
 	writtenBlocks++;
 	keepLogging = true;
 }
