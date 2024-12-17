@@ -29,6 +29,7 @@ Authors:
 #include <GPSLockLED.h>
 #include <BurstADCSampler.h>
 
+#define FAST_LOOP_PERIOD 200
 /////////////////////////* Global Variables *////////////////////////
 
 MotorDriver motor_driver;
@@ -47,7 +48,9 @@ BurstADCSampler burst_adc;
 
 // loop start recorder
 int loopStartTime;
+int loopStartTime_micros;
 int currentTime;
+int currentTime_micros;
 int current_way_point = 0;
 int buff_counter = 0;
 volatile bool EF_States[NUM_FLAGS] = {1,1,1};
@@ -88,10 +91,11 @@ void setup() {
 
   printer.printMessage("Starting main loop",10);
   loopStartTime = millis();
+  loopStartTime_micros = micros();
   printer.lastExecutionTime         = loopStartTime - LOOP_PERIOD + PRINTER_LOOP_OFFSET ;
   imu.lastExecutionTime             = loopStartTime - LOOP_PERIOD + IMU_LOOP_OFFSET;
   gps.lastExecutionTime             = loopStartTime - LOOP_PERIOD + GPS_LOOP_OFFSET;
-  adc.lastExecutionTime             = loopStartTime - LOOP_PERIOD + ADC_LOOP_OFFSET;
+  adc.lastExecutionTime             = loopStartTime_micros;
   ef.lastExecutionTime              = loopStartTime - LOOP_PERIOD + ERROR_FLAG_LOOP_OFFSET;
   button_sampler.lastExecutionTime  = loopStartTime - LOOP_PERIOD + BUTTON_LOOP_OFFSET;
   state_estimator.lastExecutionTime = loopStartTime - LOOP_PERIOD + XY_STATE_ESTIMATOR_LOOP_OFFSET;
@@ -106,6 +110,7 @@ void setup() {
 
 void loop() {
   currentTime=millis();
+  currentTime_micros=micros();
   
   if ( currentTime-printer.lastExecutionTime > LOOP_PERIOD ) {
     printer.lastExecutionTime = currentTime;
@@ -128,8 +133,8 @@ void loop() {
     motor_driver.drive(surface_control.uL,surface_control.uR,0);
   }
 
-  if ( currentTime-adc.lastExecutionTime > LOOP_PERIOD ) {
-    adc.lastExecutionTime = currentTime;
+  if ( currentTime_micros-adc.lastExecutionTime > FAST_LOOP_PERIOD ) {
+    adc.lastExecutionTime = currentTime_micros;
     adc.updateSample(); 
   }
 
@@ -171,8 +176,8 @@ void loop() {
     led.flashLED(&gps.state);
   }
 
-  if ( currentTime- logger.lastExecutionTime > LOOP_PERIOD && logger.keepLogging ) {
-    logger.lastExecutionTime = currentTime;
+  if ( currentTime_micros - logger.lastExecutionTime > FAST_LOOP_PERIOD && logger.keepLogging ) {
+    logger.lastExecutionTime = currentTime_micros;
     buff_counter++;
     logger.log();
     if ( buff_counter > NUM_OF_BUFFERS - 1 ){
