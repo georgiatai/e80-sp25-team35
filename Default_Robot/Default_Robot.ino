@@ -28,10 +28,12 @@ Authors:
 #define DELAY 0
 #include <GPSLockLED.h>
 #include <BurstADCSampler.h>
+#include <TimeStamper.h>
 
 #define FAST_LOOP_PERIOD 200
 /////////////////////////* Global Variables *////////////////////////
 
+TimeStamper time_stamper;
 MotorDriver motor_driver;
 XYStateEstimator state_estimator;
 SurfaceControl surface_control;
@@ -64,6 +66,7 @@ double waypoints [] = { 0, 10, 0, 0 };   // listed as x0,y0,x1,y1, ... etc.
 
 void setup() {
   
+  logger.include(&time_stamper);
   logger.include(&imu);
   logger.include(&gps);
   logger.include(&state_estimator);
@@ -96,6 +99,7 @@ void setup() {
   imu.lastExecutionTime             = loopStartTime - LOOP_PERIOD + IMU_LOOP_OFFSET;
   gps.lastExecutionTime             = loopStartTime - LOOP_PERIOD + GPS_LOOP_OFFSET;
   adc.lastExecutionTime             = loopStartTime_micros;
+  time_stamper.lastExecutionTime             = loopStartTime_micros;
   ef.lastExecutionTime              = loopStartTime - LOOP_PERIOD + ERROR_FLAG_LOOP_OFFSET;
   button_sampler.lastExecutionTime  = loopStartTime - LOOP_PERIOD + BUTTON_LOOP_OFFSET;
   state_estimator.lastExecutionTime = loopStartTime - LOOP_PERIOD + XY_STATE_ESTIMATOR_LOOP_OFFSET;
@@ -124,7 +128,13 @@ void loop() {
     printer.printValue(7,motor_driver.printState());
     printer.printValue(8,imu.printRollPitchHeading());        
     printer.printValue(9,imu.printAccels());
+    printer.printValue(10,time_stamper.printState());
     printer.printToSerial();  // To stop printing, just comment this line out
+  }
+
+  if ( currentTime_micros-time_stamper.lastExecutionTime > FAST_LOOP_PERIOD ) {
+    time_stamper.lastExecutionTime = currentTime_micros;
+    time_stamper.updateState(); 
   }
 
   if ( currentTime-surface_control.lastExecutionTime > LOOP_PERIOD ) {
