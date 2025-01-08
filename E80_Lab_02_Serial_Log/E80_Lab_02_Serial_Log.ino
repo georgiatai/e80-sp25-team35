@@ -1,8 +1,7 @@
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  delay(2000); // Wait to ensure computer monitor is ready
-
+  pinMode(ANALOG_PIN, INPUT_DISABLE);
   analogReadAveraging(0); // Turn off analog read averaging
 }
 
