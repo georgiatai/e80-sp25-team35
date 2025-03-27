@@ -1,1 +1,1 @@
-Sitemap: https://HMC-E80.github.io/E80/sitemap.xml
+Sitemap: https://georgiatai.github.io/e80-sp25-team35/sitemap.xml
