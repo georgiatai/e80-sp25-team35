@@ -3,3 +3,13 @@ desktop.ini
 .quarto/
 web/_site
 .vscode/*
+data/gpsgraph.png
+data/inf031.txt
+data/inf034.txt
+data/inf037.txt
+data/inf048.txt
+data/log031.bin
+data/log034.bin
+.gitignore
+data/log037.bin
+data/log048.bin
