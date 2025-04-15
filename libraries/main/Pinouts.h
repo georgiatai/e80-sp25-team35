@@ -41,4 +41,8 @@
 // Depth Control
 #define PRESSURE_PIN 14 // Teensy pin A00
 
+#define HALL_PIN 15 // Teensy pin A1
+
+#define MAG_PIN 17
+
 #endif
