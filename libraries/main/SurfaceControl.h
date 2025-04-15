@@ -48,6 +48,9 @@ public:
   int totalWayPoints;
   double * wayPoints;
 
+  bool delayed;
+  int delayStartTime = 0;
+
 private:
 
   // updates the current waypoint if necessary
@@ -60,9 +63,7 @@ private:
   bool gpsAcquired;
   
   int navigateDelay;
-  int delayStartTime = 0;
   int currentTime;
-  bool delayed;
 };
 
 #endif

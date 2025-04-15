@@ -123,13 +123,18 @@ void SurfaceControl::updatePoint(float x, float y) {
   if ((dist < SUCCESS_RADIUS && currentWayPoint < totalWayPoints) || delayed) {
     String changingWPMessage = "";
     int cwpmTime = 20;
-
+     
+    // NOTE: HERE IS WHERE DELAY IS
     // navigateDelay
-    if (delayStartTime == 0) delayStartTime = currentTime;
+    if (delayStartTime == 0) {
+      delayStartTime = currentTime;
+      // TODO: put start of winch lowering here
+    }
     if (currentTime < delayStartTime + navigateDelay) {
       delayed = 1;
       changingWPMessage = "Got to surface waypoint " + String(currentWayPoint)
         + ", waiting until delay is over";
+      // TODO: put winch main process here
     }
     else {
       delayed = 0;
