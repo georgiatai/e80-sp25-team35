@@ -147,7 +147,7 @@ void loop() {
     }
   }
 
- // FIXME: WinchControl.h and SensorHall.h don't exist yet so this code won't work
+ // TODO: WinchControl.h needs logic implemented
   if ( currentTime-winch_control.lastExecutionTime > LOOP_PERIOD ) {
     winch_control.lastExecutionTime = currentTime;
     // if the bot is sitting waiting at a waypoint, run winch code
