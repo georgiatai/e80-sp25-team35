@@ -39,10 +39,12 @@
 #define MIC_PIN 23
 
 // Depth Control
-#define PRESSURE_PIN 14 // Teensy pin A00
+#define PRESSURE_PIN 14 // Teensy pin A0
 
 #define HALL_PIN 15 // Teensy pin A1
 
-#define MAG_PIN 17
+#define MAG_PIN 17 // Teensy pin A3
+
+#define WINCH_EN_PIN 16 // Teensy pin A2
 
 #endif
