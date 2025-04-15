@@ -17,13 +17,12 @@ public: // for functions outside code might call
 
   void init(void);
 
-  void enableMag();
-  void disableMag();
+  void drive(bool en);
+
 
   int lastExecutionTime = -1;
 
 private: // for helper functions and hidden variables
-  
 };
 
 #endif

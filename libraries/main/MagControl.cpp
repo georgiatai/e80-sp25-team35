@@ -21,10 +21,7 @@ void MagControl::init(void) {
   // printer.printMessage("Initialized MAG at " + String(millis()), 10);
 }
 
-void MagControl::enableMag() {
-    digitalWrite(MAG_PIN,HIGH);
+void MagControl::drive(bool en) {
+  if (en) digitalWrite(MAG_PIN,HIGH);
+  else digitalWrite(MAG_PIN,LOW);
 }
-void MagControl::disableMag() {
-    digitalWrite(MAG_PIN,LOW);
-}
-
