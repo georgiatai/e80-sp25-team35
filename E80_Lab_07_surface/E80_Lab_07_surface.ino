@@ -147,7 +147,6 @@ void loop() {
     }
   }
 
- // TODO: WinchControl.cpp needs logic implemented
   if ( currentTime-winch_control.lastExecutionTime > LOOP_PERIOD ) {
     winch_control.lastExecutionTime = currentTime;
     // if the bot is sitting waiting at a waypoint, run winch code
