@@ -13,7 +13,7 @@ SensorHall::SensorHall(void) {
 }
 
 void SensorHall::init(const float threshold_in) {
-  pinMode(HALL_PIN,INPUT); // GPS_LOCK_LED is defined in pinouts
+  pinMode(HALL_PIN,INPUT); 
   threshold = threshold_in
   // this lets you print messages
   // the string gets displayed in the messages area
@@ -26,10 +26,20 @@ void SensorHall::read(void) {
 
   voltage = value * (3.3 / 1023.0);
 
-  if (voltage > threshold) {
+  if (voltage < threshold) {
+    // the hall sensor approaches 0V when magnet near, 3V when no magnet
     high = true;
   }
   else {
     high = false;
   }
+}
+
+String SensorHall::printVoltage(void) {
+  String printString = "Voltage:";
+
+  printString += String(voltage);
+  printString += "[V], ";
+
+  return printString;
 }
