@@ -126,7 +126,7 @@ void loop() {
     printer.printValue(7,motor_driver.printState());
     printer.printValue(8,imu.printRollPitchHeading());        
     printer.printValue(9,imu.printAccels());
-    // TODO: write print functions for depth sensing system and for hall sensor
+    printer.printValue(10,hall.printVoltage());
     printer.printToSerial();  // To stop printing, just comment this line out
   }
 
@@ -147,16 +147,19 @@ void loop() {
     }
   }
 
- // TODO: WinchControl.h needs logic implemented
+ // TODO: WinchControl.cpp needs logic implemented
   if ( currentTime-winch_control.lastExecutionTime > LOOP_PERIOD ) {
     winch_control.lastExecutionTime = currentTime;
     // if the bot is sitting waiting at a waypoint, run winch code
     if ( surface_control.delayed ) {
+      // do winchy things while the bot isn't moving
       winch_control.run(hall.high, currentTime, surface_control.delayStartTime );
+      // maybe have the magnet on, maybe not.
       mag_driver.drive(winch_control.mag);
     }
     else {
-      mag_driver.drive(true);
+      winch_control.idle();
+      mag_driver.drive(true); // magnet on while bot moves to hold winch in place
     }
   }
   

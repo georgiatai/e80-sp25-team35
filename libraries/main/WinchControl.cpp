@@ -32,39 +32,57 @@ void WinchControl::run(float hallVal_in, int currentTime_in, int delayStartTime_
   currentHall = hallVal_in;
   currentTime = currentTime_in;
 
-  if (idle = true) {
+  if (idle == true) {
     start(delayStartTime_in);
   }
-
-
+  if (down == true) {
+    countHall(down);
+    stopDetector();
+  }
+  else {
+    if (hallCount > 0) {
+      raise();
+    }
+    else{
+      stop();
+    }
+  }
 }
 
 void WinchControl::start(int delayStartTime_in) {
   delayStartTime = delayStartTime_in
+  totalTime = currentTime
   mag = false;
+  idle = false;
 }
 
-void WinchControl::countHall(void) {
-  if (hallChange()) {
+void WinchControl::countHall(bool mode) {
+  if (mode && hallChange()) {
     hallCount++;
+    lastTime = currentTime;
   }
-}
-void WinchControl::lower(void) {
-  mag = false;
-
+  else if (!mode && hallChange()) {
+    hallCount--;
+  }
 }
 
 void WinchControl::raise(void) {
-  digitalWrite(WINCH_EN_PIN,HIGH);
-  mag = false;
+  digitalWrite(WINCH_EN_PIN,HIGH); // turn on the winch
+  mag = false; // keep magnet off
 }
 
 void WinchControl::stop(void) {
-  digitalWrite(WINCH_EN_PIN,LOW);
-  mag = true;
+  digitalWrite(WINCH_EN_PIN,LOW); // turn off the winch
+  mag = true; // turn on the magnet
 }
 
-
+void WinchControl::stopDetector(void) {
+  int avg = (currentTime-totalTime)/hallCount;
+  int delta = currentTime-lastTime;
+  if (delta >= (avg + 30)) {
+    down = false;
+  }
+}
 
 bool WinchControl::hallChange(void) {
   if (currentHall && !lastHall) {

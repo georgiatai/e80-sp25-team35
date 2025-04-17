@@ -36,7 +36,7 @@ void SensorHall::read(void) {
 }
 
 String SensorHall::printVoltage(void) {
-  String printString = "Voltage:";
+  String printString = "Hall Effect Voltage:";
 
   printString += String(voltage);
   printString += "[V], ";
