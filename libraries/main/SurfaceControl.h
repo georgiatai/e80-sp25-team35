@@ -48,6 +48,9 @@ public:
   int totalWayPoints;
   double * wayPoints;
 
+  bool delayed;
+  int delayStartTime = 0;
+
 private:
 
   // updates the current waypoint if necessary
@@ -55,14 +58,12 @@ private:
 
   int getWayPoint(int dim);
 
-  const int stateDims = 2;
+  const int stateDims = 2;  // Number of dimensions in the state vector (x,y)
   int currentWayPoint = 0;
   bool gpsAcquired;
   
   int navigateDelay;
-  int delayStartTime = 0;
   int currentTime;
-  bool delayed;
 };
 
 #endif

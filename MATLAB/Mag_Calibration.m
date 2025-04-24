@@ -117,7 +117,7 @@ disp(c);
 disp('Soft Iron Compensation Matrix:');
 disp(U);
 
-
+% magplot(mx, my, mx_cal, my_cal)
 
 %% Helper Functions
 

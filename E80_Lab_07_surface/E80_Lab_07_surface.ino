@@ -27,6 +27,9 @@ Authors:
 #include <SurfaceControl.h>
 #define UartSerial Serial1
 #include <GPSLockLED.h>
+#include <WinchControl.h>
+#include <SensorHall.h>
+#include <MagControl.h>
 
 /////////////////////////* Global Variables *////////////////////////
 
@@ -42,6 +45,9 @@ SensorIMU imu;
 Logger logger;
 Printer printer;
 GPSLockLED led;
+WinchControl winch_control;
+SensorHall hall;
+MagControl mag_driver;
 
 // loop start recorder
 int loopStartTime;
@@ -70,10 +76,18 @@ void setup() {
   gps.init(&GPS);
   motor_driver.init();
   led.init();
+  // TODO: write init functions
+  winch_control.init();
+  mag_driver.init();
+
+  const float hallThreshold = 2.0;
+  hall.init(hallThreshold);
 
   int navigateDelay = 0; // how long robot will stay at surface waypoint before continuing (ms)
 
-  const int num_surface_waypoints = 3; // Set to 0 if only doing depth control
+  const int num_surface_waypoints = 3; // Number of ordered pairs of surface waypoints. 
+  // (e.g., if surface_waypoints is {x0,y0,x1,y1} then num_surface_waypoints is 2.) 
+  // Set to 0 if only doing depth control 
   double surface_waypoints [] = { 125, -40, 150, -40, 125, -40 };   // listed as x0,y0,x1,y1, ... etc.
   surface_control.init(num_surface_waypoints, surface_waypoints, navigateDelay);
   
@@ -89,7 +103,8 @@ void setup() {
   xy_state_estimator.lastExecutionTime = loopStartTime - LOOP_PERIOD + XY_STATE_ESTIMATOR_LOOP_OFFSET;
   surface_control.lastExecutionTime    = loopStartTime - LOOP_PERIOD + SURFACE_CONTROL_LOOP_OFFSET;
   logger.lastExecutionTime             = loopStartTime - LOOP_PERIOD + LOGGER_LOOP_OFFSET;
-
+  winch_control.lastExecutionTime      = loopStartTime - LOOP_PERIOD + WINCH_CONTROL_LOOP_OFFSET;
+  hall.lastExecutionTime               = loopStartTime - LOOP_PERIOD + HALL_LOOP_OFFSET;
 }
 
 
@@ -111,6 +126,7 @@ void loop() {
     printer.printValue(7,motor_driver.printState());
     printer.printValue(8,imu.printRollPitchHeading());        
     printer.printValue(9,imu.printAccels());
+    printer.printValue(10,hall.printVoltage());
     printer.printToSerial();  // To stop printing, just comment this line out
   }
 
@@ -128,6 +144,21 @@ void loop() {
         surface_control.atPoint = false;   // get ready to go to the next point
       }
       motor_driver.drive(surface_control.uL,surface_control.uR,0);
+    }
+  }
+
+  if ( currentTime-winch_control.lastExecutionTime > LOOP_PERIOD ) {
+    winch_control.lastExecutionTime = currentTime;
+    // if the bot is sitting waiting at a waypoint, run winch code
+    if ( surface_control.delayed ) {
+      // do winchy things while the bot isn't moving
+      winch_control.run(hall.high, currentTime, surface_control.delayStartTime );
+      // maybe have the magnet on, maybe not.
+      mag_driver.drive(winch_control.mag);
+    }
+    else {
+      winch_control.idle();
+      mag_driver.drive(true); // magnet on while bot moves to hold winch in place
     }
   }
   
@@ -172,6 +203,11 @@ void loop() {
   if ( currentTime-led.lastExecutionTime > LOOP_PERIOD ) {
     led.lastExecutionTime = currentTime;
     led.flashLED(&gps.state);
+  }
+
+  if ( currentTime-hall.lastExecutionTime > LOOP_PERIOD ) {
+    hall.lastExecutionTime = currentTime;
+    hall.read();
   }
 
   if ( currentTime- logger.lastExecutionTime > LOOP_PERIOD && logger.keepLogging ) {
