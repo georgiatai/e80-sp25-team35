@@ -55,7 +55,34 @@ void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, int
     ///////////////////////////////////////////////////////////
     // INSERT P CONTROL CODE HERE
     ///////////////////////////////////////////////////////////
+
     
+    for (int i=0; i<stateDims * totalWayPoints; i++) { 
+      Serial.print(", " + String(wayPoints[i])); // DELETE
+    }
+    Serial.println("x_des: " + String(x_des) + ", y_des: " + String(y_des)); // DELETE
+    yaw = state->yaw;
+    yaw_des = atan2(y_des - state->y, x_des - state->x);
+    yaw_error = yaw_des - yaw;
+    u = Kp * yaw_error;
+    uR = avgPower + u;
+    uL = avgPower - u;
+    uR = uR * Kr;
+    uL = uL * Kl;
+    if (uR < 0) {
+      uR = 0;
+    } 
+    else if (uR > 127) {
+      uR = 127;
+    }
+    if (uL < 0) {
+      uL = 0;
+    } 
+    else if (uL > 127) {
+      uL = 127;
+    }
+
+
   }
   else {
     gpsAcquired = 0;

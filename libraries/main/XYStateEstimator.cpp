@@ -32,7 +32,13 @@ void XYStateEstimator::updateState(imu_state_t * imu_state_p, gps_state_t * gps_
     ///////////////////////////////////////////////////////////////////
     // INSERT YAW, X and Y CALCULATION HERE
     //////////////////////////////////////////////////////////////////
-
+    float latitude_change = (gps_state_p->lat - origin_lat) * PI / 180.0;
+    float longitude_change = (gps_state_p->lon - origin_lon) * PI / 180.0;
+    state.y = RADIUS_OF_EARTH_M * latitude_change;
+    state.x = RADIUS_OF_EARTH_M * longitude_change * cos(gps_state_p->lat * PI / 180.0);
+    
+    float heading_rad = imu_state_p->heading * PI / 180.0;
+    state.yaw = angleDiff(PI/2.0 - heading_rad);
   }
   else{
     gpsAcquired = 0;

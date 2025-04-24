@@ -78,7 +78,10 @@ String SensorIMU::printRollPitchHeading(void) {
   printString += "[deg],";
   printString += " heading: ";
   printString += String(state.heading);
-  printString += "[deg]";
+  printString += "[deg],";
+  printString += "x magnetometer: ";
+  printString += String(state.magX);
+  printString += "[uTesla]";
   return printString; 
 }
 
@@ -97,15 +100,15 @@ String SensorIMU::printAccels(void) {
 
 	// Used to Debug
   
-  //printString += " magX: ";
-  //printString += String(state.magX);
-  //printString += "[uT], ";
-  //printString += " magY: ";
-  //printString += String(state.magY);
-  //printString += "[uT], ";
-  //printString += " magZ: ";
-  //printString += String(state.magZ);
-  //printString += "[uT]";
+  printString += " magX: ";
+  printString += String(state.magX);
+  printString += "[uT], ";
+  printString += " magY: ";
+  printString += String(state.magY);
+  printString += "[uT], ";
+  printString += " magZ: ";
+  printString += String(state.magZ);
+  printString += "[uT]";
 
   return printString;
 }
