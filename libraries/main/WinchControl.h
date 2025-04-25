@@ -14,10 +14,13 @@ public: // for functions outside code might call
 
   void init(void);
 
-  void run(bool hallVal_in, int currentTime_in, int delayStartTime_in)
+  void run(bool hallVal_in, int currentTime_in, int delayStartTime_in);
 
   bool mag = true; // should the magnet be on? yes/no
+  bool motor = false;
   int lastExecutionTime = -1;
+  bool idle = true;
+  void idling(void);
 
 private: // for helper functions and hidden variables
 
@@ -28,7 +31,7 @@ private: // for helper functions and hidden variables
   int lastTime = 0;
   bool currentHall = false;
   bool lastHall = false;
-  bool idle = true;
+  
   bool down = true;
 
   void countHall(void);
@@ -39,7 +42,6 @@ private: // for helper functions and hidden variables
   void stopDetector(void);
   void raise(void);
   void stop(void);
-  void idle(void);
   
   bool hallChange(void); // returns true if the hall effect sensor voltage has dropped
 };

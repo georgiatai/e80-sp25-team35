@@ -14,7 +14,7 @@ SensorHall::SensorHall(void) {
 
 void SensorHall::init(const float threshold_in) {
   pinMode(HALL_PIN,INPUT); 
-  threshold = threshold_in
+  threshold = threshold_in;
   // this lets you print messages
   // the string gets displayed in the messages area
   // the number counts the number of times it is displayed at 10 Hz

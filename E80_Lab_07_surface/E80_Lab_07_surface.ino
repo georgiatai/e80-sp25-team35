@@ -83,7 +83,7 @@ void setup() {
   const float hallThreshold = 2.0;
   hall.init(hallThreshold);
 
-  int navigateDelay = 0; // how long robot will stay at surface waypoint before continuing (ms)
+  int navigateDelay = 20000; // how long robot will stay at surface waypoint before continuing (ms)
 
   const int num_surface_waypoints = 3; // Number of ordered pairs of surface waypoints. 
   // (e.g., if surface_waypoints is {x0,y0,x1,y1} then num_surface_waypoints is 2.) 
@@ -127,6 +127,7 @@ void loop() {
     printer.printValue(8,imu.printRollPitchHeading());        
     printer.printValue(9,imu.printAccels());
     printer.printValue(10,hall.printVoltage());
+    printer.printValue(11,"motor:" + String(winch_control.motor));
     printer.printToSerial();  // To stop printing, just comment this line out
   }
 
@@ -155,9 +156,12 @@ void loop() {
       winch_control.run(hall.high, currentTime, surface_control.delayStartTime );
       // maybe have the magnet on, maybe not.
       mag_driver.drive(winch_control.mag);
+      if ( winch_control.motor ) {
+        motor_driver.drive(0, 0, -128);
+      }
     }
     else {
-      winch_control.idle();
+      winch_control.idling();
       mag_driver.drive(true); // magnet on while bot moves to hold winch in place
     }
   }

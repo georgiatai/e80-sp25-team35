@@ -15,7 +15,7 @@
 class SensorHall {
 public: // for functions outside code might call
   SensorHall(void);
-  String printVoltage(void)
+  String printVoltage(void);
 
   void init(const float threshold_in);
 
