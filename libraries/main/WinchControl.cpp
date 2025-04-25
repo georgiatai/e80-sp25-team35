@@ -13,8 +13,15 @@ WinchControl::WinchControl(void) {
 }
 
 void WinchControl::init(void) {
-  pinMode(WINCH_EN_PIN,OUTPUT); // GPS_LOCK_LED is defined in pinouts
-
+  last_hall = false;
+  current_hall = false;
+  start_time = millis();
+  current_time = start_time;
+  last_hall_time = start_time;
+  state = 0;
+  
+  mag = true;
+  motor = false;
 
 
   // this lets you print messages
@@ -23,87 +30,37 @@ void WinchControl::init(void) {
   // printer.printMessage("Initialized LED at " + String(millis()), 10);
 }
 
-void WinchControl::idling(void) {
-  motor = false;
+void WinchControl::idle(void) {
+  state = 0;
   mag = true;
-  idle = true;
-  down = true;
+  motor = false;
 }
-
-void WinchControl::run(bool hallVal_in, int currentTime_in, int delayStartTime_in) {
-  lastHall = currentHall;
-  currentHall = hallVal_in;
-  currentTime = currentTime_in;
-
-
-
-  if (idle == true) {
-    start(delayStartTime_in);
-  }
-
-  if ((currentTime - totalTime) < 5000) {
-    down = true;
-  } else if ((currentTime - totalTime) < 10000) {
-    raise();
-  } else {
-    stop();
-  }
-  /*
-  if (down == true) {
-    countHall(down);
-    stopDetector();
-  }
-  else {
-    if (hallCount > 0) {
-      raise();
-    }
-    else{
-      stop();
-    }
-  }
-  */
-}
-
-void WinchControl::start(int delayStartTime_in) {
-  delayStartTime = delayStartTime_in;
-  totalTime = currentTime;
+void WinchControl::lower(void) {
+  state = 1;
   mag = false;
-  idle = false;
-}
-
-void WinchControl::countHall(bool mode) {
-  if (mode && hallChange()) {
-    hallCount++;
-    lastTime = currentTime;
-  }
-  else if (!mode && hallChange()) {
-    hallCount--;
-  }
-}
-
-void WinchControl::raise(void) {
-  motor = true;
-  mag = true;
-}
-
-void WinchControl::stop(void) {
   motor = false;
-  mag = true; // turn on the magnet
+}
+void WinchControl::raise(void) {
+  state = 2;
+  mag = true;
+  motor = true;
 }
 
-void WinchControl::stopDetector(void) {
-  int avg = (currentTime-totalTime)/hallCount;
-  int delta = currentTime-lastTime;
-  if (delta >= avg) {
-    down = false;
+void WinchControl::run(bool hallVal_in, int currentTime_in) {
+  last_hall = current_hall;
+  current_hall = hallVal_in;
+  current_time = currentTime_in;
+
+  if (current_hall != last_hall) {
+    last_hall_time = current_time;
+  }
+  bool rotation_stopped = (current_time - last_hall_time) > 1000;
+  
+  if (state == 1 && rotation_stopped) {
+    raise();
+  }
+  else if (state == 2 && rotation_stopped) {
+    idle();
   }
 }
 
-bool WinchControl::hallChange(void) {
-  if (currentHall && !lastHall) {
-    return true;
-  }
-  else {
-    return false;
-  }
-}

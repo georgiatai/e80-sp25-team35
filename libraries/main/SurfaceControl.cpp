@@ -12,7 +12,7 @@ SurfaceControl::SurfaceControl(void)
 : DataSource("u,uL,uR,yaw,yaw_des","float,float,float,float,float"){}
 
 
-void SurfaceControl::init(const int totalWayPoints_in, double * wayPoints_in, int navigateDelay_in) {
+void SurfaceControl::init(const int totalWayPoints_in, double * wayPoints_in, bool delay_in) {
   totalWayPoints = totalWayPoints_in;
   // create wayPoints array on the Heap so that it isn't erased once the main Arduino loop starts
   wayPoints = new double[2*totalWayPoints]; 
@@ -20,7 +20,7 @@ void SurfaceControl::init(const int totalWayPoints_in, double * wayPoints_in, in
   for (int i=0; i<2*totalWayPoints; i++) { 
     wayPoints[i] = wayPoints_in[i];
   }
-  navigateDelay = navigateDelay_in;
+  delay = delay_in;
   if (totalWayPoints == 0) atPoint = 1; // not doing surface control
   else atPoint = 0; // doing surface control
 }
@@ -29,8 +29,8 @@ int SurfaceControl::getWayPoint(int dim) {
   return wayPoints[currentWayPoint*stateDims+dim];
 }
 
-void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, int currentTime_in) {
-  currentTime = currentTime_in;
+void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, bool delay_in) {
+  delay = delay_in;
 
   if (gps_state_p->num_sat >= N_SATS_THRESHOLD) {
     gpsAcquired = 1;
@@ -38,7 +38,7 @@ void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, int
     updatePoint(state->x, state->y);
     if (currentWayPoint == totalWayPoints) return; // stops motors at final surface point
     
-    if (atPoint || delayed) {
+    if (atPoint || delay) {
       uL = 0; 
       uR = 0;
       return; // stops motors at surface waypoint
@@ -120,7 +120,7 @@ String SurfaceControl::printWaypointUpdate(void) {
   else if (!gpsAcquired) {
     wayPointUpdate += "SurfaceControl: Waiting to acquire more satellites...";
   }
-  else if (delayed) {
+  else if (delay) {
     wayPointUpdate += "SurfaceControl: Waiting for delay";
     wayPointUpdate += String(currentWayPoint);
   }
@@ -142,25 +142,18 @@ void SurfaceControl::updatePoint(float x, float y) {
   float y_des = getWayPoint(1);
   dist = sqrt(pow(x-x_des,2) + pow(y-y_des,2));
 
-  if ((dist < SUCCESS_RADIUS && currentWayPoint < totalWayPoints) || delayed) {
+  if ((dist < SUCCESS_RADIUS && currentWayPoint < totalWayPoints) || delay) {
     String changingWPMessage = "";
     int cwpmTime = 20;
      
     // NOTE: HERE IS WHERE DELAY IS
     // navigateDelay
-    if (delayStartTime == 0) {
-      delayStartTime = currentTime;
-      // TODO: put start of winch lowering here
-    }
-    if (currentTime < delayStartTime + navigateDelay) {
-      delayed = 1;
+    if (delay) {
       changingWPMessage = "Got to surface waypoint " + String(currentWayPoint)
         + ", waiting until delay is over";
       // TODO: put winch main process here
     }
     else {
-      delayed = 0;
-      delayStartTime = 0;
       changingWPMessage = "Got to surface waypoint " + String(currentWayPoint)
         + ", now directing to next point";
       atPoint = 1;

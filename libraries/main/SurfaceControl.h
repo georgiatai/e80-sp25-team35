@@ -14,10 +14,10 @@ public:
   SurfaceControl(void);
 
   // defines the waypoints used for Surface Control
-  void init(const int totalWayPoints_in, double * wayPoints_in, int navigateDelay_in);
+  void init(const int totalWayPoints_in, double * wayPoints_in, bool delay_in);
 
   // sets the right and left motor efforts using P-Control
-  void navigate(xy_state_t * state, gps_state_t * gps_state_p, int currentTime_in);
+  void navigate(xy_state_t * state, gps_state_t * gps_state_p, bool delay_in);
 
   String printString(void);
 
@@ -48,8 +48,7 @@ public:
   int totalWayPoints;
   double * wayPoints;
 
-  bool delayed;
-  int delayStartTime = 0;
+  bool delay;
 
 private:
 
@@ -62,7 +61,6 @@ private:
   int currentWayPoint = 0;
   bool gpsAcquired;
   
-  int navigateDelay;
   int currentTime;
 };
 

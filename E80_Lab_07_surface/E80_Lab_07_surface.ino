@@ -88,8 +88,8 @@ void setup() {
   const int num_surface_waypoints = 3; // Number of ordered pairs of surface waypoints. 
   // (e.g., if surface_waypoints is {x0,y0,x1,y1} then num_surface_waypoints is 2.) 
   // Set to 0 if only doing depth control 
-  double surface_waypoints [] = { 125, -40, 150, -40, 125, -40 };   // listed as x0,y0,x1,y1, ... etc.
-  surface_control.init(num_surface_waypoints, surface_waypoints, navigateDelay);
+  double surface_waypoints [] = { 125, -30, 150, -30, 125, -30 };   // listed as x0,y0,x1,y1, ... etc.
+  surface_control.init(num_surface_waypoints, surface_waypoints, 0);
   
   xy_state_estimator.init(); 
 
@@ -111,7 +111,7 @@ void setup() {
 
 //////////////////////////////* Loop */////////////////////////
 
-void loop() {
+void loop1() {
   currentTime=millis();
     
   if ( currentTime-printer.lastExecutionTime > LOOP_PERIOD ) {
@@ -127,7 +127,11 @@ void loop() {
     printer.printValue(8,imu.printRollPitchHeading());        
     printer.printValue(9,imu.printAccels());
     printer.printValue(10,hall.printVoltage());
-    printer.printValue(11,"motor:" + String(winch_control.motor));
+    printer.printValue(11,
+      "delay: " + String(surface_control.delay)
+      + "\nmotor: " + String(winch_control.motor)
+      + "\tmag: " + String(winch_control.mag)
+      + "\nstate: " + String(winch_control.state));
     printer.printToSerial();  // To stop printing, just comment this line out
   }
 
@@ -136,7 +140,7 @@ void loop() {
     surface_control.lastExecutionTime = currentTime;
     if ( surface_control.navigateState ) { // NAVIGATE STATE //
       if ( !surface_control.atPoint ) { 
-        surface_control.navigate(&xy_state_estimator.state, &gps.state, currentTime);
+        surface_control.navigate(&xy_state_estimator.state, &gps.state, winch_control.state);
       }
       else if ( surface_control.complete ) { 
         delete[] surface_control.wayPoints; // destroy surface waypoint array from the Heap
@@ -150,19 +154,17 @@ void loop() {
 
   if ( currentTime-winch_control.lastExecutionTime > LOOP_PERIOD ) {
     winch_control.lastExecutionTime = currentTime;
+    
+    winch_control.run(hall.high, currentTime);
     // if the bot is sitting waiting at a waypoint, run winch code
-    if ( surface_control.delayed ) {
+    if ( surface_control.delay && winch_control.state == 0) {
       // do winchy things while the bot isn't moving
-      winch_control.run(hall.high, currentTime, surface_control.delayStartTime );
+      winch_control.lower();
       // maybe have the magnet on, maybe not.
-      mag_driver.drive(winch_control.mag);
-      if ( winch_control.motor ) {
-        motor_driver.drive(0, 0, -128);
-      }
     }
-    else {
-      winch_control.idling();
-      mag_driver.drive(true); // magnet on while bot moves to hold winch in place
+    mag_driver.drive(winch_control.mag);
+    if ( winch_control.motor ) {
+      motor_driver.drive(0, 0, -128);
     }
   }
   
@@ -230,4 +232,64 @@ void EFB_Detected(void){
 
 void EFC_Detected(void){
   EF_States[2] = 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//test
+void loop() {
+  currentTime=millis();
+    
+  if ( currentTime-printer.lastExecutionTime > LOOP_PERIOD ) {
+    printer.lastExecutionTime = currentTime;
+    printer.printValue(0,adc.printSample());
+    printer.printValue(1,ef.printStates());
+    printer.printValue(2,logger.printState());
+    printer.printValue(3,gps.printState());   
+    printer.printValue(4,xy_state_estimator.printState());  
+    printer.printValue(5,surface_control.printWaypointUpdate());
+    printer.printValue(6,surface_control.printString());
+    printer.printValue(7,motor_driver.printState());
+    printer.printValue(8,imu.printRollPitchHeading());        
+    printer.printValue(9,imu.printAccels());
+    printer.printValue(10,hall.printVoltage());
+    printer.printValue(11,
+      "delay: " + String(surface_control.delay)
+      + "\nmotor: " + String(winch_control.motor)
+      + "\tmag: " + String(winch_control.mag)
+      + "\nstate: " + String(winch_control.state));
+    printer.printToSerial();  // To stop printing, just comment this line out
+  }
+
+  if ( currentTime-winch_control.lastExecutionTime > LOOP_PERIOD ) {
+    winch_control.lastExecutionTime = currentTime;
+    
+    winch_control.run(hall.high, currentTime);
+    // if the bot is sitting waiting at a waypoint, run winch code
+    if ( surface_control.delay && winch_control.state == 0) {
+      // do winchy things while the bot isn't moving
+      winch_control.lower();
+      // maybe have the magnet on, maybe not.
+    }
+    mag_driver.drive(winch_control.mag);
+    if ( winch_control.motor ) {
+      motor_driver.drive(0, 0, -128);
+    }
+  }
+
+  if ( currentTime- logger.lastExecutionTime > LOOP_PERIOD && logger.keepLogging ) {
+    logger.lastExecutionTime = currentTime;
+    logger.log();
+  }
 }
