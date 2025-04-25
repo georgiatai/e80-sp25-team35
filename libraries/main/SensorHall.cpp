@@ -9,8 +9,9 @@
 extern Printer printer;
 
 // constructor for class objects
-SensorHall::SensorHall(void) {
-}
+SensorHall::SensorHall(void)
+  : DataSource("Hall","bool") // from DataSource
+{}
 
 void SensorHall::init(const float threshold_in) {
   pinMode(HALL_PIN,INPUT); 
@@ -33,6 +34,14 @@ void SensorHall::read(void) {
   else {
     high = false;
   }
+}
+
+size_t SensorHall::writeDataBytes(unsigned char * buffer, size_t idx)
+// This function writes data to the micro SD card
+{
+  bool * data_slot = (bool *) &buffer[idx];
+  data_slot[0] = high;
+  return idx + sizeof(bool);
 }
 
 String SensorHall::printVoltage(void) {

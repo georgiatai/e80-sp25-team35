@@ -12,7 +12,7 @@
 // controls how often and when in the loop this class's functions run
 
 
-class SensorHall {
+class SensorHall : public DataSource {
 public: // for functions outside code might call
   SensorHall(void);
   String printVoltage(void);
@@ -20,6 +20,7 @@ public: // for functions outside code might call
   void init(const float threshold_in);
 
   void read(void);
+  size_t writeDataBytes(unsigned char * buffer, size_t idx);
 
   int lastExecutionTime = -1;
 

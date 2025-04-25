@@ -66,6 +66,7 @@ void setup() {
   logger.include(&adc);
   logger.include(&ef);
   logger.include(&button_sampler);
+  logger.include(&hall);
   logger.init();
 
   printer.init();
@@ -82,8 +83,6 @@ void setup() {
 
   const float hallThreshold = 2.0;
   hall.init(hallThreshold);
-
-  int navigateDelay = 20000; // how long robot will stay at surface waypoint before continuing (ms)
 
   const int num_surface_waypoints = 3; // Number of ordered pairs of surface waypoints. 
   // (e.g., if surface_waypoints is {x0,y0,x1,y1} then num_surface_waypoints is 2.) 
