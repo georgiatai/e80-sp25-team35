@@ -28,7 +28,6 @@ void SensorHall::read(void) {
   voltage = value * (3.3 / 1023.0);
 
   if (voltage < threshold) {
-    // the hall sensor approaches 0V when magnet near, 3V when no magnet
     high = true;
   }
   else {
@@ -49,6 +48,7 @@ String SensorHall::printVoltage(void) {
 
   printString += String(voltage);
   printString += "[V], ";
+  printString += String(high);
 
   return printString;
 }

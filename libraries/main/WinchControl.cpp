@@ -18,7 +18,7 @@ void WinchControl::init(void) {
   start_time = millis();
   current_time = start_time;
   last_hall_time = start_time;
-  raise();
+  idle();
 
 
   // this lets you print messages

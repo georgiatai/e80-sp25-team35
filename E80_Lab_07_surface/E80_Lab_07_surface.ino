@@ -78,6 +78,7 @@ void setup() {
   motor_driver.init();
   led.init();
   // TODO: write init functions
+  adc.init();
   winch_control.init();
   mag_driver.init();
 
@@ -87,7 +88,7 @@ void setup() {
   const int num_surface_waypoints = 3; // Number of ordered pairs of surface waypoints. 
   // (e.g., if surface_waypoints is {x0,y0,x1,y1} then num_surface_waypoints is 2.) 
   // Set to 0 if only doing depth control 
-  double surface_waypoints [] = { 125, -30, 150, -30, 125, -30 };   // listed as x0,y0,x1,y1, ... etc.
+  double surface_waypoints [] = { 125, -40, 150, -40, 125, -40 };   // listed as x0,y0,x1,y1, ... etc.
   surface_control.init(num_surface_waypoints, surface_waypoints, 0);
   
   xy_state_estimator.init(); 
@@ -110,7 +111,7 @@ void setup() {
 
 //////////////////////////////* Loop */////////////////////////
 
-void loop1() {
+void loop() {
   currentTime=millis();
     
   if ( currentTime-printer.lastExecutionTime > LOOP_PERIOD ) {
@@ -145,6 +146,9 @@ void loop1() {
         delete[] surface_control.wayPoints; // destroy surface waypoint array from the Heap
       }
       else {
+        if (winch_control.state == 0) {
+          winch_control.lower();
+        }
         surface_control.atPoint = false;   // get ready to go to the next point
       }
       motor_driver.drive(surface_control.uL,surface_control.uR,0);
@@ -156,15 +160,13 @@ void loop1() {
     
     winch_control.run(hall.high, currentTime);
     // if the bot is sitting waiting at a waypoint, run winch code
-    if ( surface_control.delay && winch_control.state == 0) {
-      // do winchy things while the bot isn't moving
-      winch_control.lower();
-      // maybe have the magnet on, maybe not.
-    }
     mag_driver.drive(winch_control.mag);
-    if ( winch_control.motor ) {
-      motor_driver.drive(0, 0, -128);
-    }
+    motor_driver.drive_one(2, -MOTOR_POWER * winch_control.motor);
+  }
+
+  if ( currentTime-adc.lastExecutionTime > LOOP_PERIOD ) {
+    adc.lastExecutionTime = currentTime;
+    adc.updateSample(); 
   }
   
   if ( currentTime-adc.lastExecutionTime > LOOP_PERIOD ) {
@@ -247,7 +249,7 @@ void EFC_Detected(void){
 
 
 //test
-void loop() {
+void loop_test() {
   currentTime=millis();
     
   if ( currentTime-printer.lastExecutionTime > LOOP_PERIOD ) {
@@ -263,11 +265,15 @@ void loop() {
     printer.printValue(8,imu.printRollPitchHeading());        
     printer.printValue(9,imu.printAccels());
     printer.printValue(10,hall.printVoltage());
-    printer.printValue(11,
-      "delay: " + String(surface_control.delay)
-      + "\nmotor: " + String(winch_control.motor)
-      + "\tmag: " + String(winch_control.mag)
-      + "\nstate: " + String(winch_control.state));
+    printer.printValue(11, "currentTime: " + String(currentTime));
+    printer.printValue(12,
+        "delay: " + String(surface_control.delay)
+        + "\nmotor: " + String(winch_control.motor)
+        + "\tmag: " + String(winch_control.mag)
+        + "\nstate: " + String(winch_control.state)
+        + "\nlast_hall_time: " + String(winch_control.last_hall_time)
+        + "\ncurrent_time: " + String(currentTime)
+      );
     printer.printToSerial();  // To stop printing, just comment this line out
   }
 
@@ -282,9 +288,55 @@ void loop() {
       // maybe have the magnet on, maybe not.
     }
     mag_driver.drive(winch_control.mag);
-    if ( winch_control.motor ) {
-      motor_driver.drive(0, 0, -128);
-    }
+    motor_driver.drive(0, 0, -MOTOR_POWER * winch_control.motor);
+  }
+
+  if ( currentTime-adc.lastExecutionTime > LOOP_PERIOD ) {
+    adc.lastExecutionTime = currentTime;
+    adc.updateSample(); 
+  }
+
+  if ( currentTime-ef.lastExecutionTime > LOOP_PERIOD ) {
+    ef.lastExecutionTime = currentTime;
+    attachInterrupt(digitalPinToInterrupt(ERROR_FLAG_A), EFA_Detected, LOW);
+    attachInterrupt(digitalPinToInterrupt(ERROR_FLAG_B), EFB_Detected, LOW);
+    attachInterrupt(digitalPinToInterrupt(ERROR_FLAG_C), EFC_Detected, LOW);
+    delay(5);
+    detachInterrupt(digitalPinToInterrupt(ERROR_FLAG_A));
+    detachInterrupt(digitalPinToInterrupt(ERROR_FLAG_B));
+    detachInterrupt(digitalPinToInterrupt(ERROR_FLAG_C));
+    ef.updateStates(EF_States[0],EF_States[1],EF_States[2]);
+    EF_States[0] = 1;
+    EF_States[1] = 1;
+    EF_States[2] = 1;
+  }
+
+  // uses the ButtonSampler library to read a button -- use this as a template for new libraries!
+  if ( currentTime-button_sampler.lastExecutionTime > LOOP_PERIOD ) {
+    button_sampler.lastExecutionTime = currentTime;
+    button_sampler.updateState();
+  }
+
+  if ( currentTime-imu.lastExecutionTime > LOOP_PERIOD ) {
+    imu.lastExecutionTime = currentTime;
+    imu.read();     // blocking I2C calls
+  }
+ 
+  gps.read(&GPS); // blocking UART calls, need to check for UART data every cycle
+
+  if ( currentTime-xy_state_estimator.lastExecutionTime > LOOP_PERIOD ) {
+    xy_state_estimator.lastExecutionTime = currentTime;
+    xy_state_estimator.updateState(&imu.state, &gps.state);
+  }
+  
+  if ( currentTime-led.lastExecutionTime > LOOP_PERIOD ) {
+    led.lastExecutionTime = currentTime;
+    led.flashLED(&gps.state);
+  }
+
+  if ( currentTime-hall.lastExecutionTime > LOOP_PERIOD ) {
+    hall.lastExecutionTime = currentTime;
+    hall.read();
   }
 
   if ( currentTime- logger.lastExecutionTime > LOOP_PERIOD && logger.keepLogging ) {

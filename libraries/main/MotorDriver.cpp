@@ -52,6 +52,20 @@ void MotorDriver::drive(int motorA_power,int motorB_power,int motorC_power) {
   printState();
 }
 
+void MotorDriver::drive_one(int motor_choice, int motor_power) {
+  int index;
+  if (motor_choice == 0) {
+    index = MOTOR_A_INDEX;
+  } else if (motor_choice == 1) {
+    index = MOTOR_B_INDEX;
+  } else if (motor_choice == 2) {
+    index = MOTOR_C_INDEX;
+  }
+  motorValues[index] = motor_power;
+  apply();
+  printState();
+}
+
 String MotorDriver::printState(void) {
   String printString =
     "Motors: PWMA: "  + String(pwmDir[MOTOR_A_INDEX] ? " " : "-") + String( pwmValues[MOTOR_A_INDEX] ) +  
