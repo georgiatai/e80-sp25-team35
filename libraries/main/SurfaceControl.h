@@ -1,7 +1,7 @@
 #ifndef __SURFACECONTROL_H__
 #define __SURFACECONTROL_H__
 
-#define SUCCESS_RADIUS 2.0 // success radius in meters
+#define SUCCESS_RADIUS 20 // success radius in meters
 
 #include <Arduino.h>
 #include "MotorDriver.h"
@@ -37,7 +37,7 @@ public:
   float Kp=10.0;         // proportional control gain
   float Kr=1.0;          // right motor gain correction
   float Kl=1.0;          // left motor gain correction
-  float avgPower = 50.0; // average forward thrust
+  float avgPower = 80.0; // average forward thrust
   float uR;              // right motor effort
   float uL;              // left motor effort
 

@@ -9,7 +9,7 @@
 #define DIRECTION_PIN 0
 #define SPEED_PIN 1
 
-#define MOTOR_POWER 100
+#define MOTOR_POWER 150
 
 // the minimum PWM amount that causes the motors to actually spin
 #define MOTOR_DEADZONE 34
